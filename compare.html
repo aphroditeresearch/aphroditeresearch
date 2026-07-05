@@ -7,7 +7,7 @@
 <meta name="description" content="Compare peptides side by side: what each one targets, how strong the human evidence is, what's still unknown, and where the hype outruns the science. Retatrutide vs. GHK-Cu and more.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&family=Spectral:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Jost:wght@300;400;500&family=Spectral:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
 <style>
 :root{
   --obsidian:#08080b;--midnight:#0f0f16;--panel:#0d0d12;--panel-hi:#14141c;
@@ -28,7 +28,7 @@ main,nav,.ticker,footer{position:relative;z-index:2}
 .ticker-track span::after{content:"◆";color:rgba(201,163,91,.4);font-size:.4rem}
 @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 nav{display:flex;align-items:center;justify-content:space-between;padding:1.3rem clamp(1.2rem,4vw,3rem);position:sticky;top:0;z-index:50;background:rgba(8,8,11,.82);backdrop-filter:blur(16px);border-bottom:1px solid var(--line-soft)}
-.brand{display:inline-flex;align-items:center;font-family:'Cormorant',serif;font-weight:600;font-size:1.4rem;letter-spacing:.16em;text-transform:uppercase}
+.brand{display:inline-flex;align-items:center;font-family:'Playfair Display',serif;font-weight:600;font-size:1.4rem;letter-spacing:.1em;text-transform:uppercase}
 .brand span{color:var(--gold);margin:0 .15em;font-size:.7em;vertical-align:middle}
 .nav-cta{border:1px solid var(--gold);color:var(--gold-bright);padding:.5rem 1.2rem;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;transition:all .3s}
 .nav-cta:hover{background:var(--gold);color:var(--obsidian)}
@@ -40,16 +40,16 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:1.3rem
 .chead{text-align:center;padding:clamp(3rem,7vw,5rem) clamp(1.2rem,4vw,3rem) 1.5rem;position:relative;overflow:hidden}
 .chead::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 50% 70% at 50% 0%,rgba(201,163,91,.1),transparent 65%)}
 .chead .in{position:relative;z-index:1;max-width:760px;margin:0 auto}
-.chead h1{font-family:'Cormorant',serif;font-weight:500;font-size:clamp(2.3rem,5vw,3.6rem);letter-spacing:.02em;margin:1rem 0;color:#fbf8f0;text-shadow:0 0 50px rgba(255,255,255,.18)}
+.chead h1{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(2.3rem,5vw,3.6rem);letter-spacing:.02em;margin:1rem 0;color:#fbf8f0;text-shadow:0 0 50px rgba(255,255,255,.18)}
 .chead p{font-family:'Spectral',serif;font-size:1.12rem;color:var(--marble-dim);line-height:1.7;max-width:56ch;margin:0 auto}
 
 /* pickers */
 .pickers{display:flex;align-items:center;justify-content:center;gap:1rem;flex-wrap:wrap;max-width:760px;margin:2rem auto 0;position:relative;z-index:1}
 .picker{display:flex;flex-direction:column;gap:.4rem}
 .picker label{font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);text-align:left}
-.picker select{background:var(--panel);border:1px solid var(--line);color:var(--marble);font-family:'Cormorant',serif;font-size:1.3rem;padding:.6rem 2.4rem .6rem 1rem;outline:none;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c9a35b' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;transition:border-color .3s}
+.picker select{background:var(--panel);border:1px solid var(--line);color:var(--marble);font-family:'Playfair Display',serif;font-size:1.3rem;padding:.6rem 2.4rem .6rem 1rem;outline:none;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c9a35b' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;transition:border-color .3s}
 .picker select:focus{border-color:var(--gold)}
-.vs{font-family:'Cormorant',serif;font-style:italic;font-size:1.4rem;color:var(--gold);align-self:flex-end;padding-bottom:.5rem}
+.vs{font-family:'Playfair Display',serif;font-style:italic;font-size:1.4rem;color:var(--gold);align-self:flex-end;padding-bottom:.5rem}
 
 /* comparison table */
 .ctable-wrap{max-width:1000px;margin:2.5rem auto 0;padding:0 clamp(1.2rem,4vw,3rem)}
@@ -57,7 +57,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:1.3rem
 .ctable th,.ctable td{padding:1.15rem 1.3rem;text-align:left;vertical-align:top;border-bottom:1px solid var(--line-soft)}
 .ctable thead th{background:rgba(201,163,91,.05);border-bottom:1px solid var(--line)}
 .ctable thead .dim{font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--marble-dim);font-weight:400}
-.ctable thead .cname{font-family:'Cormorant',serif;font-weight:600;font-size:1.7rem;color:var(--gold-bright);letter-spacing:.01em;display:block;margin-bottom:.15rem}
+.ctable thead .cname{font-family:'Playfair Display',serif;font-weight:600;font-size:1.7rem;color:var(--gold-bright);letter-spacing:.01em;display:block;margin-bottom:.15rem}
 .ctable thead .csub{font-family:'Spectral',serif;font-style:italic;font-size:.8rem;color:var(--marble-dim)}
 .ctable .rowlabel{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);width:23%;background:rgba(201,163,91,.02)}
 .ctable td.val{font-family:'Spectral',serif;font-size:.95rem;color:#cdc7b8;line-height:1.6;width:38.5%}
@@ -81,7 +81,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:1.3rem
 .note{max-width:1000px;margin:1.5rem auto 0;padding:0 clamp(1.2rem,4vw,3rem);font-family:'Spectral',serif;font-style:italic;font-size:.86rem;color:var(--marble-dim);line-height:1.6}
 
 .more{max-width:1000px;margin:3rem auto 0;padding:0 clamp(1.2rem,4vw,3rem) 4rem}
-.more h2{font-family:'Cormorant',serif;font-weight:500;font-size:1.6rem;margin-bottom:1.2rem;text-align:center}
+.more h2{font-family:'Playfair Display',serif;font-weight:500;font-size:1.6rem;margin-bottom:1.2rem;text-align:center}
 .more-grid{display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center}
 .more-chip{font-size:.8rem;color:var(--marble-dim);border:1px solid var(--line-soft);padding:.6rem 1rem;transition:all .3s}
 .more-chip:hover{color:var(--gold-bright);border-color:var(--gold)}
@@ -126,7 +126,7 @@ footer{background:var(--midnight);border-top:1px solid var(--line-soft);padding:
     <li><a href="compare.html" class="active">Compare</a></li>
     <li><a href="methodology.html">Methodology</a></li>
     <li><a href="pricing.html">Membership</a></li>
-    <li><a href="account.html" class="nav-cta">Enter</a></li>
+    <li><a href="account.html" class="nav-cta">Access</a></li>
   </ul>
   <button class="burger" id="burger" aria-label="Menu">☰</button>
 </nav>
@@ -230,7 +230,7 @@ function cell(d,row){
     return `<span class="pill ${cls}">${e.label}</span><div>${e.text}</div>`;
   }
   if(row.type==="gap"){
-    const g=d.gap;return `<b style="color:var(--gold-bright);font-family:'Cormorant',serif;font-size:1.15rem">${g.label}</b><div class="gapbar"><div class="gapfill" style="width:${g.pct}%"></div></div><div style="margin-top:.5rem">${g.text}</div>`;
+    const g=d.gap;return `<b style="color:var(--gold-bright);font-family:'Playfair Display',serif;font-size:1.15rem">${g.label}</b><div class="gapbar"><div class="gapfill" style="width:${g.pct}%"></div></div><div style="margin-top:.5rem">${g.text}</div>`;
   }
   return d[row.key];
 }

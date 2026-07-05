@@ -6,7 +6,7 @@
 <title>Membership — Aphrodite Research</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&family=Spectral:ital,wght@0,300;0,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Jost:wght@300;400;500&family=Spectral:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
 <style>
 :root{--obsidian:#08080b;--midnight:#0f0f16;--panel:#0d0d12;--panel-hi:#14141c;--marble:#efe9dc;--marble-dim:#8a8477;--gold:#c9a35b;--gold-bright:#e6c684;--rose:#c88a7d;--teal:#8fc4b8;--line:rgba(201,163,91,.2);--line-soft:rgba(201,163,91,.1)}
 *{margin:0;padding:0;box-sizing:border-box}
@@ -24,7 +24,7 @@ main,nav,.ticker,footer{position:relative;z-index:2}
 @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
 nav{display:flex;align-items:center;justify-content:space-between;padding:1.3rem clamp(1.2rem,4vw,3rem);position:sticky;top:0;z-index:50;background:rgba(8,8,11,.82);backdrop-filter:blur(16px);border-bottom:1px solid var(--line-soft)}
-.brand{display:inline-flex;align-items:center;font-family:'Cormorant',serif;font-weight:600;font-size:1.4rem;letter-spacing:.16em;text-transform:uppercase}
+.brand{display:inline-flex;align-items:center;font-family:'Playfair Display',serif;font-weight:600;font-size:1.4rem;letter-spacing:.1em;text-transform:uppercase}
 .brand span{color:var(--gold);margin:0 .15em;font-size:.7em;vertical-align:middle}
 .nav-cta{border:1px solid var(--gold);color:var(--gold-bright);padding:.5rem 1.2rem;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;transition:all .3s}
 .nav-cta:hover{background:var(--gold);color:var(--obsidian)}
@@ -36,7 +36,7 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:1.3rem
 .phead{text-align:center;padding:clamp(3rem,7vw,5rem) clamp(1.2rem,4vw,3rem) 2rem;position:relative;overflow:hidden}
 .phead::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 50% 70% at 50% 0%,rgba(201,163,91,.1),transparent 65%)}
 .phead .in{position:relative;z-index:1}
-.phead h1{font-family:'Cormorant',serif;font-weight:500;font-size:clamp(2.4rem,5vw,3.8rem);letter-spacing:.02em;margin:1rem 0 1rem;color:#fbf8f0;text-shadow:0 0 50px rgba(255,255,255,.18)}
+.phead h1{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(2.4rem,5vw,3.8rem);letter-spacing:.02em;margin:1rem 0 1rem;color:#fbf8f0;text-shadow:0 0 50px rgba(255,255,255,.18)}
 .phead p{font-family:'Spectral',serif;font-size:1.15rem;color:var(--marble-dim);max-width:56ch;margin:0 auto;line-height:1.7}
 .honest{max-width:60ch;margin:1.6rem auto 0;font-size:.9rem;color:var(--marble-dim);font-family:'Spectral',serif;font-style:italic;border-top:1px solid var(--line-soft);padding-top:1.4rem}
 
@@ -45,8 +45,8 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:1.3rem
 .tier{border:1px solid var(--line);padding:2.4rem 2rem;position:relative;display:flex;flex-direction:column}
 .tier.featured{border-color:var(--gold);background:linear-gradient(180deg,rgba(20,20,28,.5),rgba(8,8,11,.3))}
 .tier.featured::before{content:"Most chosen";position:absolute;top:-1px;right:1.6rem;transform:translateY(-50%);background:var(--gold);color:var(--obsidian);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;padding:.35rem .9rem}
-.tier .t-name{font-family:'Cormorant',serif;font-style:italic;font-size:2rem;color:var(--gold-bright);margin-bottom:.3rem}
-.tier .t-price{font-family:'Cormorant',serif;font-size:2.6rem;color:var(--marble);margin:.8rem 0 .2rem}
+.tier .t-name{font-family:'Playfair Display',serif;font-style:italic;font-size:2rem;color:var(--gold-bright);margin-bottom:.3rem}
+.tier .t-price{font-family:'Playfair Display',serif;font-size:2.6rem;color:var(--marble);margin:.8rem 0 .2rem}
 .tier .t-price small{font-family:'Jost';font-size:.8rem;color:var(--marble-dim);letter-spacing:.06em}
 .tier .t-alt{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--marble-dim);margin-bottom:1.6rem}
 .tier ul{list-style:none;margin-bottom:2rem;flex:1}
@@ -61,9 +61,9 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:1.3rem
 .t-btn.gold:hover{box-shadow:0 10px 40px rgba(230,198,132,.4);color:#1a1206}
 
 .faq{max-width:720px;margin:0 auto;padding:2rem clamp(1.2rem,4vw,3rem) 4rem}
-.faq h2{font-family:'Cormorant',serif;font-weight:500;font-size:2rem;text-align:center;margin-bottom:2rem}
+.faq h2{font-family:'Playfair Display',serif;font-weight:500;font-size:2rem;text-align:center;margin-bottom:2rem}
 .q{border-bottom:1px solid var(--line-soft);padding:1.3rem 0}
-.q h3{font-family:'Cormorant',serif;font-size:1.25rem;color:var(--gold-bright);margin-bottom:.5rem}
+.q h3{font-family:'Playfair Display',serif;font-size:1.25rem;color:var(--gold-bright);margin-bottom:.5rem}
 .q p{font-family:'Spectral',serif;font-size:.95rem;color:#cdc7b8;line-height:1.65}
 
 footer{background:var(--midnight);border-top:1px solid var(--line-soft);padding:3rem clamp(1.2rem,4vw,3rem) 2rem}
@@ -96,7 +96,7 @@ footer{background:var(--midnight);border-top:1px solid var(--line-soft);padding:
     <li><a href="compare.html">Compare</a></li>
     <li><a href="methodology.html">Methodology</a></li>
     <li><a href="pricing.html" class="active">Membership</a></li>
-    <li><a href="account.html" class="nav-cta">Enter</a></li>
+    <li><a href="account.html" class="nav-cta">Access</a></li>
   </ul>
   <button class="burger" id="burger" aria-label="Menu">☰</button>
 </nav>

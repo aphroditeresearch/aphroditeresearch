@@ -164,9 +164,14 @@ footer{background:var(--midnight);border-top:1px solid var(--line-soft);padding:
 .foot-legal{max-width:1200px;margin:0 auto;padding-top:1.6rem;border-top:1px solid var(--line-soft);font-size:.66rem;letter-spacing:.1em;color:var(--marble-dim);text-align:center;line-height:1.9}
 
 @media(max-width:1080px){
-  .nav-links{position:fixed;top:0;bottom:0;right:0;width:min(78vw,300px);background:var(--midnight);flex-direction:column;justify-content:center;gap:2.2rem;z-index:60;border-left:1px solid var(--line);transform:translateX(105%);visibility:hidden;transition:transform .4s ease,visibility 0s linear .4s}
-  .nav-links.open{transform:translateX(0);visibility:visible;transition:transform .4s ease,visibility 0s}
-  .burger{display:block;z-index:70}
+  nav{flex-wrap:wrap}
+  .burger{display:block;z-index:70;order:3}
+  .nav-links{display:none;order:4;flex-basis:100%;width:100%;flex-direction:column;gap:0;margin-top:1rem;padding-top:.6rem;border-top:1px solid var(--line-soft)}
+  .nav-links.open{display:flex}
+  .nav-links li{width:100%}
+  .nav-links li a:not(.nav-cta){display:block;width:100%;padding:1.05rem .2rem;font-size:.9rem;letter-spacing:.14em;border-bottom:1px solid var(--line-soft)}
+  .nav-links li:last-child{margin-top:.9rem}
+  .nav-links a.nav-cta{display:block;text-align:center;padding:1rem;font-size:.82rem}
 }
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;scroll-behavior:auto}
@@ -186,8 +191,8 @@ footer{background:var(--midnight);border-top:1px solid var(--line-soft);padding:
 
 <div class="ticker" aria-label="Educational resource. Not for human or veterinary use. No compounds sold. No dosing information.">
   <div class="ticker-track">
-    <span>Educational resource</span><span>For qualified researchers</span><span>The literature, uncovered</span><span>Not for human or veterinary use</span><span>See what others overlook</span><span>No compounds sold</span><span>No dosing information</span><span>Curated · Cited · Current</span>
-    <span aria-hidden="true">Educational resource</span><span aria-hidden="true">For qualified researchers</span><span aria-hidden="true">The literature, uncovered</span><span aria-hidden="true">Not for human or veterinary use</span><span aria-hidden="true">See what others overlook</span><span aria-hidden="true">No compounds sold</span><span aria-hidden="true">No dosing information</span><span aria-hidden="true">Curated · Cited · Current</span>
+    <span>Educational resource</span><span>For anyone who wants the evidence</span><span>The literature, uncovered</span><span>Not for human or veterinary use</span><span>See what others overlook</span><span>No compounds sold</span><span>No dosing information</span><span>Curated · Cited · Current</span>
+    <span aria-hidden="true">Educational resource</span><span aria-hidden="true">For anyone who wants the evidence</span><span aria-hidden="true">The literature, uncovered</span><span aria-hidden="true">Not for human or veterinary use</span><span aria-hidden="true">See what others overlook</span><span aria-hidden="true">No compounds sold</span><span aria-hidden="true">No dosing information</span><span aria-hidden="true">Curated · Cited · Current</span>
   </div>
 </div>
 
@@ -341,7 +346,7 @@ footer{background:var(--midnight);border-top:1px solid var(--line-soft);padding:
       <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
       <div class="inner">
         <span class="eyebrow">The Threshold</span>
-        <div class="t-name">Become an Initiate</div>
+        <div class="t-name">Start Deep Dive Access</div>
         <div class="price">Full access · Cancel anytime</div>
         <ul class="unlocks">
           <li>Every compound deep-dive</li>
@@ -349,8 +354,8 @@ footer{background:var(--midnight);border-top:1px solid var(--line-soft);padding:
           <li>The weekly research digest</li>
           <li>Full archive &amp; search</li>
         </ul>
-        <a href="pricing.html" class="btn-initiate"><span>Cross the Threshold <span class="arrow">→</span></span></a>
-        <div class="reassure">Members only — Educational access</div>
+        <a href="pricing.html" class="btn-initiate"><span>Unlock the Full Dossier <span class="arrow">→</span></span></a>
+        <div class="reassure">Included with Deep Dive access</div>
       </div>
     </div>
   </aside>
@@ -364,7 +369,7 @@ footer{background:var(--midnight);border-top:1px solid var(--line-soft);padding:
     </div>
   </div>
   <div class="foot-legal">
-    Aphrodite Research is an educational resource for qualified researchers. Not for human or veterinary use.<br>
+    Aphrodite Research is an educational resource — built for curious readers, creators, and professionals alike. Not for human or veterinary use.<br>
     We do not sell, supply, or broker peptides or research compounds, and we provide no dosing, protocols, or sourcing information.
   </div>
 </footer>

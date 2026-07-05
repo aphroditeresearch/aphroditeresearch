@@ -1,90 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta property="og:image" content="https://www.aphroditeresearch.com/images/aphrodite-social-preview-v3.jpg">
-<meta property="og:image:secure_url" content="https://www.aphroditeresearch.com/images/aphrodite-social-preview-v3.jpg">
-<meta property="og:image:type" content="image/jpeg">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<link rel="icon" type="image/png" href="/images/aphrodite-icon.png">
-
-<link
-  rel="apple-touch-icon"
-  sizes="180x180"
-  href="/images/aphrodite-icon.png"
->
-  <title>Aphrodite Research — Peptide Science, Decoded</title>
-
-<meta
-  name="description"
-  content="Clear, evidence-based peptide research. See what was studied, what was exaggerated, and what remains unknown."
-/>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aphrodite Research — Peptide Science, Decoded</title>
+<meta name="description" content="Clear, evidence-based peptide research. See what was studied in humans, what the internet exaggerates, and what remains unknown — no hype, no selling.">
 <link rel="canonical" href="https://www.aphroditeresearch.com/" />
 
-<!-- Open Graph -->
+<!-- Open Graph (link previews) -->
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Aphrodite Research" />
-
-<meta
-  property="og:title"
-  content="Aphrodite Research — Peptide Science, Decoded"
-/>
-
-<meta
-  property="og:description"
-  content="Understand what researchers know, what the internet exaggerates, and what remains unknown."
-/>
-
-<meta
-  property="og:url"
-  content="https://www.aphroditeresearch.com/"
-/>
-
-<meta
-  property="og:image"
-  content="https://www.aphroditeresearch.com/images/aphrodite-social-preview.png"
-/>
-
-<meta
-  property="og:image:secure_url"
-  content="https://www.aphroditeresearch.com/images/aphrodite-social-preview.png"
-/>
-
-<meta property="og:image:type" content="image/png" />
+<meta property="og:title" content="Aphrodite Research — Peptide Science, Decoded" />
+<meta property="og:description" content="See what was studied in humans, what the internet exaggerates, and what remains unknown." />
+<meta property="og:url" content="https://www.aphroditeresearch.com/" />
+<meta property="og:image" content="https://www.aphroditeresearch.com/images/aphrodite-social-preview-v3.jpg" />
+<meta property="og:image:secure_url" content="https://www.aphroditeresearch.com/images/aphrodite-social-preview-v3.jpg" />
+<meta property="og:image:type" content="image/jpeg" />
 <meta property="og:image:width" content="1200" />
 <meta property="og:image:height" content="630" />
-
-<meta
-  property="og:image:alt"
-  content="Aphrodite Research — Peptide Science, Decoded"
-/>
+<meta property="og:image:alt" content="Aphrodite Research — Peptide Science, Decoded" />
 
 <!-- X / Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
-
-<meta
-  name="twitter:title"
-  content="Aphrodite Research — Peptide Science, Decoded"
-/>
-
-<meta
-  name="twitter:description"
-  content="Clear, evidence-based peptide research without the hype."
-/>
-
-<meta
-  name="twitter:image"
-  content="https://www.aphroditeresearch.com/images/aphrodite-social-preview.png"
-/>
+<meta name="twitter:title" content="Aphrodite Research — Peptide Science, Decoded" />
+<meta name="twitter:description" content="Clear, evidence-based peptide research without the hype." />
+<meta name="twitter:image" content="https://www.aphroditeresearch.com/images/aphrodite-social-preview-v3.jpg" />
 
 <!-- Icons -->
-<link rel="icon" href="/favicon.ico" sizes="any" />
-<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aphrodite Research</title>
-<meta name="description" content="An evidence archive for peptides and research compounds. What the studies actually show — human data kept separate from animal, every claim traced to its source.">
+<link rel="icon" type="image/png" href="/images/aphrodite-icon.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/images/aphrodite-icon.png" />
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
@@ -103,8 +48,8 @@ body{background:var(--obsidian);color:var(--marble);font-family:'Jost',sans-seri
 #rain{position:fixed;inset:0;z-index:1;pointer-events:none}
 
 /* big vertical APHRODITE down the far left */
-.sidemark{position:fixed;left:0;top:0;bottom:0;z-index:2;pointer-events:none;display:flex;align-items:center;padding-left:clamp(.5rem,2vw,2.5rem)}
-.sidemark span{font-family:'Playfair Display',serif;font-weight:700;font-size:clamp(4.5rem,13vh,11rem);line-height:.9;letter-spacing:.04em;writing-mode:vertical-rl;text-orientation:upright;color:transparent;background:linear-gradient(180deg,rgba(230,198,132,.85),rgba(201,163,91,.4) 60%,rgba(201,163,91,.2));-webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 0 40px rgba(201,163,91,.25))}
+.sidemark{position:fixed;left:0;top:0;bottom:0;z-index:2;pointer-events:none;display:flex;align-items:center;padding-left:clamp(.4rem,1.5vw,2rem)}
+.sidemark span{font-family:'Playfair Display',serif;font-weight:700;font-size:min(9.2vh,7.4rem);line-height:.86;letter-spacing:.02em;writing-mode:vertical-rl;text-orientation:upright;color:transparent;background:linear-gradient(180deg,rgba(230,198,132,.5),rgba(201,163,91,.22) 60%,rgba(201,163,91,.1));-webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 0 40px rgba(201,163,91,.15))}
 
 /* subtle center darkening so the panel reads over the letter field */
 .wash{position:fixed;inset:0;z-index:2;pointer-events:none;background:radial-gradient(ellipse 46% 62% at 52% 50%,rgba(8,7,6,.86) 30%,rgba(8,7,6,.5) 62%,transparent 100%)}
@@ -140,7 +85,7 @@ body{background:var(--obsidian);color:var(--marble);font-family:'Jost',sans-seri
 @keyframes sealPulse{0%{transform:scale(.85);opacity:0}40%{opacity:1}100%{transform:scale(1.14);opacity:0}}
 @keyframes gateIn{to{opacity:1;transform:translateY(0)}}
 
-@media(max-width:600px){.sidemark span{font-size:clamp(3.5rem,16vw,7rem);opacity:.8}.wash{background:radial-gradient(ellipse 70% 60% at 52% 50%,rgba(8,7,6,.9) 34%,rgba(8,7,6,.6) 66%,transparent)}}
+@media(max-width:600px){.sidemark span{font-size:min(8.4vh,3.6rem);opacity:.55}.wash{background:radial-gradient(ellipse 70% 60% at 52% 50%,rgba(8,7,6,.9) 34%,rgba(8,7,6,.6) 66%,transparent)}}
 @media(prefers-reduced-motion:reduce){.gate{animation:none;opacity:1;transform:none}#rain{display:none}}
 </style>
 </head>
@@ -158,7 +103,7 @@ body{background:var(--obsidian);color:var(--marble);font-family:'Jost',sans-seri
     <div class="kicker">The Peptide Evidence Archive</div>
     <p class="whisper">The literature is public.<br>Few take the time to uncover it.</p>
     <a href="home.html" class="enter" id="enterBtn"><span>Access the Archive</span></a>
-    <div class="footnote">Members only &middot; Evidence, decoded</div>
+    <div class="footnote">Evidence, decoded</div>
   </div>
 </main>
 

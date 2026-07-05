@@ -75,9 +75,14 @@ footer{background:var(--midnight);border-top:1px solid var(--line-soft);padding:
 .foot-links a:hover{color:var(--gold-bright)}
 .foot-legal{max-width:1100px;margin:0 auto;padding-top:1.6rem;border-top:1px solid var(--line-soft);font-size:.66rem;letter-spacing:.1em;color:var(--marble-dim);text-align:center;line-height:1.9}
 @media(max-width:1080px){
-  .nav-links{position:fixed;top:0;bottom:0;right:0;width:min(78vw,300px);background:var(--midnight);flex-direction:column;justify-content:center;gap:2.2rem;z-index:60;border-left:1px solid var(--line);transform:translateX(105%);visibility:hidden;transition:transform .4s ease,visibility 0s linear .4s}
-  .nav-links.open{transform:translateX(0);visibility:visible;transition:transform .4s ease,visibility 0s}
-  .burger{display:block;z-index:70}
+  nav{flex-wrap:wrap}
+  .burger{display:block;z-index:70;order:3}
+  .nav-links{display:none;order:4;flex-basis:100%;width:100%;flex-direction:column;gap:0;margin-top:1rem;padding-top:.6rem;border-top:1px solid var(--line-soft)}
+  .nav-links.open{display:flex}
+  .nav-links li{width:100%}
+  .nav-links li a:not(.nav-cta){display:block;width:100%;padding:1.05rem .2rem;font-size:.9rem;letter-spacing:.14em;border-bottom:1px solid var(--line-soft)}
+  .nav-links li:last-child{margin-top:.9rem}
+  .nav-links a.nav-cta{display:block;text-align:center;padding:1rem;font-size:.82rem}
 }
 @media(prefers-reduced-motion:reduce){.ticker-track{animation:none;transform:translateX(0)}}
 </style>
@@ -106,14 +111,14 @@ footer{background:var(--midnight);border-top:1px solid var(--line-soft);padding:
   <header class="phead">
     <div class="in">
       <span class="eyebrow">Membership</span>
-      <h1>Cross the threshold</h1>
+      <h1>Go deeper on the evidence</h1>
       <p>You're not paying to access hidden science. You're paying to avoid spending hours finding, sorting, and interpreting it — and to be told the moment something changes.</p>
     </div>
   </header>
 
   <section class="tiers">
     <div class="tier">
-      <div class="t-name">Visitor</div>
+      <div class="t-name">Free</div>
       <div class="t-price">Free<small></small></div>
       <div class="t-alt">Always</div>
       <ul>
@@ -130,11 +135,11 @@ footer{background:var(--midnight);border-top:1px solid var(--line-soft);padding:
     </div>
 
     <div class="tier featured">
-      <div class="t-name">Initiate</div>
+      <div class="t-name">Deep Dive</div>
       <div class="t-price">$4.99<small> / month</small></div>
       <div class="t-alt">or $39 / year · Cancel anytime</div>
       <ul>
-        <li>Everything in Visitor</li>
+        <li>Everything in Free</li>
         <li>Every compound's full deep-dive</li>
         <li>Complete citation ledger, tagged by outcome &amp; route</li>
         <li>Study-by-study synthesis &amp; safety timelines</li>
@@ -143,7 +148,7 @@ footer{background:var(--midnight);border-top:1px solid var(--line-soft);padding:
         <li>Full archive search</li>
         <li>The weekly evidence digest</li>
       </ul>
-      <a href="account.html" class="t-btn gold">Become an Initiate</a>
+      <a href="account.html" class="t-btn gold">Start Deep Dive Access</a>
     </div>
   </section>
 

@@ -161,9 +161,14 @@ footer{background:var(--midnight);border-top:1px solid var(--line-soft);padding:
 .foot-legal{max-width:1180px;margin:0 auto;padding-top:1.6rem;border-top:1px solid var(--line-soft);font-size:.66rem;letter-spacing:.1em;color:var(--marble-dim);text-align:center;line-height:1.9}
 
 @media(max-width:1080px){
-  .nav-links{position:fixed;top:0;bottom:0;right:0;width:min(78vw,300px);background:var(--midnight);flex-direction:column;justify-content:center;gap:2.2rem;z-index:60;border-left:1px solid var(--line);transform:translateX(105%);visibility:hidden;transition:transform .4s ease,visibility 0s linear .4s}
-  .nav-links.open{transform:translateX(0);visibility:visible;transition:transform .4s ease,visibility 0s}
-  .burger{display:block;z-index:70}
+  nav{flex-wrap:wrap}
+  .burger{display:block;z-index:70;order:3}
+  .nav-links{display:none;order:4;flex-basis:100%;width:100%;flex-direction:column;gap:0;margin-top:1rem;padding-top:.6rem;border-top:1px solid var(--line-soft)}
+  .nav-links.open{display:flex}
+  .nav-links li{width:100%}
+  .nav-links li a:not(.nav-cta){display:block;width:100%;padding:1.05rem .2rem;font-size:.9rem;letter-spacing:.14em;border-bottom:1px solid var(--line-soft)}
+  .nav-links li:last-child{margin-top:.9rem}
+  .nav-links a.nav-cta{display:block;text-align:center;padding:1rem;font-size:.82rem}
 }
 @media(prefers-reduced-motion:reduce){
   .ticker-track{animation:none;transform:translateX(0)}
@@ -226,14 +231,14 @@ footer{background:var(--midnight);border-top:1px solid var(--line-soft);padding:
       <p>You don't need to know peptide names. Start with what you want to understand.</p>
     </div>
     <div class="cats">
-      <a class="cat"><div class="cq">"Will this help me lose weight?"</div><h3>Metabolism</h3><p>GLP-1, GIP &amp; glucagon research — the incretin compounds.</p></a>
-      <a class="cat"><div class="cq">"Is this good for my skin?"</div><h3>Skin &amp; Appearance</h3><p>Copper and signal peptides studied for skin and tissue.</p></a>
-      <a class="cat"><div class="cq">"Will this heal my injury?"</div><h3>Recovery</h3><p>Tissue-repair research — the most hyped, most debated space.</p></a>
-      <a class="cat"><div class="cq">"Can this sharpen my focus?"</div><h3>Focus &amp; Mood</h3><p>Neuroactive peptides and the nootropic evidence question.</p></a>
-      <a class="cat"><div class="cq">"Does this boost energy?"</div><h3>Energy &amp; Longevity</h3><p>Mitochondrial-derived peptides and the exercise-mimetic claim.</p></a>
-      <a class="cat"><div class="cq">"What about performance?"</div><h3>Hormones &amp; Performance</h3><p>Growth-hormone pathway and hormonal signaling research.</p></a>
-      <a class="cat"><div class="cq">"Is this for sexual health?"</div><h3>Sexual Health</h3><p>Melanocortin-pathway research and what the trials showed.</p></a>
-      <a class="cat"><div class="cq">"How do I read this science?"</div><h3>Understand the Science</h3><p>Trial phases, evidence levels, and how to read a study.</p></a>
+      <a class="cat"><div class="cq">"What does the research show for weight loss?"</div><h3>Metabolism</h3><p>GLP-1, GIP &amp; glucagon research — the incretin compounds.</p></a>
+      <a class="cat"><div class="cq">"Which skin claims does research support?"</div><h3>Skin &amp; Appearance</h3><p>Copper and signal peptides studied for skin and tissue.</p></a>
+      <a class="cat"><div class="cq">"What’s actually been studied for recovery?"</div><h3>Recovery</h3><p>Tissue-repair research — the most hyped, most debated space.</p></a>
+      <a class="cat"><div class="cq">"What human evidence exists for focus & mood?"</div><h3>Focus &amp; Mood</h3><p>Neuroactive peptides and the nootropic evidence question.</p></a>
+      <a class="cat"><div class="cq">"What’s the evidence on energy & longevity?"</div><h3>Energy &amp; Longevity</h3><p>Mitochondrial-derived peptides and the exercise-mimetic claim.</p></a>
+      <a class="cat"><div class="cq">"What does the research say on performance?"</div><h3>Hormones &amp; Performance</h3><p>Growth-hormone pathway and hormonal signaling research.</p></a>
+      <a class="cat"><div class="cq">"What did the sexual-health trials find?"</div><h3>Sexual Health</h3><p>Melanocortin-pathway research and what the trials showed.</p></a>
+      <a class="cat"><div class="cq">"How do I read the science myself?"</div><h3>Understand the Science</h3><p>Trial phases, evidence levels, and how to read a study.</p></a>
     </div>
   </section>
 
@@ -313,7 +318,7 @@ footer{background:var(--midnight);border-top:1px solid var(--line-soft);padding:
       <h2>Stop sorting through the noise</h2>
       <p>You're not paying to access hidden science. You're paying to avoid spending hours finding, sorting, and interpreting it — and to be told when something changes.</p>
       <div class="cta-price"><b>$4.99</b> / month · or <b>$39</b> / year · Cancel anytime</div>
-      <a href="pricing.html" class="btn btn-gold">Become an Initiate</a>
+      <a href="pricing.html" class="btn btn-gold">Start Deep Dive Access</a>
     </div>
   </section>
 </main>

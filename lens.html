@@ -93,6 +93,12 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:1.3rem
 .rsec.leaves ul{list-style:none;margin-top:.4rem}
 .rsec.leaves li{font-family:'Spectral',serif;font-size:.95rem;color:#cdc7b8;padding:.3rem 0 .3rem 1.3rem;position:relative}
 .rsec.leaves li::before{content:"◇";position:absolute;left:0;color:var(--rose);font-size:.7rem;top:.35rem}
+.integrity{border:1px solid rgba(200,138,125,.35);background:linear-gradient(90deg,rgba(200,138,125,.07),transparent);padding:1.3rem 1.5rem;margin-bottom:1.5rem}
+.integrity h3{font-family:'Jost';font-weight:500;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--rose);margin-bottom:.9rem}
+.integrity .flags{display:flex;flex-wrap:wrap;gap:.55rem}
+.integrity .flag{font-family:'Jost';font-weight:500;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--rose);border:1px solid rgba(200,138,125,.4);padding:.4rem .7rem;background:rgba(200,138,125,.06)}
+.rsec.change p{color:var(--marble)}
+.rsec.change h3{color:var(--teal)}
 .rsources{border-top:1px solid var(--line-soft);padding-top:1.2rem;margin-top:1.6rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
 .rsources .src{font-size:.8rem;color:var(--marble-dim);font-family:'Spectral',serif}
 .rsources .passport-link{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-bright);border:1px solid var(--line);padding:.55rem 1.1rem;transition:all .3s}
@@ -211,6 +217,8 @@ const LIBRARY=[
     supported:"A large body of animal and cell research has investigated BPC-157 in tissue repair, tendon-to-bone healing, and gut-protective pathways. The mechanistic story is real and is why researchers find it interesting.",
     notestab:"Robust, controlled human trials showing it rapidly heals tendon or soft-tissue injuries. The confidence expressed online runs far past what human data can support.",
     leaves:["That nearly all the evidence is animal or laboratory, not human","Administration route and formulation studied in animals may not translate","No approved human indication; it remains investigational/unapproved"],
+    integrity:["ANIMAL-TO-HUMAN LEAP","LACK OF CONTROLLED HUMAN TRIALS","SAFETY DATA INSUFFICIENT"],
+    changeVerdict:"A preregistered, adequately powered randomized human trial using a defined formulation and a clinically meaningful tendon-recovery outcome.",
     sources:"Based on our review of the BPC-157 preclinical literature and the absence of controlled human trials.",
     passport:"archive.html"
   },
@@ -223,6 +231,8 @@ const LIBRARY=[
     supported:"There is biological plausibility and a small amount of human research — including a 2022 trial — exploring copper-peptide effects on hair. It's a legitimate area of study.",
     notestab:"Strong, replicated head-to-head proof that it matches or beats established hair-loss treatments. The evidence base is a few small studies, not a settled result.",
     leaves:["Topical penetration through intact skin is very limited, which constrains effect","Only a handful of small trials exist so far","Results for skin appearance don't automatically transfer to hair"],
+    integrity:["SMALL-SAMPLE SIGNAL","NO INDEPENDENT REPLICATION","ROUTE / OUTCOME LEAP"],
+    changeVerdict:"Multiple independent, adequately powered trials measuring real hair-density outcomes — not just one small comparison.",
     sources:"Based on our review of GHK-Cu hair and skin studies, including the 2022 randomized comparison.",
     passport:"ghk-cu.html"
   },
@@ -235,6 +245,8 @@ const LIBRARY=[
     supported:"Topical GHK-Cu has genuine, modest research support for skin appearance and collagen-related pathways.",
     notestab:"That injectable or systemic GHK-Cu produces full-body anti-aging. There is essentially no rigorous controlled human evidence for injectable cosmetic benefit, and systemic copper carries its own safety questions.",
     leaves:["Topical evidence cannot be transferred to injection — a core Route Integrity point","Injectable cosmetic use is largely unstudied in controlled human trials","Copper exposure by injection introduces safety considerations that topical use doesn't"],
+    integrity:["ROUTE MISMATCH","ANIMAL-TO-HUMAN LEAP","SAFETY OVERSTATEMENT"],
+    changeVerdict:"Controlled human trials of injectable GHK-Cu measuring real cosmetic outcomes, plus systemic copper-safety data.",
     sources:"Based on our GHK-Cu evidence-by-outcome review separating topical from injectable use.",
     passport:"ghk-cu.html"
   },
@@ -247,6 +259,8 @@ const LIBRARY=[
     supported:"Phase 3 trials in hundreds of participants show large, consistent weight-loss effects — among the strongest reported for this drug class. This claim is well-supported by human data.",
     notestab:"That it's a proven, finished product. It remains investigational, and the long-term cardiovascular safety study isn't complete.",
     leaves:["It's not yet approved — still investigational","Long-term safety data is still being gathered","GI side effects and a dose-related heart-rate rise appear in trials"],
+    integrity:["INVESTIGATIONAL — NOT APPROVED","LONG-TERM SAFETY PENDING"],
+    changeVerdict:"Completion of the long-term cardiovascular-safety trials and a regulatory approval decision.",
     sources:"Based on our review of the published phase 2/3 retatrutide trial program.",
     passport:"retatrutide.html"
   },
@@ -259,6 +273,8 @@ const LIBRARY=[
     supported:"TB-500 is a synthetic fragment related to the naturally occurring protein Thymosin Beta-4 (Tβ4). They're closely connected, so the claim isn't pure fiction.",
     notestab:"That they're identical. TB-500 is typically a specific fragment, not the full Tβ4 protein — so research on one doesn't automatically describe the other, and product labeling is often imprecise.",
     leaves:["TB-500 is usually a fragment, not the whole Tβ4 molecule","Human clinical evidence for the marketed recovery claims is limited","What's in a given vial labeled 'TB-500' varies"],
+    integrity:["IDENTITY MISMATCH (fragment vs. full protein)","LACK OF CONTROLLED HUMAN TRIALS","LABEL / PURITY UNCERTAINTY"],
+    changeVerdict:"Controlled human trials on the exact marketed TB-500 fragment, with verified product identity.",
     sources:"Based on our review distinguishing Tβ4 research from TB-500 marketing.",
     passport:"archive.html"
   },
@@ -271,6 +287,8 @@ const LIBRARY=[
     supported:"MOTS-c is a genuinely interesting mitochondrial-derived peptide, and animal work has explored metabolic and exercise-related effects.",
     notestab:"That it's a proven exercise mimetic in humans. The compelling findings are largely from animal and lab studies; robust human evidence is very limited.",
     leaves:["Most evidence is preclinical, not human","'Exercise mimetic' is a research hypothesis, not a demonstrated human outcome","No approved human use"],
+    integrity:["ANIMAL-TO-HUMAN LEAP","SURROGATE OUTCOME","LACK OF CONTROLLED HUMAN TRIALS"],
+    changeVerdict:"Adequately powered human trials measuring real metabolic or performance outcomes, not just biomarkers.",
     sources:"Based on our review of the MOTS-c preclinical literature.",
     passport:"archive.html"
   },
@@ -283,6 +301,8 @@ const LIBRARY=[
     supported:"Large randomized trials and real-world use show clinically meaningful weight loss, and semaglutide is approved for weight management. This is one of the best-evidenced compounds people ask about.",
     notestab:"That it's without trade-offs. GI side effects are common, weight is often regained after stopping, and it's a prescription medicine — not a casual supplement.",
     leaves:["Common GI side effects","Weight regain after discontinuation is frequently reported","It's a prescription drug with medical supervision, not an OTC peptide"],
+    integrity:["PRESCRIPTION MEDICINE — NOT A SUPPLEMENT","DURABILITY CAVEAT (regain after stopping)"],
+    changeVerdict:"Nothing on efficacy — this claim is well-supported. Context matters more than the verdict here.",
     sources:"Based on our review of the published semaglutide trial program and approved labeling.",
     passport:"compare.html"
   }
@@ -331,6 +351,8 @@ function check(){
     <div class="rsec"><h3>What the evidence supports</h3><p>${rec.supported}</p></div>
     <div class="rsec"><h3>What isn't established</h3><p>${rec.notestab}</p></div>
     <div class="rsec leaves"><h3>What the claim leaves out</h3><ul>${rec.leaves.map(l=>`<li>${l}</li>`).join('')}</ul></div>
+    ${rec.integrity&&rec.integrity.length?`<div class="integrity"><h3>◆ Claim Integrity Check</h3><div class="flags">${rec.integrity.map(w=>`<span class="flag">⚠ ${w}</span>`).join('')}</div></div>`:''}
+    ${rec.changeVerdict?`<div class="rsec change"><h3>What would change this verdict</h3><p>${rec.changeVerdict}</p></div>`:''}
     <div class="rsources"><span class="src">${rec.sources}</span><a class="passport-link" href="${rec.passport}">Open ${rec.compound} record →</a></div>
   `;
   result.scrollIntoView({behavior:'smooth',block:'start'});

@@ -49,6 +49,13 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:1.3rem
 .picker label{font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);text-align:left}
 .picker select{background:var(--panel);border:1px solid var(--line);color:var(--marble);font-family:'Playfair Display',serif;font-size:1.3rem;padding:.6rem 2.4rem .6rem 1rem;outline:none;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23c9a35b' fill='none' stroke-width='1.5'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1rem center;transition:border-color .3s}
 .picker select:focus{border-color:var(--gold)}
+.picker select option{background:var(--panel);color:var(--marble);font-family:'Jost',sans-serif;font-size:1rem}
+@media(max-width:600px){
+  .pickers{flex-direction:column;gap:.8rem;width:100%}
+  .picker{width:100%;max-width:340px}
+  .picker select{width:100%;font-size:1.15rem}
+  .vs{align-self:center;padding:0}
+}
 .vs{font-family:'Playfair Display',serif;font-style:italic;font-size:1.4rem;color:var(--gold);align-self:flex-end;padding-bottom:.5rem}
 
 /* comparison table */

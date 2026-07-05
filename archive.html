@@ -116,9 +116,12 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:1.3rem
 aside .row-label{margin-bottom:1.4rem}
 .dispatch{display:block;padding:1.1rem 0;border-bottom:1px solid var(--line-soft);transition:padding-left .3s}
 .dispatch:hover{padding-left:.5rem}
-.dispatch .d-date{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem}
+.dispatch .d-date{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:.4rem;display:flex;gap:.6rem;align-items:center;flex-wrap:wrap}
+.dispatch .d-tag{font-size:.54rem;letter-spacing:.12em;padding:.2rem .5rem;border:1px solid var(--line-soft);color:var(--marble-dim)}
 .dispatch h4{font-family:'Playfair Display',serif;font-weight:500;font-size:1.12rem;line-height:1.35;transition:color .3s}
+.dispatch .d-read{font-family:'Spectral',serif;font-size:.86rem;color:var(--marble-dim);line-height:1.55;margin-top:.5rem}
 .dispatch:hover h4{color:var(--gold-bright)}
+.dispatch-note{font-family:'Spectral',serif;font-style:italic;font-size:.78rem;color:var(--marble-dim);line-height:1.6;margin-bottom:1.4rem;padding-bottom:1.2rem;border-bottom:1px solid var(--line-soft)}
 
 /* upgrade card — the vault */
 .upgrade{margin-top:2.4rem;border:1px solid var(--line);padding:2.6rem 2rem 2.2rem;text-align:center;position:relative;overflow:hidden;background:linear-gradient(180deg,rgba(20,20,28,.6),rgba(8,8,11,.4))}
@@ -308,21 +311,30 @@ footer{background:var(--midnight);border-top:1px solid var(--line-soft);padding:
       <h2>Dispatches</h2>
       <a href="#">All →</a>
     </div>
+    <p class="dispatch-note">Research developments we're tracking — what changed, and what it means for the evidence. Verified before posting.</p>
+
     <a class="dispatch">
-      <div class="d-date">Placeholder</div>
-      <h4>New synthesis review maps a studied peptide class's receptor landscape</h4>
+      <div class="d-date">May 21, 2026 <span class="d-tag">Metabolism</span></div>
+      <h4>Retatrutide's first pivotal Phase 3 obesity trial reads out</h4>
+      <div class="d-read">TRIUMPH-1 (2,339 adults) reported up to ~28–30% average weight loss over 80 weeks. Strong human data — but still investigational, not approved, and the cardiovascular-outcomes trial runs for years yet.</div>
     </a>
+
     <a class="dispatch">
-      <div class="d-date">Placeholder</div>
-      <h4>Preprint proposes a revised mechanism model; authors call for replication</h4>
+      <div class="d-date">Jul 23–24, 2026 <span class="d-tag">Regulatory</span></div>
+      <h4>FDA advisory committee to weigh BPC-157, TB-500, MOTS-c &amp; Semax</h4>
+      <div class="d-read">The Pharmacy Compounding Advisory Committee is scheduled to discuss whether these bulk substances belong on the 503A compounding list — a live signal on their regulatory status.</div>
     </a>
+
     <a class="dispatch">
-      <div class="d-date">Placeholder</div>
-      <h4>Registry lists a newly announced early-phase research trial</h4>
+      <div class="d-date">Apr 2026 <span class="d-tag">Regulatory</span></div>
+      <h4>BPC-157, TB-500 &amp; CJC-1295 left in a regulatory gray zone</h4>
+      <div class="d-read">FDA removed them from the Category 2 "safety-concern" list, but didn't approve them for compounding either. Neither prohibited nor authorized — and still not FDA-approved drugs.</div>
     </a>
+
     <a class="dispatch">
-      <div class="d-date">Placeholder</div>
-      <h4>Meta-analysis re-examines two decades of published findings</h4>
+      <div class="d-date">2026 <span class="d-tag">Skin</span></div>
+      <h4>GHK-Cu interest surges; topical evidence still outpaces injectable</h4>
+      <div class="d-read">Search interest reportedly jumped ~1,000% year-over-year. The topical skin research is real and growing — but injectable "full-body" claims remain far ahead of the human data.</div>
     </a>
 
     <div class="upgrade">

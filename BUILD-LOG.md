@@ -42,11 +42,11 @@ exist) — use "the up-to-date, consumer-friendly one."
 - **Research-stage badges** — instant evidence-status read
 - **Internet-vs-research / Reality Check** — most shareable, harm-reduction
 
-## LOGO
-New AR monogram (`assets/monogram.svg`): sunburst crest, interlocked A·R ligature,
-diamond flourishes top and bottom, gold gradient. Inlined as SVG on every page (nav-mark
-in navs, ar-mark on the gate, cmark in the crossing animation, logo on the account card).
-Note: rendered structurally-verified; eyeball the ligature curve and request a tweak if wanted.
+## BRAND MARK
+Clean "AR" text mark (Cormorant, gold) — a small bordered "AR" in navs, a
+large glowing "AR" on the gate and account card. The earlier SVG monogram was
+dropped for a cleaner typographic treatment.
+
 
 ## DESIGN SYSTEM (locked)
 Colors: obsidian #08080b, gold #c9a35b / #e6c684, rose #c88a7d (risk), teal #8fc4b8

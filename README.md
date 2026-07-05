@@ -22,7 +22,6 @@ every claim traced to its source, evidence broken out by outcome and route.
 | `legal-*.html` | Disclaimer, Terms, Acceptable Use |
 
 ## Assets & docs
-- `assets/monogram.svg` — the AR monogram logo (crest + interlocked A·R + diamonds)
 - `docs/intake-template.md` — fill one per compound to produce a full entry
 - `docs/MEMBERSHIP-SPEC.md` — spec for the auth + Stripe + DB backend
 - `legal/*.md` — source markdown for the legal pages

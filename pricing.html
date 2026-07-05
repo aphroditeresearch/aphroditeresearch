@@ -22,10 +22,12 @@ main,nav,.ticker,footer{position:relative;z-index:2}
 .ticker-track span{font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--marble-dim);padding:0 1.5rem;display:inline-flex;align-items:center;gap:1.5rem}
 .ticker-track span::after{content:"◆";color:rgba(201,163,91,.4);font-size:.4rem}
 @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-.ar-text{display:inline-flex;align-items:center;justify-content:center;font-family:'Cormorant',serif;font-weight:600;font-size:.95rem;letter-spacing:.08em;color:var(--gold-bright);border:1px solid var(--line);padding:.15rem .45rem;margin-right:.7rem;line-height:1;border-radius:2px}
+
 nav{display:flex;align-items:center;justify-content:space-between;padding:1.3rem clamp(1.2rem,4vw,3rem);position:sticky;top:0;z-index:50;background:rgba(8,8,11,.82);backdrop-filter:blur(16px);border-bottom:1px solid var(--line-soft)}
 .brand{display:inline-flex;align-items:center;font-family:'Cormorant',serif;font-weight:600;font-size:1.4rem;letter-spacing:.16em;text-transform:uppercase}
 .brand span{color:var(--gold);margin:0 .15em;font-size:.7em;vertical-align:middle}
+.nav-cta{border:1px solid var(--gold);color:var(--gold-bright);padding:.5rem 1.2rem;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;transition:all .3s}
+.nav-cta:hover{background:var(--gold);color:var(--obsidian)}
 .nav-links{display:flex;gap:2rem;align-items:center;list-style:none}
 .nav-links a{color:var(--marble-dim);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;transition:color .3s}
 .nav-links a:hover,.nav-links a.active{color:var(--gold-bright)}
@@ -88,12 +90,13 @@ footer{background:var(--midnight);border-top:1px solid var(--line-soft);padding:
   </div>
 </div>
 <nav>
-  <a href="home.html" class="brand"><span class="ar-text">AR</span>Aphrodite<span>·</span>Research</a>
-  <ul class="nav-links" id="navLinks">
+  <a href="home.html" class="brand">Aphrodite<span>·</span>Research</a>
+    <ul class="nav-links" id="navLinks">
     <li><a href="archive.html">The Archive</a></li>
+    <li><a href="compare.html">Compare</a></li>
     <li><a href="methodology.html">Methodology</a></li>
     <li><a href="pricing.html" class="active">Membership</a></li>
-    <li><a href="account.html">Sign In</a></li>
+    <li><a href="account.html" class="nav-cta">Enter</a></li>
   </ul>
   <button class="burger" id="burger" aria-label="Menu">☰</button>
 </nav>

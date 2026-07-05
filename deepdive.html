@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- ============================================================
+     APHRODITE RESEARCH · DEEP-DIVE TEMPLATE
+     To duplicate for a new peptide: replace everything marked
+     [[ ... ]] and the data rows in each section. Structure stays.
+     ============================================================ -->
+<title>Retatrutide · Deep-Dive — Aphrodite Research</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&family=Spectral:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --obsidian:#08080b;--midnight:#0f0f16;--panel:#0d0d12;--panel-hi:#14141c;
+  --marble:#efe9dc;--marble-dim:#8a8477;--gold:#c9a35b;--gold-bright:#e6c684;--rose:#c88a7d;
+  --line:rgba(201,163,91,.2);--line-soft:rgba(201,163,91,.1);
+  --human:#7fb0a8;--animal:#c8a87d;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--obsidian);color:var(--marble);font-family:'Jost',sans-serif;font-weight:300;line-height:1.6}
+body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+::selection{background:var(--gold);color:var(--obsidian)}
+a{color:inherit;text-decoration:none}
+.eyebrow{font-family:'Jost';font-weight:500;font-size:.66rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold)}
+main,nav,.ticker,footer{position:relative;z-index:2}
+
+/* ticker */
+.ticker{background:var(--midnight);border-bottom:1px solid var(--line-soft);overflow:hidden;padding:.5rem 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.ticker-track{display:inline-flex;white-space:nowrap;will-change:transform;animation:scroll 46s linear infinite}
+.ticker-track span{font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--marble-dim);padding:0 1.5rem;display:inline-flex;align-items:center;gap:1.5rem}
+.ticker-track span::after{content:"◆";color:rgba(201,163,91,.4);font-size:.4rem}
+.ticker:hover .ticker-track{animation-play-state:paused}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* nav */
+nav{display:flex;align-items:center;justify-content:space-between;padding:1.3rem clamp(1.2rem,4vw,3rem);position:sticky;top:0;z-index:50;background:rgba(8,8,11,.82);backdrop-filter:blur(16px);border-bottom:1px solid var(--line-soft)}
+.nav-mark{width:26px;height:auto;vertical-align:middle;margin-right:.5rem;filter:drop-shadow(0 0 6px rgba(201,163,91,.3))}
+.brand{display:inline-flex;align-items:center;font-family:'Cormorant',serif;font-weight:600;font-size:1.4rem;letter-spacing:.16em;text-transform:uppercase}
+.brand span{color:var(--gold);margin:0 .15em;font-size:.7em;vertical-align:middle}
+.nav-links{display:flex;gap:2rem;align-items:center;list-style:none}
+.nav-links a:not(.acct){padding:.2rem 0}
+.nav-links li:last-child{margin-left:.6rem;padding-left:1.6rem;border-left:1px solid var(--line-soft);height:22px;display:flex;align-items:center}
+.nav-links a{color:var(--marble-dim);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;transition:color .3s}
+.nav-links a:hover,.nav-links a.active{color:var(--gold-bright)}
+.acct{width:34px;height:34px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;font-family:'Cormorant';font-size:.9rem;color:var(--gold)}
+.burger{display:none;background:none;border:none;color:var(--marble);font-size:1.4rem;cursor:pointer}
+
+/* member banner */
+.member-bar{background:linear-gradient(90deg,rgba(201,163,91,.08),transparent);border-bottom:1px solid var(--line-soft);padding:.6rem clamp(1.2rem,4vw,3rem);display:flex;align-items:center;gap:.7rem;font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.member-bar .dot{width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 8px var(--gold)}
+
+/* breadcrumb */
+.crumb{max-width:1080px;margin:0 auto;padding:1.4rem clamp(1.2rem,4vw,3rem) 0;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--marble-dim)}
+.crumb a:hover{color:var(--gold-bright)}
+.crumb .sep{color:var(--gold);margin:0 .6rem}
+
+/* layout: content + sticky TOC rail */
+.shell{max-width:1080px;margin:0 auto;padding:1.5rem clamp(1.2rem,4vw,3rem) 4rem;display:grid;grid-template-columns:1fr 220px;gap:3.5rem;align-items:start}
+@media(max-width:900px){.shell{grid-template-columns:1fr}.toc{display:none}}
+
+/* dossier header */
+.dhead{margin-bottom:2.6rem}
+.dhead .file-tag{display:flex;align-items:center;gap:1rem;margin-bottom:1.2rem;flex-wrap:wrap}
+.dhead .cat{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);border:1px solid var(--line);padding:.32rem .8rem}
+.dhead .ref{font-family:'Spectral',serif;font-style:italic;font-size:.8rem;color:var(--marble-dim)}
+.dhead h1{font-family:'Cormorant',serif;font-weight:500;font-size:clamp(2.6rem,6vw,4.4rem);line-height:1;letter-spacing:.01em;margin-bottom:.5rem;color:#fbf8f0;text-shadow:0 0 60px rgba(255,255,255,.24),0 0 120px rgba(230,198,132,.12)}
+.dhead .sub{font-family:'Spectral',serif;font-style:italic;font-size:1.15rem;color:var(--marble-dim)}
+
+/* section */
+.dsec{margin-bottom:3.4rem;scroll-margin-top:90px}
+.dsec .dlabel{position:relative;border-bottom:1px solid var(--line);padding-bottom:.9rem;margin-bottom:1.6rem;min-height:3.2rem;display:flex;align-items:flex-end}
+.dsec .dlabel .n{position:absolute;left:-.3rem;top:-1.4rem;z-index:0;font-family:'Cormorant',serif;font-weight:600;font-size:5rem;line-height:1;color:transparent;background:linear-gradient(180deg,rgba(201,163,91,.15),rgba(201,163,91,.02));-webkit-background-clip:text;background-clip:text;pointer-events:none}
+.dsec .dlabel h2{position:relative;z-index:1;font-family:'Cormorant',serif;font-weight:500;font-size:1.8rem;letter-spacing:.02em;padding-left:2.6rem}
+.dsec p{font-family:'Spectral',serif;font-weight:300;font-size:1rem;line-height:1.8;color:#cdc7b8;margin-bottom:1rem;max-width:70ch}
+.dsec p strong{color:var(--gold-bright);font-weight:500}
+
+/* comparison table */
+.dtable{width:100%;border-collapse:collapse;margin:1rem 0 .6rem;font-size:.9rem}
+.dtable th{text-align:left;font-family:'Jost';font-weight:500;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);padding:.7rem .9rem;border-bottom:1px solid var(--line);white-space:nowrap}
+.dtable td{font-family:'Spectral',serif;color:#cdc7b8;padding:.7rem .9rem;border-bottom:1px solid var(--line-soft)}
+.dtable tr:hover td{background:rgba(201,163,91,.03)}
+.dtable .hl{color:var(--gold-bright)}
+.tbl-scroll{overflow-x:auto}
+.caption{font-size:.72rem;color:var(--marble-dim);font-style:italic;font-family:'Spectral',serif;margin-top:.5rem}
+
+/* study synthesis cards */
+.study{border:1px solid var(--line-soft);border-left:2px solid var(--gold);padding:1.4rem 1.5rem;margin-bottom:1.2rem;background:linear-gradient(90deg,rgba(201,163,91,.03),transparent)}
+.study .stop{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-bottom:.7rem;flex-wrap:wrap}
+.study .sname{font-family:'Cormorant',serif;font-size:1.25rem;color:var(--gold-bright)}
+.study .smeta{font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--marble-dim)}
+.study .sgrid{display:grid;grid-template-columns:auto 1fr;gap:.4rem 1.2rem;font-size:.86rem;margin-top:.6rem}
+.study .sk{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);padding-top:.15rem}
+.study .sv{font-family:'Spectral',serif;color:#cdc7b8}
+
+/* evidence ledger (human vs animal) */
+.ledger{border:1px solid var(--line-soft)}
+.ledger .lrow{display:grid;grid-template-columns:90px 1fr auto;gap:1rem;align-items:center;padding:.85rem 1.1rem;border-bottom:1px solid var(--line-soft)}
+.ledger .lrow:last-child{border-bottom:none}
+.ledger .lrow:hover{background:rgba(201,163,91,.03)}
+.tag{font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;padding:.28rem .5rem;text-align:center;border:1px solid}
+.tag.human{color:var(--human);border-color:rgba(127,176,168,.4)}
+.tag.animal{color:var(--animal);border-color:rgba(200,168,125,.4)}
+.ledger .lname{font-family:'Spectral',serif;font-size:.9rem;color:#cdc7b8}
+.ledger .lyr{font-size:.72rem;color:var(--gold);letter-spacing:.08em}
+
+/* safety timeline */
+.timeline{position:relative;padding-left:1.6rem;margin-top:.5rem}
+.timeline::before{content:"";position:absolute;left:4px;top:.4rem;bottom:.4rem;width:1px;background:linear-gradient(180deg,var(--gold),var(--line-soft))}
+.tev{position:relative;padding:0 0 1.5rem .4rem}
+.tev::before{content:"";position:absolute;left:-1.6rem;top:.35rem;width:9px;height:9px;border-radius:50%;background:var(--obsidian);border:1px solid var(--gold)}
+.tev.warn::before{background:var(--rose);border-color:var(--rose);box-shadow:0 0 10px rgba(200,138,125,.5)}
+.tev .tyr{font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem}
+.tev .ttxt{font-family:'Spectral',serif;font-size:.92rem;color:#cdc7b8;line-height:1.6}
+
+/* open questions */
+.q{display:flex;gap:.9rem;padding:.9rem 0;border-bottom:1px solid var(--line-soft);align-items:baseline}
+.q::before{content:"?";font-family:'Cormorant',serif;font-style:italic;color:var(--gold);font-size:1.3rem;flex-shrink:0;line-height:1}
+.q p{font-family:'Spectral',serif;font-size:.94rem;color:#cdc7b8;margin:0;line-height:1.6}
+
+/* full citation ledger */
+.cite-tools{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1.2rem}
+.cfilter{font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;color:var(--marble-dim);border:1px solid var(--line-soft);padding:.4rem .8rem;cursor:pointer;background:none;transition:all .3s}
+.cfilter:hover,.cfilter.on{color:var(--gold-bright);border-color:var(--gold)}
+.cindex .crow{display:grid;grid-template-columns:auto 1fr auto;gap:1rem;align-items:baseline;padding:.8rem 0;border-bottom:1px solid var(--line-soft)}
+.cindex .cidx{font-family:'Cormorant',serif;font-style:italic;color:var(--gold);font-size:.9rem}
+.cindex .cref{font-size:.84rem;color:#cdc7b8;line-height:1.5}
+.cindex .cref em{font-style:italic;color:var(--marble-dim)}
+.cindex .cref .pmid{color:var(--gold);font-size:.72rem;letter-spacing:.06em;margin-left:.4rem}
+.cindex .ctype{font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--marble-dim);white-space:nowrap;border:1px solid var(--line-soft);padding:.2rem .45rem;align-self:center}
+
+/* sticky TOC */
+.toc{position:sticky;top:100px}
+.toc .tt{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--marble-dim);margin-bottom:1rem;padding-bottom:.6rem;border-bottom:1px solid var(--line-soft)}
+.toc a{display:block;font-size:.8rem;color:var(--marble-dim);padding:.5rem 0;letter-spacing:.02em;transition:color .3s,padding-left .3s;border-left:1px solid transparent;padding-left:.8rem}
+.toc a:hover{color:var(--gold-bright);padding-left:1.1rem;border-left-color:var(--gold)}
+
+/* footer */
+footer{background:var(--midnight);border-top:1px solid var(--line-soft);padding:3rem clamp(1.2rem,4vw,3rem) 2rem;margin-top:2rem}
+.foot-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;max-width:1080px;margin:0 auto 2rem}
+.foot-brand{font-family:'Cormorant';font-size:1.5rem;letter-spacing:.14em;text-transform:uppercase}
+.foot-brand span{color:var(--gold)}
+.foot-links{display:flex;gap:1.8rem;flex-wrap:wrap}
+.foot-links a{color:var(--marble-dim);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;transition:color .3s}
+.foot-links a:hover{color:var(--gold-bright)}
+.foot-legal{max-width:1080px;margin:0 auto;padding-top:1.6rem;border-top:1px solid var(--line-soft);font-size:.66rem;letter-spacing:.1em;color:var(--marble-dim);text-align:center;line-height:1.9}
+
+@media(max-width:820px){
+  .nav-links{position:fixed;inset:0 0 0 auto;width:min(78vw,300px);background:var(--midnight);flex-direction:column;justify-content:center;gap:2.2rem;transform:translateX(100%);transition:transform .4s;z-index:60;border-left:1px solid var(--line)}
+  .nav-links.open{transform:translateX(0)}
+  .burger{display:block;z-index:70}
+  .ledger .lrow{grid-template-columns:80px 1fr;gap:.7rem}
+  .ledger .lyr{display:none}
+}
+@media(prefers-reduced-motion:reduce){.ticker-track{animation:none;transform:translateX(0)}}
+</style>
+</head>
+<body>
+
+<div class="ticker" aria-label="Educational resource. Not for human or veterinary use. No compounds sold. No dosing information.">
+  <div class="ticker-track">
+    <span>Educational resource</span><span>For qualified researchers</span><span>The literature, uncovered</span><span>Not for human or veterinary use</span><span>See what others overlook</span><span>No compounds sold</span><span>No dosing information</span><span>Curated · Cited · Current</span>
+    <span aria-hidden="true">Educational resource</span><span aria-hidden="true">For qualified researchers</span><span aria-hidden="true">The literature, uncovered</span><span aria-hidden="true">Not for human or veterinary use</span><span aria-hidden="true">See what others overlook</span><span aria-hidden="true">No compounds sold</span><span aria-hidden="true">No dosing information</span><span aria-hidden="true">Curated · Cited · Current</span>
+  </div>
+</div>
+
+<nav>
+  <a href="home.html" class="brand"><svg viewBox="0 0 200 270" xmlns="http://www.w3.org/2000/svg" class="nav-mark" aria-label="Aphrodite Research"><defs><linearGradient id="arGold" x1="0" y1="0" x2="0.3" y2="1"><stop offset="0" stop-color="#e6c684"/><stop offset="0.5" stop-color="#c9a35b"/><stop offset="1" stop-color="#8f6f38"/></linearGradient></defs><g stroke="url(#arGold)" stroke-linecap="round" fill="none"><line x1="100" y1="22" x2="100" y2="4" stroke-width="2"/><line x1="87" y1="25" x2="80" y2="10" stroke-width="1.7"/><line x1="113" y1="25" x2="120" y2="10" stroke-width="1.7"/><line x1="76" y1="32" x2="65" y2="20" stroke-width="1.5"/><line x1="124" y1="32" x2="135" y2="20" stroke-width="1.5"/><line x1="69" y1="41" x2="55" y2="33" stroke-width="1.3"/><line x1="131" y1="41" x2="145" y2="33" stroke-width="1.3"/></g><path d="M100 44 L109 57 L100 70 L91 57 Z" fill="url(#arGold)"/><path d="M100 49 L104.5 57 L100 65 L95.5 57 Z" fill="#0a0a0d"/><g fill="url(#arGold)"><path d="M54 244 L98 92 L110 92 L70 244 Z"/><path d="M104 92 L116 92 L124 244 L114 244 Z"/><path d="M82 178 Q104 169 124 178 L124 185 Q104 176 82 185 Z"/><path d="M114 98 Q160 98 160 138 Q160 174 118 178 L118 169 Q150 166 150 138 Q150 108 114 108 Z"/><path d="M132 172 Q148 208 184 234 L177 243 Q137 216 120 180 Z"/></g><g stroke="url(#arGold)" stroke-linecap="round" fill="none"><line x1="70" y1="258" x2="90" y2="258" stroke-width="1.5"/><line x1="110" y1="258" x2="130" y2="258" stroke-width="1.5"/></g><path d="M100 250 L106 258 L100 266 L94 258 Z" fill="url(#arGold)"/><path d="M100 253 L103.5 258 L100 263 L96.5 258 Z" fill="#0a0a0d"/></svg>Aphrodite<span>·</span>Research</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="archive.html">The Archive</a></li>
+    <li><a href="#">Dispatches</a></li>
+    <li><a href="#">Digest</a></li>
+    <li><a href="#">The Shop</a></li>
+    <li><a href="#" class="acct">AR</a></li>
+  </ul>
+  <button class="burger" id="burger" aria-label="Menu">☰</button>
+</nav>
+
+<div class="member-bar"><span class="dot"></span>Initiate access · Full synthesis unlocked</div>
+
+<div class="crumb">
+  <a href="archive.html">The Archive</a><span class="sep">/</span><a href="retatrutide.html">Retatrutide</a><span class="sep">/</span>Deep-Dive
+</div>
+
+<div class="shell">
+  <main>
+    <!-- ============ HEADER · replace [[NAME]] etc ============ -->
+    <header class="dhead">
+      <div class="file-tag">
+        <span class="cat">Incretin · Triple Agonist</span>
+        <span class="ref">File No. AR-001 · LY3437943 · Deep-Dive</span>
+      </div>
+      <h1>Retatrutide</h1>
+      <p class="sub">The complete synthesis — every trial, every comparison, every open question.</p>
+    </header>
+
+    <!-- ============ 01 · HEAD-TO-HEAD TABLE ============ -->
+    <section class="dsec" id="s1">
+      <div class="dlabel"><span class="n">01</span><h2>Head-to-head with the class</h2></div>
+      <p>How retatrutide's reported outcomes sit against the other incretin-based agents, drawn from each compound's pivotal trials and a 2025 Bayesian network meta-analysis of 19 RCTs (29,506 adults).</p>
+      <div class="tbl-scroll">
+      <table class="dtable">
+        <tr><th>Compound</th><th>Receptor targets</th><th>Peak mean wt. loss</th><th>Highest phase</th><th>Approved use</th></tr>
+        <tr><td class="hl">Retatrutide</td><td>GIP · GLP-1 · GCG</td><td class="hl">≈28.7%</td><td>Phase 3</td><td>Investigational</td></tr>
+        <tr><td>Tirzepatide</td><td>GIP · GLP-1</td><td>≈22.5%</td><td>Approved</td><td>Obesity, T2D</td></tr>
+        <tr><td>Semaglutide</td><td>GLP-1</td><td>≈15%</td><td>Approved</td><td>Obesity, T2D</td></tr>
+        <tr><td>Survodutide</td><td>GLP-1 · GCG</td><td>≈19%</td><td>Phase 3</td><td>Investigational</td></tr>
+        <tr><td>Liraglutide</td><td>GLP-1</td><td>≈8%</td><td>Approved</td><td>Obesity, T2D</td></tr>
+      </table>
+      </div>
+      <p class="caption">Figures are approximate peak values from differing trial designs and durations; direct cross-trial comparison has limits. See the network meta-analysis (PMID 40685589) for methodology.</p>
+    </section>
+
+    <!-- ============ 02 · STUDY-BY-STUDY SYNTHESIS ============ -->
+    <section class="dsec" id="s2">
+      <div class="dlabel"><span class="n">02</span><h2>Study-by-study synthesis</h2></div>
+
+      <div class="study">
+        <div class="stop"><span class="sname">TRIUMPH-4 · Phase 3</span><span class="smeta">2025 · n=445 · 68 weeks</span></div>
+        <div class="sgrid">
+          <span class="sk">Design</span><span class="sv">Randomized, double-blind, placebo-controlled; obesity + knee osteoarthritis; 9 mg / 12 mg / placebo.</span>
+          <span class="sk">Found</span><span class="sv">Mean weight reduction up to ≈28.7% at highest dose; substantial WOMAC pain-score improvement; improved cardiovascular risk markers.</span>
+          <span class="sk">Limits</span><span class="sv">Topline results; specific comorbid population; industry-funded; long-term durability not yet reported.</span>
+        </div>
+      </div>
+
+      <div class="study">
+        <div class="stop"><span class="sname">TRANSCEND-T2D-1 · Phase 3</span><span class="smeta">2025 · n=537 · 40 weeks</span></div>
+        <div class="sgrid">
+          <span class="sk">Design</span><span class="sv">Randomized, double-blind, placebo-controlled; type 2 diabetes; 4 / 9 / 12 mg vs placebo.</span>
+          <span class="sk">Found</span><span class="sv">HbA1c reductions up to ≈1.94% vs 0.81% placebo (all doses p&lt;0.0001); robust weight reduction.</span>
+          <span class="sk">Limits</span><span class="sv">40-week window; placebo-controlled rather than head-to-head against active comparators at all doses.</span>
+        </div>
+      </div>
+
+      <div class="study">
+        <div class="stop"><span class="sname">Obesity Phase 2 · NEJM</span><span class="smeta">2023 · 48 weeks</span></div>
+        <div class="sgrid">
+          <span class="sk">Design</span><span class="sv">Randomized, double-blind, placebo-controlled; adults with obesity, no diabetes.</span>
+          <span class="sk">Found</span><span class="sv">Weight reductions of 22.8% (8 mg) and 24.2% (12 mg); improved BP, lipids, glycemia.</span>
+          <span class="sk">Limits</span><span class="sv">Phase 2; dose-escalation GI events; dose-dependent heart-rate rise peaking ~24 weeks.</span>
+        </div>
+      </div>
+
+      <p style="margin-top:1.2rem;font-size:.82rem;color:var(--marble-dim)">Full synthesis continues across all indexed trials — MASLD substudy, phase 1 dose-finding, and the meta-analyses — in the citation ledger below.</p>
+    </section>
+
+    <!-- ============ 03 · HUMAN vs ANIMAL EVIDENCE ============ -->
+    <section class="dsec" id="s3">
+      <div class="dlabel"><span class="n">03</span><h2>Human vs. animal evidence</h2></div>
+      <p>The single most important distinction for interpreting any compound: what has actually been shown in humans versus what is extrapolated from preclinical models. Each entry is tagged by evidence type.</p>
+      <div class="ledger">
+        <div class="lrow"><span class="tag human">Human</span><span class="lname">Weight reduction in obesity (phase 2 &amp; 3 RCTs)</span><span class="lyr">2023–25</span></div>
+        <div class="lrow"><span class="tag human">Human</span><span class="lname">HbA1c reduction in type 2 diabetes (phase 2 &amp; 3)</span><span class="lyr">2023–25</span></div>
+        <div class="lrow"><span class="tag human">Human</span><span class="lname">Liver-fat reduction in MASLD (phase 2a substudy)</span><span class="lyr">2024</span></div>
+        <div class="lrow"><span class="tag human">Human</span><span class="lname">Dose-dependent heart-rate increase (observed across RCTs)</span><span class="lyr">2023–25</span></div>
+        <div class="lrow"><span class="tag animal">Animal</span><span class="lname">Receptor potency &amp; energy-expenditure mechanism (preclinical)</span><span class="lyr">pre-2023</span></div>
+        <div class="lrow"><span class="tag animal">Animal</span><span class="lname">Glucagon-arm metabolic signaling rationale (cell &amp; rodent)</span><span class="lyr">pre-2023</span></div>
+      </div>
+      <p style="margin-top:1rem;font-size:.82rem;color:var(--marble-dim)">Retatrutide is unusually well-supported by human data for a compound in this space. Many peptides in the library sit far more heavily on the animal side — a distinction this ledger makes explicit for every entry.</p>
+    </section>
+
+    <!-- ============ 04 · SAFETY-SIGNAL TIMELINE ============ -->
+    <section class="dsec" id="s4">
+      <div class="dlabel"><span class="n">04</span><h2>Safety-signal timeline</h2></div>
+      <p>What the literature has surfaced, in order, so the safety picture reads as it developed — not as a single snapshot.</p>
+      <div class="timeline">
+        <div class="tev"><div class="tyr">Phase 1–2 · 2023</div><div class="ttxt">Gastrointestinal events (nausea, vomiting, diarrhea) established as the dominant adverse events, concentrated during dose escalation.</div></div>
+        <div class="tev warn"><div class="tyr">Phase 2 · 2023</div><div class="ttxt">Dose-dependent increase in heart rate observed, peaking around 24 weeks before partial decline — flagged for continued monitoring.</div></div>
+        <div class="tev"><div class="tyr">2024</div><div class="ttxt">Meta-analyses confirm the efficacy signal while noting the evidence base is still limited to a small number of trials and short durations.</div></div>
+        <div class="tev"><div class="tyr">Phase 3 · 2025</div><div class="ttxt">Larger TRIUMPH / TRANSCEND trials reproduce the GI and titration profile at scale; efficacy holds at higher doses.</div></div>
+        <div class="tev warn"><div class="tyr">Ongoing</div><div class="ttxt">Dedicated cardiovascular-outcomes trial (~10,000 participants, MACE endpoint) still running. The long-term safety data regulators require before broad approval does not yet exist.</div></div>
+      </div>
+    </section>
+
+    <!-- ============ 05 · OPEN QUESTIONS ============ -->
+    <section class="dsec" id="s5">
+      <div class="dlabel"><span class="n">05</span><h2>Open questions &amp; contradictions</h2></div>
+      <div class="q"><p>Does the cardiovascular safety profile hold over years? The dedicated MACE outcomes trial has not reported, and the observed heart-rate increase is not yet fully resolved.</p></div>
+      <div class="q"><p>How much of the effect is attributable to the glucagon arm specifically, versus the GIP/GLP-1 components? Trials establish the combined effect, not a clean dissection of each receptor's contribution.</p></div>
+      <div class="q"><p>Are the highest-dose weight results durable after treatment stops, or is regain the pattern seen with other agents in the class?</p></div>
+      <div class="q"><p>Nearly all pivotal data is industry-funded and short-to-medium term. Independent, longer replication remains limited.</p></div>
+      <div class="q"><p>What is the real-world safety picture outside controlled trials — the population this compound is most often discussed in, and the one with no published data at all?</p></div>
+    </section>
+
+    <!-- ============ 06 · FULL CITATION LEDGER ============ -->
+    <section class="dsec" id="s6">
+      <div class="dlabel"><span class="n">06</span><h2>Complete citation ledger</h2></div>
+      <p>Every indexed paper on this compound, tagged by type. This is the reference layer the free overview points to.</p>
+      <div class="cite-tools">
+        <button class="cfilter on">All</button>
+        <button class="cfilter">Phase 3</button>
+        <button class="cfilter">Phase 2</button>
+        <button class="cfilter">Meta-analysis</button>
+        <button class="cfilter">Review</button>
+      </div>
+      <div class="cindex">
+        <div class="crow"><span class="cidx">01</span><span class="cref"><em>Lilly / Giblin et al.</em> — TRIUMPH-4: retatrutide for obesity and knee osteoarthritis, phase 3.<span class="pmid">2025</span></span><span class="ctype">Phase 3</span></div>
+        <div class="crow"><span class="cidx">02</span><span class="cref">TRANSCEND-T2D-1: retatrutide in type 2 diabetes, phase 3 RCT. <em>The Lancet.</em><span class="pmid">PMID 42250575</span></span><span class="ctype">Phase 3</span></div>
+        <div class="crow"><span class="cidx">03</span><span class="cref"><em>Jastreboff AM et al.</em> — Triple-hormone-receptor agonist retatrutide for obesity, phase 2. <em>NEJM.</em><span class="pmid">PMID 37366315</span></span><span class="ctype">Phase 2</span></div>
+        <div class="crow"><span class="cidx">04</span><span class="cref"><em>Rosenstock J et al.</em> — Retatrutide in type 2 diabetes, phase 2. <em>The Lancet.</em><span class="pmid">PMID 37385280</span></span><span class="ctype">Phase 2</span></div>
+        <div class="crow"><span class="cidx">05</span><span class="cref"><em>Sanyal AJ et al.</em> — Retatrutide for MASLD, phase 2a. <em>Nature Medicine.</em><span class="pmid">PMID 38858523</span></span><span class="ctype">Phase 2</span></div>
+        <div class="crow"><span class="cidx">06</span><span class="cref">Bayesian network meta-analysis, 19 RCTs, 29,506 adults. <em>Obesity.</em><span class="pmid">PMID 40685589</span></span><span class="ctype">Meta-analysis</span></div>
+        <div class="crow"><span class="cidx">07</span><span class="cref"><em>Pasqualotto E et al.</em> — Once-weekly retatrutide on weight &amp; metabolic markers: systematic review &amp; meta-analysis.<span class="pmid">PMID 39318607</span></span><span class="ctype">Meta-analysis</span></div>
+        <div class="crow"><span class="cidx">08</span><span class="cref">Efficacy &amp; safety of retatrutide for obesity: systematic review &amp; meta-analysis of RCTs.<span class="pmid">PMID 40291085</span></span><span class="ctype">Meta-analysis</span></div>
+        <div class="crow"><span class="cidx">09</span><span class="cref"><em>Giblin et al.</em> — Retatrutide TRIUMPH program: rationale &amp; design. <em>Diabetes Obes Metab.</em><span class="pmid">2026</span></span><span class="ctype">Review</span></div>
+        <div class="crow"><span class="cidx">10</span><span class="cref">Triple agonism–based therapies for obesity: review of the class.<span class="pmid">PMC12304053</span></span><span class="ctype">Review</span></div>
+      </div>
+      <p style="margin-top:1.2rem;font-size:.82rem;color:var(--marble-dim)">Showing 10 of <span style="color:var(--gold-bright)">47 indexed records</span>. [[ Remaining records appended as the ledger is completed and verified. ]]</p>
+    </section>
+
+    <!-- ============ VERIFICATION NOTE ============ -->
+    <section class="dsec" id="verify">
+      <div class="dlabel"><span class="n">07</span><h2>Method &amp; verification</h2></div>
+      <p>This synthesis is compiled from the primary literature indexed on PubMed and ClinicalTrials.gov. Every claim is traced to a cited source and summarized in original language. Figures are drawn from published trial reports; where trials differ in design, we note the limits of comparison rather than overstating it. This entry is educational and reports what the research found — it contains no dosing, protocols, or guidance for use, and describes outcomes observed only under controlled clinical conditions.</p>
+    </section>
+  </main>
+
+  <!-- ============ STICKY TABLE OF CONTENTS ============ -->
+  <aside class="toc">
+    <div class="tt">In this dossier</div>
+    <a href="#s1">Head-to-head</a>
+    <a href="#s2">Study synthesis</a>
+    <a href="#s3">Human vs. animal</a>
+    <a href="#s4">Safety timeline</a>
+    <a href="#s5">Open questions</a>
+    <a href="#s6">Citation ledger</a>
+    <a href="#verify">Method</a>
+  </aside>
+</div>
+
+<footer>
+  <div class="foot-top">
+    <div class="foot-brand">Aphrodite<span>·</span>Research</div>
+    <div class="foot-links">
+      <a href="legal-disclaimer.html">Disclaimer</a><a href="legal-terms.html">Terms</a><a href="legal-acceptable-use.html">Acceptable Use</a><a href="#">Privacy</a><a href="#">Contact</a>
+    </div>
+  </div>
+  <div class="foot-legal">
+    Aphrodite Research is an educational resource for qualified researchers. Not for human or veterinary use.<br>
+    We do not sell, supply, or broker peptides or research compounds, and we provide no dosing, protocols, or sourcing information.
+  </div>
+</footer>
+
+<script>
+const burger=document.getElementById('burger'),links=document.getElementById('navLinks');
+burger.addEventListener('click',()=>links.classList.toggle('open'));
+links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
+document.querySelectorAll('.cfilter').forEach(c=>c.addEventListener('click',()=>{
+  document.querySelectorAll('.cfilter').forEach(x=>x.classList.remove('on'));c.classList.add('on');
+}));
+</script>
+</body>
+</html>

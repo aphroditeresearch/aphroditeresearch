@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aphrodite Research</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --obsidian:#08080b;--midnight:#0f0f16;--panel:#0d0d12;
+  --marble:#efe9dc;--marble-dim:#8a8477;--gold:#c9a35b;--gold-bright:#e6c684;
+  --line:rgba(201,163,91,.28);--line-soft:rgba(201,163,91,.12);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{background:var(--obsidian);color:var(--marble);font-family:'Jost',sans-serif;font-weight:300;overflow:hidden;position:relative}
+::selection{background:var(--gold);color:var(--obsidian)}
+#rain{position:fixed;inset:0;z-index:1;pointer-events:none}
+.vignette{position:fixed;inset:0;z-index:2;pointer-events:none;background:radial-gradient(ellipse 55% 55% at 50% 46%,transparent 30%,rgba(8,8,11,.6) 72%,rgba(8,8,11,.95) 100%)}
+.ghostmark{position:fixed;left:clamp(-0.5rem,1vw,1.5rem);top:50%;transform:translateY(-50%);z-index:1;pointer-events:none;font-family:'Cormorant',serif;font-weight:600;font-size:clamp(3.5rem,9vw,9rem);line-height:.92;letter-spacing:.02em;writing-mode:vertical-rl;text-orientation:upright;color:transparent;background:linear-gradient(180deg,var(--gold-bright),rgba(201,163,91,.12));-webkit-background-clip:text;background-clip:text;opacity:.13}
+
+.stage{position:relative;z-index:3;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.5rem}
+.ar-mark{width:74px;height:auto;display:block;margin-bottom:-0.5rem;opacity:0;transform:translateY(10px) scale(.9);animation:markIn 1.3s .1s cubic-bezier(.2,.8,.2,1) forwards;filter:drop-shadow(0 0 24px rgba(201,163,91,.35))}
+.gate{position:relative;width:min(92vw,460px);background:linear-gradient(180deg,rgba(13,13,18,.92),rgba(8,8,11,.92));border:1px solid var(--line);padding:clamp(2.4rem,5vw,3.2rem) clamp(1.8rem,5vw,3rem);text-align:center;backdrop-filter:blur(3px);box-shadow:0 30px 90px rgba(0,0,0,.6),inset 0 0 60px rgba(201,163,91,.03);opacity:0;transform:translateY(18px);animation:gateIn 1.4s .35s cubic-bezier(.2,.7,.2,1) forwards}
+.gate::before,.gate::after{content:"";position:absolute;left:50%;transform:translateX(-50%);width:64px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.gate::before{top:-1px}.gate::after{bottom:-1px}
+.welcome{font-family:'Jost';font-weight:500;font-size:.7rem;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);margin-bottom:1.4rem;padding-left:.5em}
+.mark{font-family:'Cormorant',serif;font-weight:600;font-size:clamp(2.2rem,7vw,3.2rem);letter-spacing:.14em;text-transform:uppercase;line-height:1;padding-left:.14em;color:var(--marble);text-shadow:0 0 30px rgba(201,163,91,.2)}
+.diamond{margin:1.4rem auto;display:flex;align-items:center;justify-content:center;gap:1.1rem;color:var(--gold)}
+.diamond span{width:56px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+.diamond span:last-child{background:linear-gradient(90deg,var(--gold),transparent)}
+.diamond em{font-style:normal;font-size:.55rem}
+.tagline{font-family:'Jost';font-weight:500;font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;color:var(--marble-dim);margin-bottom:1.5rem;padding-left:.34em}
+.whisper{font-family:'Cormorant',serif;font-style:italic;font-size:1.2rem;line-height:1.85;color:var(--marble-dim);margin-bottom:2.4rem}
+.enter{display:block;width:100%;font-family:'Jost';font-weight:400;font-size:.82rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-bright);background:transparent;border:1px solid var(--gold);padding:1.1rem;cursor:pointer;text-decoration:none;transition:all .4s;position:relative;overflow:hidden;z-index:0}
+.enter::after{content:"";position:absolute;inset:0;background:var(--gold);transform:translateX(-101%);transition:transform .45s cubic-bezier(.4,0,.2,1);z-index:-1}
+.enter:hover{color:var(--obsidian);border-color:var(--gold-bright)}
+.enter:hover::after{transform:translateX(0)}
+.enter span{position:relative;z-index:1}
+.footnote{margin-top:1.6rem;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--marble-dim);opacity:.7}
+
+.ticker{position:fixed;bottom:.85rem;left:0;right:0;z-index:3;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.ticker-track{display:inline-flex;white-space:nowrap;will-change:transform;animation:scroll 46s linear infinite}
+.ticker-track span{font-size:.58rem;letter-spacing:.34em;text-transform:uppercase;color:rgba(138,132,119,.5);padding:0 1.6rem;display:inline-flex;align-items:center;gap:1.6rem}
+.ticker-track span::after{content:"◆";color:rgba(201,163,91,.4);font-size:.4rem}
+.ticker:hover .ticker-track{animation-play-state:paused}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+.crossing{position:fixed;inset:0;z-index:100;background:radial-gradient(ellipse 40% 40% at 50% 50%,rgba(201,163,91,.06),var(--obsidian) 70%);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity .7s ease}
+.crossing.active{opacity:1;pointer-events:all}
+.crossing .cmark{width:90px;opacity:0;transform:scale(.8)}
+.crossing.active .cmark{animation:sealPulse 1.1s ease forwards}
+@keyframes sealPulse{0%{transform:scale(.8);opacity:0}40%{opacity:1}100%{transform:scale(1.15);opacity:0}}
+@keyframes markIn{to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes gateIn{to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:520px){.ghostmark{opacity:.09}.whisper{font-size:1.05rem}}
+@media(prefers-reduced-motion:reduce){.gate,.ar-mark{animation:none;opacity:1;transform:none}#rain{display:none}.ticker-track{animation:none;transform:translateX(0)}.ticker{-webkit-mask-image:none;mask-image:none;text-align:center}.ticker-track{display:block;white-space:normal}}
+</style>
+</head>
+<body>
+<canvas id="rain"></canvas>
+<div class="ghostmark" aria-hidden="true">APHRODITE</div>
+<div class="vignette"></div>
+
+<main class="stage">
+  <svg viewBox="0 0 200 270" xmlns="http://www.w3.org/2000/svg" class="ar-mark" aria-label="Aphrodite Research"><defs><linearGradient id="arGold" x1="0" y1="0" x2="0.3" y2="1"><stop offset="0" stop-color="#e6c684"/><stop offset="0.5" stop-color="#c9a35b"/><stop offset="1" stop-color="#8f6f38"/></linearGradient></defs><g stroke="url(#arGold)" stroke-linecap="round" fill="none"><line x1="100" y1="22" x2="100" y2="4" stroke-width="2"/><line x1="87" y1="25" x2="80" y2="10" stroke-width="1.7"/><line x1="113" y1="25" x2="120" y2="10" stroke-width="1.7"/><line x1="76" y1="32" x2="65" y2="20" stroke-width="1.5"/><line x1="124" y1="32" x2="135" y2="20" stroke-width="1.5"/><line x1="69" y1="41" x2="55" y2="33" stroke-width="1.3"/><line x1="131" y1="41" x2="145" y2="33" stroke-width="1.3"/></g><path d="M100 44 L109 57 L100 70 L91 57 Z" fill="url(#arGold)"/><path d="M100 49 L104.5 57 L100 65 L95.5 57 Z" fill="#0a0a0d"/><g fill="url(#arGold)"><path d="M54 244 L98 92 L110 92 L70 244 Z"/><path d="M104 92 L116 92 L124 244 L114 244 Z"/><path d="M82 178 Q104 169 124 178 L124 185 Q104 176 82 185 Z"/><path d="M114 98 Q160 98 160 138 Q160 174 118 178 L118 169 Q150 166 150 138 Q150 108 114 108 Z"/><path d="M132 172 Q148 208 184 234 L177 243 Q137 216 120 180 Z"/></g><g stroke="url(#arGold)" stroke-linecap="round" fill="none"><line x1="70" y1="258" x2="90" y2="258" stroke-width="1.5"/><line x1="110" y1="258" x2="130" y2="258" stroke-width="1.5"/></g><path d="M100 250 L106 258 L100 266 L94 258 Z" fill="url(#arGold)"/><path d="M100 253 L103.5 258 L100 263 L96.5 258 Z" fill="#0a0a0d"/></svg>
+  <div class="gate">
+    <div class="welcome">Welcome to</div>
+    <div class="mark">Aphrodite</div>
+    <div class="diamond"><span></span><em>◆</em><span></span></div>
+    <div class="tagline">The Peptide Evidence Archive</div>
+    <p class="whisper">The research is out there.<br>Few take the time to uncover it.</p>
+    <a href="home.html" class="enter" id="enterBtn"><span>Enter the Archive</span></a>
+    <div class="footnote">Educational access · Evidence, decoded</div>
+  </div>
+</main>
+
+<div class="ticker" aria-label="Educational resource. Not for human or veterinary use. No compounds sold. No dosing information.">
+  <div class="ticker-track">
+    <span>Educational resource</span><span>Evidence, decoded</span><span>The literature, uncovered</span><span>Not for human or veterinary use</span><span>See what others overlook</span><span>No compounds sold</span><span>No dosing information</span><span>Human data separated from animal</span>
+    <span aria-hidden="true">Educational resource</span><span aria-hidden="true">Evidence, decoded</span><span aria-hidden="true">The literature, uncovered</span><span aria-hidden="true">Not for human or veterinary use</span><span aria-hidden="true">See what others overlook</span><span aria-hidden="true">No compounds sold</span><span aria-hidden="true">No dosing information</span><span aria-hidden="true">Human data separated from animal</span>
+  </div>
+</div>
+
+<div class="crossing" id="crossing" aria-hidden="true"><svg viewBox="0 0 200 270" xmlns="http://www.w3.org/2000/svg" class="cmark" aria-label="Aphrodite Research"><defs><linearGradient id="arGold" x1="0" y1="0" x2="0.3" y2="1"><stop offset="0" stop-color="#e6c684"/><stop offset="0.5" stop-color="#c9a35b"/><stop offset="1" stop-color="#8f6f38"/></linearGradient></defs><g stroke="url(#arGold)" stroke-linecap="round" fill="none"><line x1="100" y1="22" x2="100" y2="4" stroke-width="2"/><line x1="87" y1="25" x2="80" y2="10" stroke-width="1.7"/><line x1="113" y1="25" x2="120" y2="10" stroke-width="1.7"/><line x1="76" y1="32" x2="65" y2="20" stroke-width="1.5"/><line x1="124" y1="32" x2="135" y2="20" stroke-width="1.5"/><line x1="69" y1="41" x2="55" y2="33" stroke-width="1.3"/><line x1="131" y1="41" x2="145" y2="33" stroke-width="1.3"/></g><path d="M100 44 L109 57 L100 70 L91 57 Z" fill="url(#arGold)"/><path d="M100 49 L104.5 57 L100 65 L95.5 57 Z" fill="#0a0a0d"/><g fill="url(#arGold)"><path d="M54 244 L98 92 L110 92 L70 244 Z"/><path d="M104 92 L116 92 L124 244 L114 244 Z"/><path d="M82 178 Q104 169 124 178 L124 185 Q104 176 82 185 Z"/><path d="M114 98 Q160 98 160 138 Q160 174 118 178 L118 169 Q150 166 150 138 Q150 108 114 108 Z"/><path d="M132 172 Q148 208 184 234 L177 243 Q137 216 120 180 Z"/></g><g stroke="url(#arGold)" stroke-linecap="round" fill="none"><line x1="70" y1="258" x2="90" y2="258" stroke-width="1.5"/><line x1="110" y1="258" x2="130" y2="258" stroke-width="1.5"/></g><path d="M100 250 L106 258 L100 266 L94 258 Z" fill="url(#arGold)"/><path d="M100 253 L103.5 258 L100 263 L96.5 258 Z" fill="#0a0a0d"/></svg></div>
+
+<script>
+const canvas=document.getElementById('rain'),ctx=canvas.getContext('2d');
+let W,H,cols,drops,fontSize;const glyphs="APHRODITERESEARCH".split("");
+function resize(){W=canvas.width=innerWidth;H=canvas.height=innerHeight;fontSize=Math.max(14,Math.min(22,W/70));cols=Math.floor(W/(fontSize*1.9));drops=Array.from({length:cols},()=>({y:Math.random()*-H,speed:.4+Math.random()*1.1,char:glyphs[Math.floor(Math.random()*glyphs.length)],alpha:.15+Math.random()*.5,bright:Math.random()>.86}));}
+resize();addEventListener('resize',resize);
+let reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function draw(){ctx.clearRect(0,0,W,H);ctx.font=`500 ${fontSize}px Cormorant, serif`;for(let i=0;i<cols;i++){const d=drops[i];const x=i*fontSize*1.9+fontSize*0.6;if(d.bright){ctx.shadowColor='rgba(230,198,132,.9)';ctx.shadowBlur=14;ctx.fillStyle=`rgba(230,198,132,${Math.min(1,d.alpha+.35)})`;}else{ctx.shadowBlur=0;ctx.fillStyle=`rgba(201,163,91,${d.alpha})`;}ctx.fillText(d.char,x,d.y);d.y+=d.speed;if(d.y>H+40){d.y=Math.random()*-120;d.char=glyphs[Math.floor(Math.random()*glyphs.length)];d.alpha=.15+Math.random()*.5;d.bright=Math.random()>.86;d.speed=.4+Math.random()*1.1;}}ctx.shadowBlur=0;requestAnimationFrame(draw);}
+if(!reduce)draw();
+const enterBtn=document.getElementById('enterBtn'),crossing=document.getElementById('crossing');
+enterBtn.addEventListener('click',e=>{const href=enterBtn.getAttribute('href');if(reduce)return;e.preventDefault();crossing.classList.add('active');setTimeout(()=>{window.location.href=href;},1000);});
+</script>
+</body>
+</html>

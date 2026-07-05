@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GHK-Cu — The Archive · Aphrodite Research</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500&family=Spectral:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --obsidian:#08080b;--midnight:#0f0f16;--panel:#0d0d12;--panel-hi:#14141c;
+  --marble:#efe9dc;--marble-dim:#8a8477;--gold:#c9a35b;--gold-bright:#e6c684;--rose:#c88a7d;--teal:#8fc4b8;
+  --line:rgba(201,163,91,.2);--line-soft:rgba(201,163,91,.1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--obsidian);color:var(--marble);font-family:'Jost',sans-serif;font-weight:300;line-height:1.6}
+body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+::selection{background:var(--gold);color:var(--obsidian)}
+a{color:inherit;text-decoration:none}
+.eyebrow{font-family:'Jost';font-weight:500;font-size:.66rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold)}
+main,nav,.ticker,footer{position:relative;z-index:2}
+
+.ticker{background:var(--midnight);border-bottom:1px solid var(--line-soft);overflow:hidden;padding:.5rem 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.ticker-track{display:inline-flex;white-space:nowrap;will-change:transform;animation:scroll 46s linear infinite}
+.ticker-track span{font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--marble-dim);padding:0 1.5rem;display:inline-flex;align-items:center;gap:1.5rem}
+.ticker-track span::after{content:"◆";color:rgba(201,163,91,.4);font-size:.4rem}
+.ticker:hover .ticker-track{animation-play-state:paused}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+nav{display:flex;align-items:center;justify-content:space-between;padding:1.3rem clamp(1.2rem,4vw,3rem);position:sticky;top:0;z-index:50;background:rgba(8,8,11,.82);backdrop-filter:blur(16px);border-bottom:1px solid var(--line-soft)}
+.nav-mark{width:26px;height:auto;vertical-align:middle;margin-right:.5rem;filter:drop-shadow(0 0 6px rgba(201,163,91,.3))}
+.brand{display:inline-flex;align-items:center;font-family:'Cormorant',serif;font-weight:600;font-size:1.4rem;letter-spacing:.16em;text-transform:uppercase}
+.brand span{color:var(--gold);margin:0 .15em;font-size:.7em;vertical-align:middle}
+.nav-links{display:flex;gap:2rem;align-items:center;list-style:none}
+.nav-links a:not(.acct){padding:.2rem 0}
+.nav-links li:last-child{margin-left:.6rem;padding-left:1.6rem;border-left:1px solid var(--line-soft);height:22px;display:flex;align-items:center}
+.nav-links a{color:var(--marble-dim);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;transition:color .3s}
+.nav-links a:hover,.nav-links a.active{color:var(--gold-bright)}
+.acct{width:34px;height:34px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;font-family:'Cormorant';font-size:.9rem;color:var(--gold)}
+.burger{display:none;background:none;border:none;color:var(--marble);font-size:1.4rem;cursor:pointer}
+
+.crumb{max-width:920px;margin:0 auto;padding:1.4rem clamp(1.2rem,4vw,3rem) 0;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--marble-dim)}
+.crumb a:hover{color:var(--gold-bright)}
+.crumb .sep{color:var(--gold);margin:0 .6rem}
+
+/* header */
+.dossier{max-width:920px;margin:0 auto;padding:2rem clamp(1.2rem,4vw,3rem) 0}
+.file-tag{display:flex;align-items:center;gap:1rem;margin-bottom:1.4rem;flex-wrap:wrap}
+.file-tag .cat{font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);border:1px solid var(--line);padding:.35rem .8rem}
+.file-tag .ref{font-family:'Spectral',serif;font-style:italic;font-size:.82rem;color:var(--marble-dim)}
+.dossier h1{position:relative;font-family:'Cormorant',serif;font-weight:500;font-size:clamp(3rem,8vw,5.5rem);line-height:.98;letter-spacing:.01em;margin-bottom:.6rem;color:#fbf8f0;text-shadow:0 0 60px rgba(255,255,255,.28),0 0 120px rgba(230,198,132,.14)}
+.dossier .latin{font-family:'Spectral',serif;font-style:italic;font-size:1.15rem;color:var(--marble-dim);margin-bottom:1.8rem}
+.badges{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:1.8rem}
+.badge{font-family:'Jost';font-weight:500;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;padding:.4rem .8rem;border:1px solid;border-radius:2px}
+.badge.b-mod{color:var(--gold-bright);border-color:var(--line)}
+.badge.b-cosmetic{color:var(--teal);border-color:rgba(143,196,184,.4)}
+.badge.b-invest{color:var(--rose);border-color:rgba(200,138,125,.4)}
+.badge.b-updated{color:var(--marble-dim);border-color:var(--line-soft)}
+
+.section{max-width:920px;margin:0 auto;padding:0 clamp(1.2rem,4vw,3rem)}
+
+/* 10-second verdict */
+.verdict-box{border:1px solid var(--line);background:linear-gradient(180deg,rgba(20,20,28,.5),rgba(8,8,11,.4));padding:1.8rem 2rem;margin:1.5rem 0 2.6rem;position:relative}
+.verdict-box .eyebrow{display:block;margin-bottom:.8rem}
+.verdict-box p{font-family:'Spectral',serif;font-size:1.2rem;line-height:1.6;color:var(--marble)}
+.verdict-box p strong{color:var(--gold-bright);font-weight:500}
+
+/* ROUTE INTEGRITY — signature warning */
+.route-warn{border:1px solid var(--rose);border-left-width:3px;background:linear-gradient(90deg,rgba(200,138,125,.08),transparent);padding:1.5rem 1.7rem;margin-bottom:2.6rem;display:flex;gap:1.2rem;align-items:flex-start}
+.route-warn .ri-ico{flex-shrink:0;width:28px;height:28px;border:1px solid var(--rose);border-radius:50%;display:grid;place-items:center;color:var(--rose);font-family:'Cormorant',serif;font-size:1.1rem;font-style:italic;margin-top:.1rem}
+.route-warn .ri-body h3{font-family:'Jost';font-weight:500;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--rose);margin-bottom:.5rem}
+.route-warn .ri-body p{font-family:'Spectral',serif;font-size:.96rem;line-height:1.65;color:#cdc7b8}
+
+/* block label */
+.block{margin-bottom:3.2rem}
+.block .label{position:relative;border-bottom:1px solid var(--line);padding-bottom:.9rem;margin-bottom:1.5rem;min-height:3rem;display:flex;align-items:flex-end}
+.block .label .n{position:absolute;left:-.3rem;top:-1.4rem;z-index:0;font-family:'Cormorant',serif;font-weight:600;font-size:5rem;line-height:1;color:transparent;background:linear-gradient(180deg,rgba(201,163,91,.15),rgba(201,163,91,.02));-webkit-background-clip:text;background-clip:text;pointer-events:none}
+.block .label h2{position:relative;z-index:1;font-family:'Cormorant',serif;font-weight:500;font-size:1.8rem;letter-spacing:.02em;padding-left:2.6rem}
+.block p{font-family:'Spectral',serif;font-weight:300;font-size:1.02rem;line-height:1.8;color:#cdc7b8;margin-bottom:1rem;max-width:70ch}
+.block p strong{color:var(--gold-bright);font-weight:500}
+
+/* ===== EVIDENCE-BY-OUTCOME MATRIX — the core new feature ===== */
+.matrix{border:1px solid var(--line-soft)}
+.matrix .mrow{display:grid;grid-template-columns:1.4fr 1fr 1.3fr;gap:1rem;padding:1.2rem 1.3rem;border-bottom:1px solid var(--line-soft);align-items:center}
+.matrix .mrow:last-child{border-bottom:none}
+.matrix .mrow.head{background:rgba(201,163,91,.04);padding:.8rem 1.3rem}
+.matrix .mrow.head span{font-family:'Jost';font-weight:500;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.matrix .mrow:hover:not(.head){background:rgba(201,163,91,.03)}
+.m-outcome{font-family:'Cormorant',serif;font-size:1.25rem;color:var(--marble)}
+.m-outcome .m-route{display:block;font-family:'Jost';font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--marble-dim);margin-top:.2rem}
+/* evidence level pill */
+.ev-pill{display:inline-flex;align-items:center;gap:.4rem;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;padding:.3rem .6rem;border:1px solid;width:fit-content}
+.ev-pill::before{content:"◆";font-size:.5rem}
+.ev-strong{color:var(--teal);border-color:rgba(143,196,184,.4)}
+.ev-mod{color:var(--gold-bright);border-color:var(--line)}
+.ev-early{color:var(--gold);border-color:var(--line-soft)}
+.ev-pre{color:var(--rose);border-color:rgba(200,138,125,.4)}
+.ev-insufficient{color:var(--marble-dim);border-color:var(--line-soft)}
+.m-note{font-family:'Spectral',serif;font-size:.86rem;color:var(--marble-dim);line-height:1.5}
+@media(max-width:720px){
+  .matrix .mrow{grid-template-columns:1fr;gap:.6rem}
+  .matrix .mrow.head{display:none}
+  .matrix .mrow{padding:1.3rem}
+}
+
+/* per-outcome claim gap */
+.claimgap-panel{border:1px solid var(--line-soft);padding:1.6rem 1.7rem;margin-top:1.4rem;background:linear-gradient(90deg,rgba(200,138,125,.03),transparent)}
+.claimgap-panel .cg-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.4rem;flex-wrap:wrap;gap:.5rem}
+.claimgap-panel h3{font-family:'Cormorant',serif;font-size:1.3rem;color:var(--gold-bright)}
+.claimgap-panel .cg-rating{font-family:'Jost';font-weight:500;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rose)}
+.cg-track{height:6px;background:rgba(201,163,91,.1);border-radius:3px;overflow:hidden;margin:.8rem 0 1.2rem}
+.cg-fill{height:100%;background:linear-gradient(90deg,var(--teal),var(--gold),var(--rose))}
+.cg-cols{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line-soft);border:1px solid var(--line-soft)}
+@media(max-width:600px){.cg-cols{grid-template-columns:1fr}}
+.cg-col{background:var(--obsidian);padding:1.2rem}
+.cg-col .cg-tag{font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;margin-bottom:.6rem;font-weight:500}
+.cg-col.says .cg-tag{color:var(--rose)}
+.cg-col.shows .cg-tag{color:var(--teal)}
+.cg-col p{font-family:'Spectral',serif;font-size:.92rem;line-height:1.6;color:#cdc7b8;margin:0}
+.cg-col.says p{font-style:italic}
+
+/* study cards */
+.study{border:1px solid var(--line-soft);border-left:2px solid var(--gold);padding:1.3rem 1.5rem;margin-bottom:1.1rem;background:linear-gradient(90deg,rgba(201,163,91,.03),transparent)}
+.study .stop{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-bottom:.6rem;flex-wrap:wrap}
+.study .sname{font-family:'Cormorant',serif;font-size:1.2rem;color:var(--gold-bright)}
+.study .smeta{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--marble-dim)}
+.study p{font-family:'Spectral',serif;font-size:.92rem;line-height:1.6;color:#cdc7b8;margin:0}
+
+/* citations */
+.cites{list-style:none;margin-top:1.2rem}
+.cites li{padding:.85rem 0;border-bottom:1px solid var(--line-soft);display:flex;gap:1rem;align-items:baseline}
+.cites li .idx{font-family:'Cormorant',serif;font-style:italic;color:var(--gold);font-size:.9rem;flex-shrink:0}
+.cites li .ref{font-size:.84rem;color:var(--marble-dim);line-height:1.5}
+.cites li .ref em{font-style:italic;color:#cdc7b8}
+
+/* deep-dive gate */
+.deepdive{max-width:920px;margin:1rem auto 0;padding:0 clamp(1.2rem,4vw,3rem) 4rem}
+.locked-preview{position:relative;border:1px solid var(--line);overflow:hidden;background:var(--obsidian)}
+.teaser{position:absolute;inset:0;padding:2.4rem;filter:blur(7px);opacity:.4;user-select:none;pointer-events:none;overflow:hidden}
+.teaser h3{font-family:'Cormorant',serif;font-size:1.4rem;color:var(--gold-bright);margin-bottom:.8rem}
+.teaser .frow{display:flex;justify-content:space-between;padding:.5rem 0;border-bottom:1px solid var(--line-soft);font-family:'Spectral',serif;font-size:.9rem;color:#cdc7b8}
+.gate-over{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(3rem,7vw,5rem) 2rem;background:radial-gradient(ellipse 80% 70% at 50% 50%,rgba(8,8,11,.82),rgba(8,8,11,.96))}
+.gate-over .lock{width:46px;height:46px;border:1px solid var(--gold);border-radius:50%;display:grid;place-items:center;margin-bottom:1.5rem;box-shadow:0 0 30px rgba(201,163,91,.3)}
+.gate-over .lock svg{width:20px;height:20px;stroke:var(--gold);fill:none;stroke-width:1.6}
+.gate-over .eyebrow{margin-bottom:.9rem}
+.gate-over h3{font-family:'Cormorant',serif;font-weight:500;font-size:clamp(1.9rem,4vw,2.6rem);letter-spacing:.02em;margin-bottom:.9rem;max-width:18ch;line-height:1.15}
+.gate-over p.gsub{font-family:'Spectral',serif;color:var(--marble-dim);max-width:46ch;margin:0 auto;line-height:1.7}
+.gate-over .stat-row{display:flex;gap:clamp(1.6rem,4vw,3rem);margin:2rem 0}
+.gate-over .stat .num{font-family:'Cormorant',serif;font-size:clamp(1.8rem,4vw,2.3rem);color:var(--gold-bright);line-height:1}
+.gate-over .stat .lbl{font-size:.58rem;letter-spacing:.16em;text-transform:uppercase;color:var(--marble-dim);margin-top:.5rem}
+.btn-initiate{display:inline-block;position:relative;overflow:hidden;background:linear-gradient(180deg,var(--gold-bright),var(--gold));color:#1a1206;font-family:'Jost';font-weight:500;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;padding:1.1rem 2.4rem;border:none;cursor:pointer;box-shadow:0 8px 30px rgba(201,163,91,.22),inset 0 1px 0 rgba(255,255,255,.4);transition:box-shadow .4s,transform .2s;white-space:nowrap}
+.btn-initiate .in{position:relative;z-index:1;display:inline-flex;align-items:center;gap:.6rem}
+.btn-initiate .arrow{transition:transform .35s}
+.btn-initiate::after{content:"";position:absolute;top:0;left:-60%;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-20deg);animation:sheen 4.5s ease-in-out infinite}
+.btn-initiate:hover{box-shadow:0 10px 40px rgba(230,198,132,.4);transform:translateY(-1px)}
+.btn-initiate:hover .arrow{transform:translateX(4px)}
+@keyframes sheen{0%,100%{left:-60%}45%,55%{left:120%}}
+.gate-over .reassure{margin-top:1.1rem;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--marble-dim);opacity:.7}
+
+footer{background:var(--midnight);border-top:1px solid var(--line-soft);padding:3rem clamp(1.2rem,4vw,3rem) 2rem;margin-top:2rem}
+.foot-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;max-width:920px;margin:0 auto 2rem}
+.foot-brand{font-family:'Cormorant';font-size:1.5rem;letter-spacing:.14em;text-transform:uppercase}
+.foot-brand span{color:var(--gold)}
+.foot-links{display:flex;gap:1.8rem;flex-wrap:wrap}
+.foot-links a{color:var(--marble-dim);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;transition:color .3s}
+.foot-links a:hover{color:var(--gold-bright)}
+.foot-legal{max-width:920px;margin:0 auto;padding-top:1.6rem;border-top:1px solid var(--line-soft);font-size:.66rem;letter-spacing:.1em;color:var(--marble-dim);text-align:center;line-height:1.9}
+
+@media(max-width:820px){
+  .nav-links{position:fixed;inset:0 0 0 auto;width:min(78vw,300px);background:var(--midnight);flex-direction:column;justify-content:center;gap:2.2rem;transform:translateX(100%);transition:transform .4s;z-index:60;border-left:1px solid var(--line)}
+  .nav-links.open{transform:translateX(0)}
+  .nav-links li:last-child{margin-left:0;padding-left:0;border-left:none}
+  .burger{display:block;z-index:70}
+}
+@media(prefers-reduced-motion:reduce){.ticker-track{animation:none;transform:translateX(0)}.btn-initiate::after{animation:none}}
+</style>
+</head>
+<body>
+
+<div class="ticker" aria-label="Educational resource. Not for human or veterinary use. No compounds sold. No dosing information.">
+  <div class="ticker-track">
+    <span>Evidence, decoded</span><span>Human research separated from animal data</span><span>Every claim traced to its source</span><span>Not for human or veterinary use</span><span>No compounds sold · No dosing information</span><span>Research beyond the headline</span>
+    <span aria-hidden="true">Evidence, decoded</span><span aria-hidden="true">Human research separated from animal data</span><span aria-hidden="true">Every claim traced to its source</span><span aria-hidden="true">Not for human or veterinary use</span><span aria-hidden="true">No compounds sold · No dosing information</span><span aria-hidden="true">Research beyond the headline</span>
+  </div>
+</div>
+
+<nav>
+  <a href="home.html" class="brand"><svg viewBox="0 0 200 270" xmlns="http://www.w3.org/2000/svg" class="nav-mark" aria-label="Aphrodite Research"><defs><linearGradient id="arGold" x1="0" y1="0" x2="0.3" y2="1"><stop offset="0" stop-color="#e6c684"/><stop offset="0.5" stop-color="#c9a35b"/><stop offset="1" stop-color="#8f6f38"/></linearGradient></defs><g stroke="url(#arGold)" stroke-linecap="round" fill="none"><line x1="100" y1="22" x2="100" y2="4" stroke-width="2"/><line x1="87" y1="25" x2="80" y2="10" stroke-width="1.7"/><line x1="113" y1="25" x2="120" y2="10" stroke-width="1.7"/><line x1="76" y1="32" x2="65" y2="20" stroke-width="1.5"/><line x1="124" y1="32" x2="135" y2="20" stroke-width="1.5"/><line x1="69" y1="41" x2="55" y2="33" stroke-width="1.3"/><line x1="131" y1="41" x2="145" y2="33" stroke-width="1.3"/></g><path d="M100 44 L109 57 L100 70 L91 57 Z" fill="url(#arGold)"/><path d="M100 49 L104.5 57 L100 65 L95.5 57 Z" fill="#0a0a0d"/><g fill="url(#arGold)"><path d="M54 244 L98 92 L110 92 L70 244 Z"/><path d="M104 92 L116 92 L124 244 L114 244 Z"/><path d="M82 178 Q104 169 124 178 L124 185 Q104 176 82 185 Z"/><path d="M114 98 Q160 98 160 138 Q160 174 118 178 L118 169 Q150 166 150 138 Q150 108 114 108 Z"/><path d="M132 172 Q148 208 184 234 L177 243 Q137 216 120 180 Z"/></g><g stroke="url(#arGold)" stroke-linecap="round" fill="none"><line x1="70" y1="258" x2="90" y2="258" stroke-width="1.5"/><line x1="110" y1="258" x2="130" y2="258" stroke-width="1.5"/></g><path d="M100 250 L106 258 L100 266 L94 258 Z" fill="url(#arGold)"/><path d="M100 253 L103.5 258 L100 263 L96.5 258 Z" fill="#0a0a0d"/></svg>Aphrodite<span>·</span>Research</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="archive.html">The Archive</a></li>
+    <li><a href="#">Compare</a></li>
+    <li><a href="methodology.html">Methodology</a></li>
+    <li><a href="pricing.html">Membership</a></li>
+    <li><a href="#" class="acct">AR</a></li>
+  </ul>
+  <button class="burger" id="burger" aria-label="Menu">☰</button>
+</nav>
+
+<div class="crumb">
+  <a href="archive.html">The Archive</a><span class="sep">/</span><a href="archive.html">Skin &amp; Appearance</a><span class="sep">/</span>GHK-Cu
+</div>
+
+<main>
+  <header class="dossier">
+    <div class="file-tag">
+      <span class="cat">Copper Peptide · Signal</span>
+      <span class="ref">File No. AR-002 · Copper Tripeptide-1</span>
+    </div>
+    <h1>GHK-Cu</h1>
+    <p class="latin">What the skin studies show — and what the injectable claims leave out</p>
+
+    <div class="badges">
+      <span class="badge b-mod">Evidence Varies by Outcome</span>
+      <span class="badge b-cosmetic">Established Cosmetic Ingredient</span>
+      <span class="badge b-invest">Not FDA-Approved as a Drug</span>
+      <span class="badge b-updated">Updated Jul 2026</span>
+    </div>
+  </header>
+
+  <div class="section">
+    <!-- 10-SECOND VERDICT -->
+    <div class="verdict-box">
+      <span class="eyebrow">The 10-second verdict</span>
+      <p>GHK-Cu is a <strong>real, well-studied molecule</strong> with genuine topical skin and wound research behind it. But the evidence <strong>depends entirely on the outcome and the route</strong> — strong for topical skin support, thin for injectable anti-aging, and mostly absent for systemic use. Most online hype collapses that distinction.</p>
+    </div>
+
+    <!-- ROUTE INTEGRITY WARNING -->
+    <div class="route-warn">
+      <div class="ri-ico">!</div>
+      <div class="ri-body">
+        <h3>Route Integrity Warning</h3>
+        <p>Evidence cannot be transferred across delivery routes. Nearly all of GHK-Cu's human evidence concerns <strong style="color:var(--teal)">topical</strong> application. It should <em>not</em> be read as evidence for <strong style="color:var(--rose)">injectable or systemic</strong> use, which has little to no rigorous human study and introduces different risks — including copper exposure. Vendor pages routinely blur this line; we keep it sharp.</p>
+      </div>
+    </div>
+
+    <!-- 01 · WHAT IT IS -->
+    <div class="block">
+      <div class="label"><span class="n">01</span><h2>What it is</h2></div>
+      <p>GHK-Cu (glycyl-L-histidyl-L-lysine complexed with copper) is a naturally occurring human tripeptide, first isolated from blood plasma in 1973. Plasma levels fall with age — from roughly 200 ng/mL around age 20 to about 80 ng/mL by 60 — which is part of why it became a research target for skin, hair, and wound healing.</p>
+      <p>In cosmetics it's regulated as an ingredient called <strong>Copper Tripeptide-1</strong>, not as an approved drug. It is not FDA-approved for any medical indication; medical or injectable uses are off-label or investigational.</p>
+    </div>
+
+    <!-- 02 · EVIDENCE BY OUTCOME — THE CORE -->
+    <div class="block">
+      <div class="label"><span class="n">02</span><h2>Evidence by outcome</h2></div>
+      <p>A single score for "GHK-Cu" would be misleading — the evidence is strong for some uses and nearly absent for others. Here is how it actually breaks down, by outcome and by route.</p>
+      <div class="matrix">
+        <div class="mrow head"><span>Outcome · Route</span><span>Evidence level</span><span>What it rests on</span></div>
+        <div class="mrow">
+          <div class="m-outcome">Skin appearance &amp; collagen<span class="m-route">Topical</span></div>
+          <span class="ev-pill ev-mod">Moderate human</span>
+          <div class="m-note">Fibroblast &amp; small clinical studies show collagen stimulation; real but modest, and limited by skin penetration.</div>
+        </div>
+        <div class="mrow">
+          <div class="m-outcome">Wound healing<span class="m-route">Topical / local</span></div>
+          <span class="ev-pill ev-early">Early–mixed human</span>
+          <div class="m-note">Trials on diabetic ulcers &amp; surgical wounds plus extensive animal data; results are promising but not uniform.</div>
+        </div>
+        <div class="mrow">
+          <div class="m-outcome">Hair growth<span class="m-route">Topical</span></div>
+          <span class="ev-pill ev-early">Early human</span>
+          <div class="m-note">One 2022 RCT (n=50) reported gains vs. minoxidil; reviewers note only a few small trials so far.</div>
+        </div>
+        <div class="mrow">
+          <div class="m-outcome">Injectable anti-aging<span class="m-route">Subcutaneous</span></div>
+          <span class="ev-pill ev-insufficient">Insufficient</span>
+          <div class="m-note">No rigorous controlled human evidence for cosmetic benefit by injection, despite common marketing.</div>
+        </div>
+        <div class="mrow">
+          <div class="m-outcome">Systemic longevity<span class="m-route">Systemic / oral</span></div>
+          <span class="ev-pill ev-pre">Preclinical</span>
+          <div class="m-note">Anti-aging &amp; antioxidant rationale comes from lab and animal work; no meaningful human longevity data.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 03 · THE DELIVERY PROBLEM -->
+    <div class="block">
+      <div class="label"><span class="n">03</span><h2>The delivery problem</h2></div>
+      <p>The catch that most claims ignore: GHK-Cu barely penetrates intact skin. A 2015 permeation study found near-zero absorption through an unbroken skin barrier — the molecule reaches the dermis in meaningful amounts only when the barrier is bypassed (for example, by microneedling). Unprotected GHK also degrades within hours of application, which is why formulation and encapsulation matter as much as concentration.</p>
+      <p>This is exactly why route and formulation can't be waved away: a benefit shown for one delivery method doesn't automatically hold for a cream on intact skin — or for an injection.</p>
+    </div>
+
+    <!-- 04 · CLAIM GAP (per the biggest outcome) -->
+    <div class="block">
+      <div class="label"><span class="n">04</span><h2>The Claim Gap</h2></div>
+      <p>Our signature measure: the distance between how confidently GHK-Cu is promoted online and how confidently the evidence supports it. It varies sharply by claim.</p>
+
+      <div class="claimgap-panel">
+        <div class="cg-top"><h3>Injectable anti-aging &amp; longevity</h3><span class="cg-rating">Claim Gap: Severe</span></div>
+        <div class="cg-track"><div class="cg-fill" style="width:88%"></div></div>
+        <div class="cg-cols">
+          <div class="cg-col says"><div class="cg-tag">Marketed as</div><p>"Injectable copper peptide that reaches every tissue for full-body anti-aging and regeneration."</p></div>
+          <div class="cg-col shows"><div class="cg-tag">Evidence shows</div><p>No rigorous controlled human trials support injectable cosmetic or systemic anti-aging benefit. The rationale is extrapolated from topical and preclinical work, and systemic copper carries its own safety considerations.</p></div>
+        </div>
+      </div>
+
+      <div class="claimgap-panel" style="margin-top:1.1rem">
+        <div class="cg-top"><h3>Topical skin support</h3><span class="cg-rating" style="color:var(--gold-bright)">Claim Gap: Moderate</span></div>
+        <div class="cg-track"><div class="cg-fill" style="width:45%"></div></div>
+        <div class="cg-cols">
+          <div class="cg-col says"><div class="cg-tag">Marketed as</div><p>"Reverses aging and dramatically rebuilds collagen from a topical serum."</p></div>
+          <div class="cg-col shows"><div class="cg-tag">Evidence shows</div><p>Genuine collagen-stimulating activity and small clinical support for skin quality — but effects are modest and constrained by how little penetrates intact skin.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 05 · SAFETY -->
+    <div class="block">
+      <div class="label"><span class="n">05</span><h2>Safety, honestly</h2></div>
+      <p><strong>Topical:</strong> generally well tolerated. Pooled data across recent studies report mostly mild effects — transient redness or itching in a small percentage — with no sign of systemic copper overload from cosmetic use.</p>
+      <p><strong>Injectable / systemic:</strong> a different and less-characterized picture. Copper is an essential trace element, but excess copper can be harmful, and long-term safety data for sustained systemic GHK-Cu in humans does not meaningfully exist. People with copper-metabolism disorders such as Wilson's disease should be especially cautious with any copper-containing preparation. This is reported for transparency and education — not as guidance to use anything.</p>
+    </div>
+
+    <!-- 06 · KEY CITATIONS -->
+    <div class="block">
+      <div class="label"><span class="n">06</span><h2>Key citations</h2></div>
+      <ul class="cites">
+        <li><span class="idx">01</span><span class="ref"><em>Pickart L, Margolina A.</em> — Regenerative and protective actions of the GHK-Cu peptide. Int J Mol Sci, 2018. <span style="color:var(--gold)">PMC6073405</span></span></li>
+        <li><span class="idx">02</span><span class="ref"><em>Park et al.</em> — GHK-Cu serum vs. minoxidil in androgenetic alopecia, RCT (n=50), 2022.</span></li>
+        <li><span class="idx">03</span><span class="ref"><em>Li et al.</em> — Skin permeation of GHK-Cu; near-zero flux through intact skin. Pharmaceutical Research, 2015.</span></li>
+      </ul>
+      <p style="margin-top:1.4rem;font-family:'Jost';font-size:.8rem;letter-spacing:.06em;color:var(--marble-dim)">These are three of <span style="color:var(--gold-bright)">42 indexed papers</span>. The complete outcome-by-outcome evidence ledger is in the deep-dive below.</p>
+    </div>
+  </div>
+
+  <!-- DEEP-DIVE GATE -->
+  <div class="deepdive">
+    <div class="block">
+      <div class="label"><span class="n">07</span><h2>The Deep-Dive</h2></div>
+    </div>
+    <div class="locked-preview">
+      <div class="teaser" aria-hidden="true">
+        <h3>Full outcome-by-outcome evidence ledger</h3>
+        <div class="frow"><span>Skin appearance · topical</span><span>Moderate · 9 studies</span></div>
+        <div class="frow"><span>Wound healing · topical</span><span>Mixed · 11 studies</span></div>
+        <div class="frow"><span>Hair growth · topical</span><span>Early · 3 RCTs</span></div>
+        <div class="frow"><span>Injectable anti-aging</span><span>Insufficient · 0 RCTs</span></div>
+        <div class="frow"><span>Bone / tissue · local</span><span>Preclinical · 6 studies</span></div>
+        <h3 style="margin-top:1.2rem">Every study, by route &amp; formulation</h3>
+        <div class="frow"><span>CO2 laser resurfacing RCT</span><span>2007</span></div>
+        <div class="frow"><span>Diabetic ulcer trials</span><span>1990s–2020s</span></div>
+      </div>
+      <div class="gate-over">
+        <div class="lock"><svg viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></div>
+        <span class="eyebrow">Sealed · Initiates only</span>
+        <h3>Every outcome, every route, fully mapped</h3>
+        <p class="gsub">The complete 42-paper ledger tagged by outcome, route, and formulation — plus the full Claim Gap breakdown, study-by-study cards, and the safety-signal record.</p>
+        <div class="stat-row">
+          <div class="stat"><div class="num">42</div><div class="lbl">Papers indexed</div></div>
+          <div class="stat"><div class="num">5</div><div class="lbl">Outcomes mapped</div></div>
+          <div class="stat"><div class="num">4</div><div class="lbl">Routes separated</div></div>
+        </div>
+        <a href="deepdive.html" class="btn-initiate"><span class="in">Cross the Threshold <span class="arrow">→</span></span></a>
+        <div class="reassure">Members only — Educational access · Cancel anytime</div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="foot-top">
+    <div class="foot-brand">Aphrodite<span>·</span>Research</div>
+    <div class="foot-links">
+      <a href="legal-disclaimer.html">Disclaimer</a><a href="legal-terms.html">Terms</a><a href="legal-acceptable-use.html">Acceptable Use</a><a href="#">Privacy</a><a href="#">Contact</a>
+    </div>
+  </div>
+  <div class="foot-legal">
+    Aphrodite Research is an educational resource. Not for human or veterinary use.<br>
+    We do not sell, supply, or broker peptides or research compounds, and we provide no dosing, protocols, or sourcing information.
+  </div>
+</footer>
+
+<script>
+const burger=document.getElementById('burger'),links=document.getElementById('navLinks');
+burger.addEventListener('click',()=>links.classList.toggle('open'));
+links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
+</script>
+</body>
+</html>

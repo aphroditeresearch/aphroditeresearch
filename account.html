@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign In — Aphrodite Research</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600&family=Jost:wght@300;400;500&family=Spectral:ital,wght@0,300;0,400&display=swap" rel="stylesheet">
+<style>
+:root{--obsidian:#08080b;--midnight:#0f0f16;--panel:#0d0d12;--marble:#efe9dc;--marble-dim:#8a8477;--gold:#c9a35b;--gold-bright:#e6c684;--rose:#c88a7d;--line:rgba(201,163,91,.2);--line-soft:rgba(201,163,91,.1)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--obsidian);color:var(--marble);font-family:'Jost',sans-serif;font-weight:300;line-height:1.6;min-height:100vh;display:flex;flex-direction:column}
+body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+::selection{background:var(--gold);color:var(--obsidian)}
+a{color:inherit;text-decoration:none}
+.eyebrow{font-family:'Jost';font-weight:500;font-size:.66rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold)}
+nav,main,footer{position:relative;z-index:2}
+.nav-mark{width:26px;height:auto;vertical-align:middle;margin-right:.5rem;filter:drop-shadow(0 0 6px rgba(201,163,91,.3))}
+nav{display:flex;align-items:center;justify-content:center;padding:1.4rem;border-bottom:1px solid var(--line-soft)}
+.brand{display:inline-flex;align-items:center;font-family:'Cormorant',serif;font-weight:600;font-size:1.4rem;letter-spacing:.16em;text-transform:uppercase}
+.brand span{color:var(--gold);margin:0 .15em;font-size:.7em}
+main{flex:1;display:flex;align-items:center;justify-content:center;padding:2rem 1.5rem}
+.card{width:min(94vw,420px);border:1px solid var(--line);background:linear-gradient(180deg,rgba(13,13,18,.9),rgba(8,8,11,.9));padding:clamp(2.2rem,5vw,3rem);position:relative}
+.card::before,.card::after{content:"";position:absolute;left:50%;transform:translateX(-50%);width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+.card::before{top:-1px}.card::after{bottom:-1px}
+.card .logo{width:52px;margin:0 auto 1.4rem;display:block;filter:drop-shadow(0 0 18px rgba(201,163,91,.3))}
+.card h1{font-family:'Cormorant',serif;font-weight:500;font-size:1.9rem;text-align:center;letter-spacing:.02em;margin-bottom:.4rem}
+.card .sub{text-align:center;font-family:'Spectral',serif;font-style:italic;color:var(--marble-dim);font-size:.95rem;margin-bottom:1.8rem}
+.field{margin-bottom:1.1rem}
+.field label{display:block;font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
+.field input{width:100%;background:var(--panel);border:1px solid var(--line);color:var(--marble);font-family:'Jost';font-weight:300;font-size:.95rem;padding:.9rem 1rem;outline:none;transition:border-color .3s}
+.field input:focus{border-color:var(--gold)}
+.btn{display:block;width:100%;text-align:center;font-family:'Jost';font-weight:500;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;padding:1.05rem;margin-top:1.4rem;background:linear-gradient(180deg,var(--gold-bright),var(--gold));color:#1a1206;border:none;cursor:pointer;box-shadow:0 8px 30px rgba(201,163,91,.22);transition:box-shadow .3s}
+.btn:hover{box-shadow:0 10px 40px rgba(230,198,132,.4)}
+.alt{text-align:center;margin-top:1.4rem;font-size:.82rem;color:var(--marble-dim)}
+.alt a{color:var(--gold-bright)}
+.divider{display:flex;align-items:center;gap:1rem;margin:1.4rem 0;color:var(--marble-dim);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase}
+.divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--line-soft)}
+.oauth{display:block;width:100%;text-align:center;font-family:'Jost';font-size:.76rem;letter-spacing:.1em;padding:.9rem;border:1px solid var(--line);color:var(--marble);transition:all .3s;margin-bottom:.7rem}
+.oauth:hover{border-color:var(--gold);color:var(--gold-bright)}
+.notice{margin-top:1.8rem;padding:1rem;border:1px solid rgba(200,138,125,.3);border-left:2px solid var(--rose);background:linear-gradient(90deg,rgba(200,138,125,.06),transparent);font-size:.76rem;color:var(--marble-dim);line-height:1.6;font-family:'Spectral',serif}
+.notice b{color:var(--rose);font-weight:400}
+footer{text-align:center;padding:2rem;font-size:.66rem;letter-spacing:.1em;color:var(--marble-dim);border-top:1px solid var(--line-soft);line-height:1.9}
+</style>
+</head>
+<body>
+<nav><a href="home.html" class="brand"><svg viewBox="0 0 200 270" xmlns="http://www.w3.org/2000/svg" class="nav-mark" aria-label="Aphrodite Research"><defs><linearGradient id="arGold" x1="0" y1="0" x2="0.3" y2="1"><stop offset="0" stop-color="#e6c684"/><stop offset="0.5" stop-color="#c9a35b"/><stop offset="1" stop-color="#8f6f38"/></linearGradient></defs><g stroke="url(#arGold)" stroke-linecap="round" fill="none"><line x1="100" y1="22" x2="100" y2="4" stroke-width="2"/><line x1="87" y1="25" x2="80" y2="10" stroke-width="1.7"/><line x1="113" y1="25" x2="120" y2="10" stroke-width="1.7"/><line x1="76" y1="32" x2="65" y2="20" stroke-width="1.5"/><line x1="124" y1="32" x2="135" y2="20" stroke-width="1.5"/><line x1="69" y1="41" x2="55" y2="33" stroke-width="1.3"/><line x1="131" y1="41" x2="145" y2="33" stroke-width="1.3"/></g><path d="M100 44 L109 57 L100 70 L91 57 Z" fill="url(#arGold)"/><path d="M100 49 L104.5 57 L100 65 L95.5 57 Z" fill="#0a0a0d"/><g fill="url(#arGold)"><path d="M54 244 L98 92 L110 92 L70 244 Z"/><path d="M104 92 L116 92 L124 244 L114 244 Z"/><path d="M82 178 Q104 169 124 178 L124 185 Q104 176 82 185 Z"/><path d="M114 98 Q160 98 160 138 Q160 174 118 178 L118 169 Q150 166 150 138 Q150 108 114 108 Z"/><path d="M132 172 Q148 208 184 234 L177 243 Q137 216 120 180 Z"/></g><g stroke="url(#arGold)" stroke-linecap="round" fill="none"><line x1="70" y1="258" x2="90" y2="258" stroke-width="1.5"/><line x1="110" y1="258" x2="130" y2="258" stroke-width="1.5"/></g><path d="M100 250 L106 258 L100 266 L94 258 Z" fill="url(#arGold)"/><path d="M100 253 L103.5 258 L100 263 L96.5 258 Z" fill="#0a0a0d"/></svg>Aphrodite<span>·</span>Research</a></nav>
+<main>
+  <div class="card">
+    <svg viewBox="0 0 200 270" xmlns="http://www.w3.org/2000/svg" class="logo" aria-label="Aphrodite Research"><defs><linearGradient id="arGold" x1="0" y1="0" x2="0.3" y2="1"><stop offset="0" stop-color="#e6c684"/><stop offset="0.5" stop-color="#c9a35b"/><stop offset="1" stop-color="#8f6f38"/></linearGradient></defs><g stroke="url(#arGold)" stroke-linecap="round" fill="none"><line x1="100" y1="22" x2="100" y2="4" stroke-width="2"/><line x1="87" y1="25" x2="80" y2="10" stroke-width="1.7"/><line x1="113" y1="25" x2="120" y2="10" stroke-width="1.7"/><line x1="76" y1="32" x2="65" y2="20" stroke-width="1.5"/><line x1="124" y1="32" x2="135" y2="20" stroke-width="1.5"/><line x1="69" y1="41" x2="55" y2="33" stroke-width="1.3"/><line x1="131" y1="41" x2="145" y2="33" stroke-width="1.3"/></g><path d="M100 44 L109 57 L100 70 L91 57 Z" fill="url(#arGold)"/><path d="M100 49 L104.5 57 L100 65 L95.5 57 Z" fill="#0a0a0d"/><g fill="url(#arGold)"><path d="M54 244 L98 92 L110 92 L70 244 Z"/><path d="M104 92 L116 92 L124 244 L114 244 Z"/><path d="M82 178 Q104 169 124 178 L124 185 Q104 176 82 185 Z"/><path d="M114 98 Q160 98 160 138 Q160 174 118 178 L118 169 Q150 166 150 138 Q150 108 114 108 Z"/><path d="M132 172 Q148 208 184 234 L177 243 Q137 216 120 180 Z"/></g><g stroke="url(#arGold)" stroke-linecap="round" fill="none"><line x1="70" y1="258" x2="90" y2="258" stroke-width="1.5"/><line x1="110" y1="258" x2="130" y2="258" stroke-width="1.5"/></g><path d="M100 250 L106 258 L100 266 L94 258 Z" fill="url(#arGold)"/><path d="M100 253 L103.5 258 L100 263 L96.5 258 Z" fill="#0a0a0d"/></svg>
+    <h1>Enter the Archive</h1>
+    <p class="sub">Sign in to your membership</p>
+    <div class="field"><label>Email</label><input type="email" placeholder="you@example.com" autocomplete="email"></div>
+    <div class="field"><label>Password</label><input type="password" placeholder="••••••••" autocomplete="current-password"></div>
+    <button class="btn" type="button">Sign In</button>
+    <div class="divider">or</div>
+    <a href="#" class="oauth">Continue with Google</a>
+    <a href="#" class="oauth">Continue with Apple</a>
+    <div class="alt">New here? <a href="pricing.html">Become an Initiate →</a></div>
+    <div class="notice"><b>Preview only.</b> This is the sign-in design. Real accounts, secure login, and payment require the membership backend (see <em>docs/MEMBERSHIP-SPEC.md</em>). No credentials are collected or stored on this page yet.</div>
+  </div>
+</main>
+<footer>Aphrodite Research is an educational resource. Not for human or veterinary use.<br>We do not sell compounds or provide dosing information.</footer>
+</body>
+</html>

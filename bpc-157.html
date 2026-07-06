@@ -147,6 +147,19 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:1.3rem
 .anecdote-box .ab-tag{font-family:'Jost';font-weight:500;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem;display:flex;align-items:center;gap:.5rem}
 .anecdote-box p{font-family:'Spectral',serif;font-size:.95rem;line-height:1.7;color:#cdc7b8;margin-bottom:.8rem}
 .anecdote-box .ab-warn{font-size:.82rem;color:var(--rose);font-style:italic}
+/* anecdote vs evidence cards */
+.anec-intro{font-family:'Spectral',serif;font-size:1rem;line-height:1.7;color:#cdc7b8;margin-bottom:1.4rem;max-width:72ch}
+.anec-card{border:1px solid var(--line-soft);margin-bottom:1rem;overflow:hidden}
+.anec-said{padding:1.1rem 1.4rem;background:linear-gradient(90deg,rgba(200,138,125,.06),transparent);border-bottom:1px solid var(--line-soft)}
+.anec-said .lbl{font-family:'Jost';font-weight:500;font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rose);margin-bottom:.4rem}
+.anec-said .quote{font-family:'Spectral',serif;font-style:italic;font-size:1.05rem;color:var(--marble);line-height:1.5}
+.anec-check{padding:1.1rem 1.4rem;display:flex;gap:1rem;align-items:flex-start}
+.anec-verdict{flex-shrink:0;font-family:'Jost';font-weight:500;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;padding:.35rem .6rem;border:1px solid;white-space:nowrap;margin-top:.15rem}
+.av-plausible{color:var(--gold-bright);border-color:var(--line)}
+.av-unsupported{color:var(--rose);border-color:rgba(200,138,125,.5)}
+.av-mixed{color:var(--teal);border-color:rgba(143,196,184,.4)}
+.anec-check .ac-body{font-family:'Spectral',serif;font-size:.94rem;line-height:1.6;color:#cdc7b8}
+.anec-check .ac-body .lbl{font-family:'Jost';font-weight:500;font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.35rem;display:block}
 
 /* safety */
 .safety-row{display:flex;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--line-soft);align-items:baseline}
@@ -352,11 +365,32 @@ footer{background:var(--midnight);border-top:1px solid var(--line-soft);padding:
 
     <!-- 05 · Reported / anecdotal -->
     <div class="block">
-      <div class="label"><span class="n">05</span><h2>What people report</h2></div>
-      <div class="anecdote-box">
-        <div class="ab-tag">◆ Reported experience — not evidence</div>
-        <p>In community discussion, people most often report using BPC-157 for soft-tissue and joint recovery, and describe injection-site redness or small bumps as the most common short-term complaint. Some report perceived faster recovery; others report nothing.</p>
-        <p class="ab-warn">These are self-reported anecdotes, not controlled data. They can't establish whether BPC-157 works, is safe, or is even what a given unregulated vial actually contains. We include them to inform, not to encourage — reported benefit is exactly the kind of thing controlled trials exist to confirm or overturn.</p>
+      <div class="label"><span class="n">05</span><h2>What people report — checked against the evidence</h2></div>
+      <p class="anec-intro">Anecdotes aren't evidence, but they're often what sends someone searching in the first place. So here's the honest version: the things people commonly say online about BPC-157, each held up against what the research actually shows. Reported experience is a starting question, not an answer.</p>
+
+      <div class="anec-card">
+        <div class="anec-said"><div class="lbl">What people say</div><div class="quote">"It healed my tendon injury in weeks when nothing else worked."</div></div>
+        <div class="anec-check"><span class="anec-verdict av-unsupported">Not supported</span><div class="ac-body"><span class="lbl">What the evidence shows</span>This is the most common claim — and the least supported in humans. Tendon and soft-tissue healing has never been demonstrated in a controlled human trial. Recovery stories can't separate the compound from natural healing, rest, physical therapy, or the strong placebo effect that accompanies any self-directed treatment. The animal data is real; the human "it worked for me" is not evidence it did.</div></div>
+      </div>
+
+      <div class="anec-card">
+        <div class="anec-said"><div class="lbl">What people say</div><div class="quote">"It fixed my gut issues and calmed my stomach down."</div></div>
+        <div class="anec-check"><span class="anec-verdict av-plausible">Biologically plausible, unproven</span><div class="ac-body"><span class="lbl">What the evidence shows</span>Of all the claims, this one has the most going for it — BPC-157 originates from a gut peptide, survives stomach acid, and has consistent preclinical gut-protective data. But "consistent in animals and plausible" still isn't the same as "proven in people." Human evidence here is small case reports, not controlled trials, so this stays a promising hypothesis rather than an established effect.</div></div>
+      </div>
+
+      <div class="anec-card">
+        <div class="anec-said"><div class="lbl">What people say</div><div class="quote">"My knee pain went away for months after a couple injections."</div></div>
+        <div class="anec-check"><span class="anec-verdict av-mixed">Some human signal, uncontrolled</span><div class="ac-body"><span class="lbl">What the evidence shows</span>This one actually has a sliver of human data — a 2021 case series of ~16 patients reported lasting pain relief after intra-articular injection. That's real, and worth noting. But with no placebo group and a tiny sample, it can't rule out natural recovery or expectation. It's the strongest "it worked" story with the weakest proof structure — genuine signal, not yet genuine evidence.</div></div>
+      </div>
+
+      <div class="anec-card">
+        <div class="anec-said"><div class="lbl">What people say</div><div class="quote">"It's completely safe — it's just a peptide your body already makes."</div></div>
+        <div class="anec-check"><span class="anec-verdict av-unsupported">Misleading</span><div class="ac-body"><span class="lbl">What the evidence shows</span>Two problems. First, "your body makes it" overstates the case — BPC-157 is a synthetic fragment based on a gastric sequence, not something your body produces as-is. Second, "completely safe" can't be claimed when fewer than 30 humans have ever been formally studied, there's no long-term data, and the blood-vessel-growth pathway raises an unresolved tumor-risk question. Reassuring anecdotes can't substitute for safety data that doesn't exist yet.</div></div>
+      </div>
+
+      <div class="anecdote-box" style="margin-top:1.4rem">
+        <div class="ab-tag">◆ Why we include this</div>
+        <p class="ab-warn">We report what people say to inform, never to encourage. Self-reported benefit is exactly what controlled trials exist to confirm or overturn — and for BPC-157, those trials mostly don't exist yet. If your decision is riding on anecdotes, that itself is the most important thing to know.</p>
       </div>
     </div>
 

@@ -143,6 +143,28 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:1.3rem
 .covered .c{font-family:var(--mono);font-size:.64rem;color:var(--gold-bright);border:1px solid var(--line-soft);padding:.28rem .5rem;cursor:pointer}
 .covered .c:hover{border-color:var(--gold)}
 
+/* discovery strip (folds home browse/trending into the tool) */
+.discovery{max-width:860px;margin:1.5rem auto 0;padding:0 clamp(1.2rem,4vw,3rem)}
+.disc-row{display:flex;align-items:flex-start;gap:.7rem;flex-wrap:wrap;margin-bottom:.65rem}
+.disc-lbl{font-family:var(--mono);font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);padding-top:.5rem;min-width:5rem}
+.disc-items{display:flex;flex-wrap:wrap;gap:.45rem;flex:1}
+.disc-tok{font-family:var(--mono);font-size:.66rem;color:var(--marble-dim);border:1px solid var(--line-soft);padding:.4rem .7rem;cursor:pointer;transition:all .3s}
+.disc-tok:hover{color:var(--gold-bright);border-color:var(--gold)}
+.disc-tok.hot::after{content:" ◆";color:var(--gold);font-size:.5em;vertical-align:middle}
+
+/* compare block */
+.cmp-grid{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line-soft)}
+@media(max-width:560px){.cmp-grid{grid-template-columns:1fr}}
+.cmp-col{padding:.9rem 1rem}
+.cmp-col+.cmp-col{border-left:1px solid var(--line-soft)}
+@media(max-width:560px){.cmp-col+.cmp-col{border-left:none;border-top:1px solid var(--line-soft)}}
+.cmp-name{font-family:'Playfair Display',serif;font-size:1.3rem;color:#fbf8f0;margin-bottom:.55rem}
+.cmp-name a{border-bottom:1px solid var(--line-soft)}
+.cmp-row{display:flex;justify-content:space-between;gap:.6rem;align-items:baseline;font-family:var(--mono);padding:.35rem 0;border-bottom:1px solid rgba(201,163,91,.07)}
+.cmp-row .k{color:var(--marble-dim);text-transform:uppercase;letter-spacing:.06em;font-size:.56rem}
+.cmp-row .tok{font-size:.7rem}
+.cmp-diff{margin-top:.85rem;font-family:'Spectral',serif;font-size:.98rem;color:#d3cdbe;line-height:1.65;border-left:2px solid var(--gold);padding-left:1rem}
+
 .ask-note{max-width:860px;margin:2rem auto 0;padding:0 clamp(1.2rem,4vw,3rem);font-family:var(--mono);font-size:.64rem;letter-spacing:.03em;color:var(--marble-dim);line-height:1.8;text-align:center}
 
 footer{background:var(--midnight);border-top:1px solid var(--line-soft);padding:3rem clamp(1.2rem,4vw,3rem) 2rem;margin-top:3.5rem}
@@ -179,8 +201,6 @@ footer{background:var(--midnight);border-top:1px solid var(--line-soft);padding:
   <ul class="nav-links" id="navLinks">
     <li><a href="ask.html" class="active">Ask Aphrodite</a></li>
     <li><a href="archive.html">The Archive</a></li>
-    <li><a href="hype-gap.html">Hype Gap</a></li>
-    <li><a href="compare.html">Compare</a></li>
     <li><a href="library.html">Library</a></li>
     <li><a href="account.html" class="nav-cta">Access</a></li>
   </ul>
@@ -208,12 +228,14 @@ footer{background:var(--midnight);border-top:1px solid var(--line-soft);padding:
         <textarea class="con-input" id="input" rows="1" placeholder="e.g. BPC-157 has been clinically proven to heal tendon injuries in humans."></textarea>
       </div>
       <div class="con-foot">
-        <span class="con-hint">↵ run · ⇧↵ newline · answers only from the reviewed library<span class="caret"></span></span>
+        <span class="con-hint">↵ run · ⇧↵ newline · try “reta vs sema” to compare<span class="caret"></span></span>
         <button class="run-btn" id="run">Run ▸</button>
       </div>
     </div>
     <div class="chips" id="chips"></div>
   </div>
+
+  <div class="discovery" id="discovery"></div>
 
   <section class="stream" id="stream"></section>
 
@@ -431,44 +453,103 @@ function wireActions(block,data){
     };
   });
 }
-async function share(data){
+async function shareText(text){
   const url=location.origin+'/ask.html';
-  const text=`Aphrodite Evidence Receipt — “${data.claim&&data.claim.text||data.verdict}”: ${data.verdict}`;
-  try{ if(navigator.share){ await navigator.share({title:'Aphrodite Evidence Receipt',text,url}); return; } }catch(_){}
+  try{ if(navigator.share){ await navigator.share({title:'Aphrodite Research',text,url}); return; } }catch(_){}
   try{ await navigator.clipboard.writeText(text+' '+url); }catch(_){}
 }
+function share(data){ return shareText(`Aphrodite Evidence Receipt — “${data.claim&&data.claim.text||data.verdict}”: ${data.verdict}`); }
 function toast(btn,msg){const o=btn.textContent;btn.textContent=msg;setTimeout(()=>btn.textContent=o,1600);}
+
+// ── One receipt fetch, used by both the single query and compare flows ───────
+function goOffline(){ BACKEND_READY=false; const st=document.getElementById('conStatus'); st.innerHTML='● <b>offline preview</b> · local library'; st.classList.add('offline'); }
+async function getReceipt(q){
+  if(BACKEND_READY){
+    const res=await Aph.ask(q);
+    if(res.degraded){ goOffline(); return offlineReceipt(q); }
+    return res.receipt;
+  }
+  await new Promise(r=>setTimeout(r,150));
+  return offlineReceipt(q);
+}
+
+// ── Compare mode (X vs Y) ────────────────────────────────────────────────────
+function parseCompare(q){
+  let m=q.match(/^\s*compare\s+(.+?)\s+(?:and|vs\.?|versus|to|with)\s+(.+?)[\s?.!]*$/i);
+  if(!m) m=q.match(/^\s*(.+?)\s+(?:vs\.?|versus|compared to)\s+(.+?)[\s?.!]*$/i);
+  if(!m) return null;
+  const a=m[1].trim(), b=m[2].trim();
+  if(!a||!b||a.length>40||b.length>40) return null;
+  return {a,b};
+}
+function cmpFields(r,q){
+  if(r&&(r.route==='answer'||!r.route)&&r.compound){
+    return {ok:true,name:r.compound.name,dossier:r.compound.dossier_url,verdict:r.verdict,
+      human:r.human_evidence,pre:r.preclinical_evidence,gap:r.claim_gap,conf:r.confidence,status:r.review_status};
+  }
+  return {ok:false,name:q};
+}
+function cmpDiff(a,b){
+  if(!a.ok||!b.ok){ const miss=!a.ok?a.name:b.name; return `“${miss}” isn’t in the reviewed library yet, so this comparison is partial — we only contrast what we’ve actually reviewed.`; }
+  const parts=[];
+  if(a.human!==b.human) parts.push(`Human evidence differs — ${a.name}: ${a.human}; ${b.name}: ${b.human}.`);
+  if((a.gap||'')!==(b.gap||'')) parts.push(`Hype gap — ${a.name}: ${a.gap||'—'}; ${b.name}: ${b.gap||'—'}.`);
+  if(a.verdict!==b.verdict) parts.push(`Verdict — ${a.name}: ${a.verdict}. ${b.name}: ${b.verdict}.`);
+  return parts.join(' ') || 'Both sit at a similar evidence level in the reviewed library.';
+}
+function cmpTok(x,key){ return x.ok?`<span class="tok ${tokClass(x[key])}">${esc(x[key]||'—')}</span>`:''; }
+function renderCompare(ra,rb,aq,bq){
+  const id='c'+(++counter);
+  const a=cmpFields(ra,aq), b=cmpFields(rb,bq);
+  const col=(x)=>`<div class="cmp-col">
+    <div class="cmp-name">${x.dossier?`<a href="${esc(x.dossier)}">${esc(x.name)}</a>`:esc(x.name)}</div>
+    ${x.ok?`
+      <div class="cmp-row"><span class="k">Verdict</span><span class="tok ${verdictClass(x.verdict)==='b-supported'?'good':verdictClass(x.verdict)==='b-mixed'?'mid':'low'}">${esc(x.verdict)}</span></div>
+      <div class="cmp-row"><span class="k">Human</span>${cmpTok(x,'human')}</div>
+      <div class="cmp-row"><span class="k">Preclinical</span>${cmpTok(x,'pre')}</div>
+      <div class="cmp-row"><span class="k">Hype gap</span>${cmpTok(x,'gap')}</div>
+      <div class="cmp-row"><span class="k">Status</span><span class="tok dim">${esc(x.status||'unverified')}</span></div>
+    `:`<div class="cmp-row"><span class="k">Not in reviewed library yet</span></div>`}
+  </div>`;
+  const block=document.createElement('div'); block.className='rcpt'; block.id=id;
+  block.innerHTML=`<div class="rcpt-bar"><span class="id">COMPARE · ${id}</span><span>${esc(a.name)} ⇄ ${esc(b.name)}</span><span class="ts mono">${ts()}</span></div>
+    <div class="rcpt-body">
+      <div class="cmp-grid">${col(a)}${col(b)}</div>
+      <div class="cmp-diff">${esc(cmpDiff(a,b))}</div>
+      <p class="foot-line">Contrast is drawn only from reviewed records — never a recommendation of one over another.</p>
+      <div class="actions"><button class="act" data-share-cmp="1">⇗ Share comparison</button></div>
+    </div>`;
+  block.querySelector('[data-share-cmp]').onclick=()=>shareText(`Aphrodite compare — ${a.name} vs ${b.name}: ${cmpDiff(a,b)}`);
+  return block;
+}
 
 // ── Run ──────────────────────────────────────────────────────────────────────
 async function run(){
   const q=input.value.trim();
   if(!q){ flashState('<b>Empty query.</b> Paste a peptide claim above — e.g. “GHK-Cu regrows hair.”'); return; }
   runBtn.disabled=true;
+  const cmp=parseCompare(q);
   const loading=document.createElement('div');
   loading.className='rcpt';
-  loading.innerHTML=`<div class="rcpt-body"><div class="loading"><span class="spin"></span>Retrieving evidence for “${esc(q.slice(0,60))}${q.length>60?'…':''}”</div></div>`;
+  loading.innerHTML=`<div class="rcpt-body"><div class="loading"><span class="spin"></span>${cmp?`Comparing ${esc(cmp.a)} ⇄ ${esc(cmp.b)}`:`Retrieving evidence for “${esc(q.slice(0,60))}${q.length>60?'…':''}”`}</div></div>`;
   stream.prepend(loading);
 
-  let data;
   try{
-    if(BACKEND_READY){
-      const res=await Aph.ask(q);
-      if(res.degraded){ BACKEND_READY=false; document.getElementById('conStatus').innerHTML='● <b>offline preview</b> · local library'; document.getElementById('conStatus').classList.add('offline'); data=offlineReceipt(q); }
-      else data=res.receipt;
+    if(cmp){
+      const [ra,rb]=await Promise.all([getReceipt(cmp.a),getReceipt(cmp.b)]);
+      loading.remove();
+      stream.prepend(renderCompare(ra,rb,cmp.a,cmp.b));
     }else{
-      await new Promise(r=>setTimeout(r,200));
-      data=offlineReceipt(q);
+      const data=await getReceipt(q);
+      loading.remove();
+      if(!data||data.error){ flashState('<b>Unavailable.</b> The evidence service returned an error.','err'); runBtn.disabled=false; return; }
+      stream.prepend(renderReceipt(data));
     }
+    input.value=''; input.style.height='auto';
   }catch(e){
     loading.remove();
     flashState('<b>Something went wrong.</b> The evidence service didn’t respond. Try again in a moment.','err');
-    runBtn.disabled=false;
-    return;
   }
-  loading.remove();
-  if(!data||data.error){ flashState('<b>Unavailable.</b> The evidence service returned an error.','err'); runBtn.disabled=false; return; }
-  stream.prepend(renderReceipt(data));
-  input.value=''; input.style.height='auto';
   runBtn.disabled=false;
 }
 function flashState(html,cls){
@@ -484,9 +565,22 @@ input.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventD
 input.addEventListener('input',()=>{input.style.height='auto';input.style.height=Math.min(input.scrollHeight,150)+'px';});
 
 // example chips
-const examples=['BPC-157 heals tendon injuries in humans.','Does GHK-Cu regrow hair?','Injectable GHK-Cu reverses aging.','Is TB-500 the same as Thymosin Beta-4?','Retatrutide is the strongest weight-loss peptide.','How much BPC-157 should I take?'];
+const examples=['BPC-157 heals tendon injuries in humans.','Retatrutide vs Semaglutide','Injectable GHK-Cu reverses aging.','Is TB-500 the same as Thymosin Beta-4?','How much BPC-157 should I take?'];
 const chips=document.getElementById('chips');
 examples.forEach(x=>{const c=document.createElement('span');c.className='chip';c.textContent=x;c.onclick=()=>{input.value=x;run();};chips.appendChild(c);});
+
+// discovery strip — trending compounds, browse-by-goal, quick compares (folds home)
+const TRENDING=[['Retatrutide',1],['Semaglutide',0],['Tirzepatide',1],['BPC-157',1],['GHK-Cu',1],['TB-500',0],['MOTS-c',0],['PT-141',0],['Melanotan II',0],['Tesamorelin',0],['Ipamorelin',0],['CJC-1295',0]];
+const GOALS=[['Weight loss','Retatrutide is the strongest weight-loss peptide.'],['Skin','Topical GHK-Cu improves skin appearance.'],['Recovery','Does BPC-157 heal injuries in humans?'],['Muscle / GH','Does ipamorelin build muscle in humans?'],['Energy','Is MOTS-c a proven exercise mimetic?'],['Sexual health','Does PT-141 improve sexual desire?']];
+const COMPARES=['Retatrutide vs Semaglutide','Semaglutide vs Tirzepatide','BPC-157 vs TB-500'];
+const disc=document.getElementById('discovery');
+disc.innerHTML=`<div class="disc-row"><span class="disc-lbl">Trending</span><div class="disc-items" id="discT"></div></div>
+  <div class="disc-row"><span class="disc-lbl">By goal</span><div class="disc-items" id="discG"></div></div>
+  <div class="disc-row"><span class="disc-lbl">Compare</span><div class="disc-items" id="discC"></div></div>`;
+function discTok(host,label,q,hot){const t=document.createElement('span');t.className='disc-tok'+(hot?' hot':'');t.textContent=label;t.onclick=()=>{input.value=q;run();};host.appendChild(t);}
+TRENDING.forEach(([n,h])=>discTok(disc.querySelector('#discT'),n,'Is '+n+' proven?',h));
+GOALS.forEach(([l,q])=>discTok(disc.querySelector('#discG'),l,q,0));
+COMPARES.forEach(q=>discTok(disc.querySelector('#discC'),q,q,0));
 
 // deep-link: ?q=...  (used by home search + suggestion chips)
 const params=new URLSearchParams(location.search);

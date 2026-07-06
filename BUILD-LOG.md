@@ -106,6 +106,20 @@ Turned the client-side prototype into a real, server-backed loop:
 Anthropic + service-role keys are server-only; the browser gets the anon key from
 `/api/public-config`.
 
+## PHASE 1.1 — SINGLE-TOOL FUNNEL + COMPARE (built)
+Sharpened toward one instrument for the "saw a peptide on TikTok, want the real story"
+user — without deleting the depth (dossiers/Compare/Hype Gap/Archive stay as drill-downs).
+- **Gate enters the tool.** `index.html` "Access the Archive" now opens `ask.html` directly.
+- **Nav trimmed site-wide** to essentials: Ask Aphrodite · The Archive · Library · Access.
+  Hype Gap / Compare / Support demoted out of the top nav (pages + footer links kept).
+- **Compare mode (X vs Y).** Type "reta vs sema", "compare X and Y", etc. → a side-by-side
+  dual receipt (verdict · human · preclinical · hype gap · status + a plain-language
+  difference). Reuses `/api/ask` (one receipt per side); partial + honest when one side
+  isn't in the reviewed library. Never recommends one over another.
+- **Discovery strip in the tool.** Trending compounds, browse-by-goal, and quick-compare
+  chips shown before the first query — folds home's browse/trending so a user who doesn't
+  know what to type has entry points. Home stays as a fuller landing but is no longer the funnel.
+
 ## HONEST STANDING NOTES
 - Paywall is a VISUAL DEMO — no login/payment/gating yet. Don't collect money until backend exists.
 - Evidence figures + paper counts are reasoned but need human verification vs. sources.

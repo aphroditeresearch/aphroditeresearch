@@ -53,7 +53,7 @@ body{background:var(--obsidian);color:var(--marble);font-family:'Jost',sans-seri
 .sidemark span{font-family:'Playfair Display',serif;font-weight:700;font-size:min(9.2vh,7.4rem);line-height:.86;letter-spacing:.02em;writing-mode:vertical-rl;text-orientation:upright;color:transparent;background:linear-gradient(180deg,rgba(230,198,132,.5),rgba(201,163,91,.22) 60%,rgba(201,163,91,.1));-webkit-background-clip:text;background-clip:text;filter:drop-shadow(0 0 40px rgba(201,163,91,.15))}
 
 /* subtle center darkening so the panel reads over the letter field */
-.wash{position:fixed;inset:0;z-index:2;pointer-events:none;background:radial-gradient(ellipse 46% 62% at 52% 50%,rgba(8,7,6,.86) 30%,rgba(8,7,6,.5) 62%,transparent 100%)}
+.wash{position:fixed;inset:0;z-index:2;pointer-events:none;background:radial-gradient(ellipse 38% 52% at 50% 50%,rgba(8,7,6,.82) 40%,rgba(8,7,6,.35) 70%,transparent 100%)}
 .grain{position:fixed;inset:0;z-index:2;pointer-events:none;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
 .stage{position:relative;z-index:3;height:100%;display:flex;align-items:center;justify-content:center;padding:1.5rem}
@@ -63,14 +63,14 @@ body{background:var(--obsidian);color:var(--marble);font-family:'Jost',sans-seri
 .gate::before,.gate::after{content:"";position:absolute;left:50%;transform:translateX(-50%);width:120px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
 .gate::before{top:22px}.gate::after{bottom:22px}
 
-.welcome{font-family:'Jost';font-weight:500;font-size:.62rem;letter-spacing:.52em;text-transform:uppercase;color:var(--gold);margin-bottom:1.3rem;padding-left:.52em}
-.mark{font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(2.4rem,7vw,3.3rem);letter-spacing:.12em;text-transform:uppercase;line-height:1;padding-left:.12em;color:var(--marble);text-shadow:0 0 40px rgba(201,163,91,.3)}
+.welcome{font-family:'Jost';font-weight:400;font-size:.64rem;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;text-indent:.5em}
+.mark{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(2.5rem,7vw,3.5rem);letter-spacing:.16em;text-transform:uppercase;line-height:1;text-indent:.16em;color:#f3efe7;text-shadow:0 0 44px rgba(201,163,91,.28)}
 .divider{margin:1.1rem auto 1.3rem;display:flex;align-items:center;justify-content:center;gap:.9rem;color:var(--gold)}
 .divider span{width:40px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
 .divider span:last-child{background:linear-gradient(90deg,var(--gold),transparent)}
 .divider em{font-style:normal;font-size:.5rem}
-.kicker{font-family:'Jost';font-weight:500;font-size:.66rem;letter-spacing:.36em;text-transform:uppercase;color:var(--marble-dim);margin-bottom:1.2rem;padding-left:.36em}
-.whisper{font-family:'Playfair Display',serif;font-style:italic;font-size:1.02rem;line-height:1.9;color:var(--marble-dim);margin-bottom:2rem}
+.kicker{font-family:'Jost';font-weight:400;font-size:.68rem;letter-spacing:.34em;text-transform:uppercase;color:var(--marble-dim);margin-bottom:1.4rem;text-indent:.34em}
+.whisper{font-family:'Playfair Display',serif;font-style:italic;font-weight:400;font-size:1.08rem;line-height:1.85;color:rgba(243,239,231,.62);margin-bottom:2.1rem}
 .enter{display:block;width:100%;font-family:'Jost';font-weight:400;font-size:.74rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-bright);background:transparent;border:1px solid var(--gold);padding:1.05rem;cursor:pointer;text-decoration:none;transition:color .4s,border-color .4s;position:relative;overflow:hidden;z-index:0}
 .enter::after{content:"";position:absolute;inset:0;background:var(--gold);transform:translateX(-101%);transition:transform .45s cubic-bezier(.4,0,.2,1);z-index:-1}
 .enter:hover{color:var(--obsidian);border-color:var(--gold-bright)}

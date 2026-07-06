@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BPC-157: What the Research Actually Shows (and What It Doesn't) — Aphrodite Research</title>
+<meta name="description" content="Does BPC-157 really heal injuries? A plain-language look at what the research shows — 100+ animal studies, fewer than 30 humans ever studied, zero controlled trials. What's proven, what's hype, and what was actually studied.">
+<meta name="keywords" content="BPC-157, BPC-157 human trials, does BPC-157 work, BPC-157 evidence, BPC-157 tendon, BPC-157 safety, BPC-157 healing, body protection compound">
+<meta property="og:title" content="BPC-157: What the Research Actually Shows (and What It Doesn't)">
+<meta property="og:description" content="100+ animal studies, fewer than 30 humans ever studied, zero controlled trials. What's proven, what's hype, and what was actually studied.">
+<meta property="og:type" content="article">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Jost:wght@300;400;500&family=Spectral:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --obsidian:#080706;--midnight:#0f0d0a;--panel:#0d0b09;--panel-hi:#161310;
+  --marble:#efe9dc;--marble-dim:#8a8477;--gold:#c9a35b;--gold-bright:#e6c684;--gold-deep:#8f6f38;--rose:#c88a7d;--teal:#8fc4b8;
+  --line:rgba(201,163,91,.2);--line-soft:rgba(201,163,91,.1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{background:var(--obsidian);color:var(--marble);font-family:'Jost',sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+::selection{background:var(--gold);color:var(--obsidian)}
+a{color:inherit;text-decoration:none}
+.eyebrow{font-family:'Jost';font-weight:500;font-size:.66rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold)}
+main,nav,.ticker,footer{position:relative;z-index:2}
+.ticker{background:var(--midnight);border-bottom:1px solid var(--line-soft);overflow:hidden;padding:.5rem 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.ticker-track{display:inline-flex;white-space:nowrap;animation:scroll 46s linear infinite}
+.ticker-track span{font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--marble-dim);padding:0 1.5rem;display:inline-flex;align-items:center;gap:1.5rem}
+.ticker-track span::after{content:"◆";color:rgba(201,163,91,.4);font-size:.4rem}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+nav{display:flex;align-items:center;justify-content:space-between;padding:1.3rem clamp(1.2rem,4vw,3rem);position:sticky;top:0;z-index:50;background:rgba(8,7,6,.82);backdrop-filter:blur(16px);border-bottom:1px solid var(--line-soft)}
+.brand{display:inline-flex;align-items:center;font-family:'Playfair Display',serif;font-weight:600;font-size:1.4rem;letter-spacing:.1em;text-transform:uppercase}
+.brand span{color:var(--gold);margin:0 .15em;font-size:.7em;vertical-align:middle}
+.nav-cta{border:1px solid var(--gold);color:var(--gold-bright);padding:.5rem 1.2rem;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;transition:all .3s}
+.nav-cta:hover{background:var(--gold);color:var(--obsidian)}
+.nav-links{display:flex;gap:2rem;align-items:center;list-style:none}
+.nav-links a:not(.nav-cta){padding:.2rem 0;color:var(--marble-dim);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;transition:color .3s}
+.nav-links a:not(.nav-cta):hover,.nav-links a.active{color:var(--gold-bright)}
+.burger{display:none;background:none;border:none;color:var(--marble);font-size:1.4rem;cursor:pointer}
+
+.crumb{max-width:920px;margin:0 auto;padding:1.4rem clamp(1.2rem,4vw,3rem) 0;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--marble-dim)}
+.crumb a:hover{color:var(--gold-bright)}
+.crumb .sep{color:var(--gold);margin:0 .6rem}
+
+/* header */
+.dossier{max-width:920px;margin:0 auto;padding:2rem clamp(1.2rem,4vw,3rem) 0}
+.file-tag{display:flex;align-items:center;gap:1rem;margin-bottom:1.4rem;flex-wrap:wrap}
+.file-tag .cat{font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);border:1px solid var(--line);padding:.35rem .8rem}
+.file-tag .ref{font-family:'Spectral',serif;font-style:italic;font-size:.82rem;color:var(--marble-dim)}
+.dossier h1{position:relative;font-family:'Playfair Display',serif;font-weight:600;font-size:clamp(2.8rem,7vw,4.6rem);line-height:1;letter-spacing:.01em;margin-bottom:.6rem;color:#fbf8f0;text-shadow:0 0 60px rgba(255,255,255,.22),0 0 120px rgba(230,198,132,.12)}
+.dossier .latin{font-family:'Spectral',serif;font-style:italic;font-size:1.15rem;color:var(--marble-dim);margin-bottom:1.8rem}
+.badges{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:1.8rem}
+.badge{font-family:'Jost';font-weight:500;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;padding:.4rem .8rem;border:1px solid;border-radius:2px}
+.badge.b-pre{color:var(--rose);border-color:rgba(200,138,125,.4)}
+.badge.b-hype{color:var(--rose);border-color:rgba(200,138,125,.4)}
+.badge.b-banned{color:var(--marble-dim);border-color:var(--line-soft)}
+.badge.b-updated{color:var(--marble-dim);border-color:var(--line-soft)}
+
+.section{max-width:920px;margin:0 auto;padding:0 clamp(1.2rem,4vw,3rem)}
+
+/* ============ SURFACE LAYER ============ */
+.surface{border:1px solid var(--line);background:linear-gradient(180deg,rgba(22,19,16,.6),rgba(8,7,6,.4));padding:0;margin:1rem 0 1.5rem;overflow:hidden}
+.surface .stag{background:rgba(201,163,91,.06);padding:.7rem 1.4rem;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);border-bottom:1px solid var(--line-soft)}
+.surface .sbody{padding:1.8rem 1.7rem}
+.tldr{font-family:'Spectral',serif;font-size:1.32rem;line-height:1.62;color:var(--marble)}
+.tldr strong{color:var(--gold-bright);font-weight:500}
+.tldr .flag{color:var(--rose);font-weight:500}
+/* the three-number surface stat row */
+.surface-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line-soft);border-top:1px solid var(--line-soft);margin-top:1.6rem}
+.surface-stats .sc{background:var(--obsidian);padding:1.3rem 1rem;text-align:center}
+.surface-stats .scn{font-family:'Playfair Display',serif;font-weight:600;font-size:1.9rem;line-height:1}
+.surface-stats .scn.rose{color:var(--rose)} .surface-stats .scn.gold{color:var(--gold-bright)} .surface-stats .scn.teal{color:var(--teal)}
+.surface-stats .scl{font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--marble-dim);margin-top:.5rem;line-height:1.4}
+
+/* quick answer chips: is it X? */
+.quick{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line-soft);border:1px solid var(--line-soft);margin-bottom:1.5rem}
+@media(max-width:560px){.quick{grid-template-columns:1fr}}
+.quick .qa{background:var(--obsidian);padding:1.1rem 1.3rem}
+.quick .qq{font-family:'Spectral',serif;font-style:italic;font-size:.95rem;color:var(--marble-dim);margin-bottom:.3rem}
+.quick .qan{font-family:'Jost';font-weight:500;font-size:.92rem;letter-spacing:.01em}
+.quick .qan.yes{color:var(--teal)} .quick .qan.no{color:var(--rose)} .quick .qan.partial{color:var(--gold-bright)}
+
+.readmore-bar{text-align:center;margin:2.5rem 0 1rem}
+.readmore-bar span{font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--marble-dim);position:relative;padding:0 1.2rem}
+.readmore-bar span::before,.readmore-bar span::after{content:"";position:absolute;top:50%;width:60px;height:1px;background:var(--line-soft)}
+.readmore-bar span::before{right:100%}.readmore-bar span::after{left:100%}
+
+/* ============ DEEP LAYER ============ */
+.deep-intro{text-align:center;margin:1rem 0 2.4rem}
+.deep-intro h2{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(1.8rem,3.5vw,2.6rem);margin-top:.6rem}
+.deep-intro p{font-family:'Spectral',serif;color:var(--marble-dim);max-width:56ch;margin:.6rem auto 0;line-height:1.7}
+
+.block{margin-bottom:3.2rem}
+.block .label{position:relative;border-bottom:1px solid var(--line);padding-bottom:.9rem;margin-bottom:1.5rem;min-height:3rem;display:flex;align-items:flex-end}
+.block .label .n{position:absolute;left:-.3rem;top:-1.4rem;z-index:0;font-family:'Playfair Display',serif;font-weight:600;font-size:5rem;line-height:1;color:transparent;background:linear-gradient(180deg,rgba(201,163,91,.14),rgba(201,163,91,.02));-webkit-background-clip:text;background-clip:text;pointer-events:none}
+.block .label h2{position:relative;z-index:1;font-family:'Playfair Display',serif;font-weight:500;font-size:1.8rem;letter-spacing:.02em;padding-left:2.6rem}
+.block p{font-family:'Spectral',serif;font-weight:300;font-size:1.02rem;line-height:1.8;color:#cdc7b8;margin-bottom:1rem;max-width:72ch}
+.block p strong{color:var(--gold-bright);font-weight:500}
+.block p .flag{color:var(--rose);font-weight:500}
+
+/* claim-specific rating cards (replaces single score) */
+.claims-grid{display:flex;flex-direction:column;gap:1rem}
+.claim-card{border:1px solid var(--line-soft);padding:1.4rem 1.5rem;background:linear-gradient(90deg,rgba(22,19,16,.4),transparent)}
+.claim-card .cc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;flex-wrap:wrap;margin-bottom:.7rem}
+.claim-card .cc-name{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--marble)}
+.claim-card .cc-route{display:block;font-family:'Jost';font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--marble-dim);margin-top:.2rem}
+.cert{font-family:'Jost';font-weight:500;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;padding:.35rem .7rem;border:1px solid;white-space:nowrap;height:fit-content}
+.cert.c-none{color:var(--rose);border-color:rgba(200,138,125,.5);background:rgba(200,138,125,.06)}
+.cert.c-pre{color:var(--rose);border-color:rgba(200,138,125,.4)}
+.cert.c-early{color:var(--gold-bright);border-color:var(--line)}
+.cert.c-mod{color:var(--teal);border-color:rgba(143,196,184,.4)}
+.claim-card .cc-detail{font-family:'Spectral',serif;font-size:.95rem;line-height:1.6;color:#cdc7b8}
+.claim-card .cc-meta{display:flex;gap:1.4rem;flex-wrap:wrap;margin-top:.8rem;font-size:.7rem;letter-spacing:.02em;color:var(--marble-dim)}
+.claim-card .cc-meta b{color:var(--gold);font-weight:500;text-transform:uppercase;letter-spacing:.1em;font-size:.58rem}
+
+/* internet vs evidence */
+.rc-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line-soft);border:1px solid var(--line-soft)}
+@media(max-width:600px){.rc-grid{grid-template-columns:1fr}}
+.rc-col{padding:1.5rem 1.4rem}
+.rc-col.says{background:linear-gradient(180deg,rgba(200,138,125,.05),transparent)}
+.rc-col.shows{background:linear-gradient(180deg,rgba(143,196,184,.05),transparent)}
+.rc-tag{font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;margin-bottom:.8rem;font-weight:500}
+.rc-col.says .rc-tag{color:var(--rose)} .rc-col.shows .rc-tag{color:var(--teal)}
+.rc-col p{font-family:'Spectral',serif;font-size:.96rem;line-height:1.65;color:#cdc7b8;margin:0}
+.rc-col.says p{font-style:italic}
+
+/* studied doses table — reported, not recommended */
+.dose-note{border:1px solid rgba(201,163,91,.3);border-left:3px solid var(--gold);background:linear-gradient(90deg,rgba(201,163,91,.05),transparent);padding:1.2rem 1.4rem;margin-bottom:1.4rem;font-family:'Spectral',serif;font-size:.92rem;line-height:1.6;color:#cdc7b8}
+.dose-note b{color:var(--gold-bright);font-weight:500}
+.dose-table{border:1px solid var(--line-soft);width:100%}
+.dose-row{display:grid;grid-template-columns:1.4fr 1fr 1.4fr;gap:1rem;padding:1rem 1.2rem;border-bottom:1px solid var(--line-soft)}
+.dose-row:last-child{border-bottom:none}
+.dose-row.head{background:rgba(201,163,91,.05)}
+.dose-row.head span{font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:500}
+.dose-row .dstudy{font-family:'Spectral',serif;font-size:.9rem;color:var(--marble)}
+.dose-row .dstudy small{display:block;color:var(--marble-dim);font-size:.75rem;margin-top:.2rem}
+.dose-row .ddose{font-family:'Jost';font-size:.9rem;color:var(--gold-bright)}
+.dose-row .dfind{font-family:'Spectral',serif;font-size:.86rem;color:#cdc7b8;line-height:1.5}
+@media(max-width:640px){.dose-row{grid-template-columns:1fr;gap:.4rem}.dose-row.head{display:none}.dose-row .ddose::before{content:"Studied: ";color:var(--marble-dim);font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}}
+
+/* reported/anecdotal */
+.anecdote-box{border:1px dashed rgba(201,163,91,.3);padding:1.5rem 1.5rem;background:rgba(22,19,16,.3)}
+.anecdote-box .ab-tag{font-family:'Jost';font-weight:500;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem;display:flex;align-items:center;gap:.5rem}
+.anecdote-box p{font-family:'Spectral',serif;font-size:.95rem;line-height:1.7;color:#cdc7b8;margin-bottom:.8rem}
+.anecdote-box .ab-warn{font-size:.82rem;color:var(--rose);font-style:italic}
+
+/* safety */
+.safety-row{display:flex;gap:1rem;padding:1rem 0;border-bottom:1px solid var(--line-soft);align-items:baseline}
+.safety-row:last-child{border-bottom:none}
+.safety-row .sr-k{flex-shrink:0;width:130px;font-family:'Jost';font-weight:500;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.safety-row .sr-v{font-family:'Spectral',serif;font-size:.95rem;line-height:1.6;color:#cdc7b8}
+
+/* citations */
+.cites{list-style:none}
+.cites li{padding:.95rem 0;border-bottom:1px solid var(--line-soft);display:flex;gap:1rem;align-items:baseline}
+.cites li .idx{font-family:'Playfair Display',serif;font-style:italic;color:var(--gold);font-size:.9rem;flex-shrink:0}
+.cites li .ref{font-size:.86rem;color:var(--marble-dim);line-height:1.5}
+.cites li .ref em{font-style:italic;color:#cdc7b8}
+.cites li .ref a{color:var(--gold-bright);border-bottom:1px solid var(--line-soft)}
+.cites li .ref a:hover{border-color:var(--gold)}
+
+/* trust footer of dossier */
+.trust{border:1px solid var(--line-soft);background:rgba(22,19,16,.3);padding:1.5rem 1.6rem;margin-top:1rem;display:grid;grid-template-columns:1fr 1fr;gap:.8rem 2rem}
+@media(max-width:560px){.trust{grid-template-columns:1fr}}
+.trust .tr{font-size:.8rem;color:var(--marble-dim)}
+.trust .tr b{display:block;font-family:'Jost';font-weight:500;font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:.2rem}
+
+footer{background:var(--midnight);border-top:1px solid var(--line-soft);padding:3rem clamp(1.2rem,4vw,3rem) 2rem;margin-top:3rem}
+.foot-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;max-width:920px;margin:0 auto 2rem}
+.foot-brand{font-family:'Playfair Display';font-size:1.5rem;letter-spacing:.1em;text-transform:uppercase}
+.foot-brand span{color:var(--gold)}
+.foot-links{display:flex;gap:1.8rem;flex-wrap:wrap}
+.foot-links a{color:var(--marble-dim);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;transition:color .3s}
+.foot-links a:hover{color:var(--gold-bright)}
+.foot-legal{max-width:920px;margin:0 auto;padding-top:1.6rem;border-top:1px solid var(--line-soft);font-size:.66rem;letter-spacing:.1em;color:var(--marble-dim);text-align:center;line-height:1.9}
+
+@media(max-width:1080px){
+  nav{flex-wrap:wrap}
+  .burger{display:block;z-index:70;order:3}
+  .nav-links{display:none;order:4;flex-basis:100%;width:100%;flex-direction:column;gap:0;margin-top:1rem;padding-top:.6rem;border-top:1px solid var(--line-soft)}
+  .nav-links.open{display:flex}
+  .nav-links li{width:100%}
+  .nav-links li a:not(.nav-cta){display:block;width:100%;padding:1.05rem .2rem;font-size:.9rem;letter-spacing:.14em;border-bottom:1px solid var(--line-soft)}
+  .nav-links li:last-child{margin-top:.9rem}
+  .nav-links a.nav-cta{display:block;text-align:center;padding:1rem;font-size:.82rem}
+}
+@media(prefers-reduced-motion:reduce){.ticker-track{animation:none;transform:translateX(0)}}
+</style>
+</head>
+<body>
+<div class="ticker" aria-label="Educational resource. Not for human or veterinary use. No compounds sold. No dosing information.">
+  <div class="ticker-track">
+    <span>Evidence, decoded</span><span>Human research kept separate from animal data</span><span>Every claim traced to its source</span><span>Not for human or veterinary use</span><span>No compounds sold · no dosing</span><span>For anyone who wants the evidence</span>
+    <span aria-hidden="true">Evidence, decoded</span><span aria-hidden="true">Human research kept separate from animal data</span><span aria-hidden="true">Every claim traced to its source</span><span aria-hidden="true">Not for human or veterinary use</span><span aria-hidden="true">No compounds sold · no dosing</span><span aria-hidden="true">For anyone who wants the evidence</span>
+  </div>
+</div>
+<nav>
+  <a href="home.html" class="brand">Aphrodite<span>·</span>Research</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="lens.html">The Lens</a></li>
+    <li><a href="archive.html" class="active">The Archive</a></li>
+    <li><a href="hype-gap.html">Hype Gap</a></li>
+    <li><a href="compare.html">Compare</a></li>
+    <li><a href="pricing.html">Membership</a></li>
+    <li><a href="account.html" class="nav-cta">Access</a></li>
+  </ul>
+  <button class="burger" id="burger" aria-label="Menu">☰</button>
+</nav>
+
+<div class="crumb">
+  <a href="archive.html">The Archive</a><span class="sep">/</span><a href="archive.html">Recovery</a><span class="sep">/</span>BPC-157
+</div>
+
+<main>
+  <header class="dossier">
+    <div class="file-tag">
+      <span class="cat">Peptide · Body Protection Compound</span>
+      <span class="ref">File No. AR-003 · BPC-157 · Pentadecapeptide</span>
+    </div>
+    <h1>BPC-157</h1>
+    <p class="latin">The internet's favorite healing peptide — and the widest gap between hype and human evidence in the archive.</p>
+    <div class="badges">
+      <span class="badge b-pre">Preclinical-Dominant</span>
+      <span class="badge b-hype">Extreme Hype Gap</span>
+      <span class="badge b-banned">Banned in Pro Sport · Not FDA-Approved</span>
+      <span class="badge b-updated">Reviewed Jul 2026</span>
+    </div>
+  </header>
+
+  <div class="section">
+
+    <!-- ================= SURFACE LAYER ================= -->
+    <div class="surface">
+      <div class="stag">The 30-second version</div>
+      <div class="sbody">
+        <p class="tldr">BPC-157 is one of the <strong>most-studied peptides in animals</strong> — and one of the <span class="flag">least-studied in humans</span>. There are 100+ animal studies, but <strong>fewer than 30 people</strong> have ever been in a published BPC-157 study, and <span class="flag">not one was a proper controlled trial</span>. So when TikTok says it "heals everything," the honest answer is: it's <strong>promising in rats, largely unproven in people.</strong></p>
+        <div class="surface-stats">
+          <div class="sc"><div class="scn gold">100+</div><div class="scl">Animal / lab studies</div></div>
+          <div class="sc"><div class="scn rose">&lt;30</div><div class="scl">Humans ever studied</div></div>
+          <div class="sc"><div class="scn rose">0</div><div class="scl">Controlled human trials</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- quick yes/no answers -->
+    <div class="quick">
+      <div class="qa"><div class="qq">Does it heal injuries in humans?</div><div class="qan no">Not proven — no controlled trials</div></div>
+      <div class="qa"><div class="qq">Is the animal research real?</div><div class="qan yes">Yes — extensive and decades deep</div></div>
+      <div class="qa"><div class="qq">Is it FDA-approved?</div><div class="qan no">No — and banned in pro sport</div></div>
+      <div class="qa"><div class="qq">Is it known to be safe long-term?</div><div class="qan partial">Unknown — too few humans studied</div></div>
+    </div>
+
+    <div class="readmore-bar"><span>Below: the full picture</span></div>
+
+    <!-- ================= DEEP LAYER ================= -->
+    <div class="deep-intro">
+      <span class="eyebrow">The Deep Dive</span>
+      <h2>What the research actually shows</h2>
+      <p>Everything below is drawn from the published record — animal studies, the handful of human reports, systematic reviews, and regulators. Human evidence is kept separate from animal evidence throughout.</p>
+    </div>
+
+    <!-- 01 · What it is -->
+    <div class="block">
+      <div class="label"><span class="n">01</span><h2>What it is</h2></div>
+      <p>BPC-157 ("Body Protection Compound-157") is a <strong>synthetic 15-amino-acid peptide</strong> based on a sequence found in human gastric juice. In animal studies it's been linked to tissue repair through several plausible mechanisms — promoting new blood-vessel growth (VEGF), modulating nitric oxide, and reducing inflammatory signals.</p>
+      <p>It is <strong>not FDA-approved</strong> for any use, sits on the FDA's Category 2 list (can't currently be legally compounded due to insufficient safety data), and was <strong>banned by the NFL, UFC, NCAA and WADA</strong> around 2022. In April 2026 the UK's medicines regulator (MHRA) opened an investigation into peptide clinics marketing it, naming BPC-157 first.</p>
+    </div>
+
+    <!-- 02 · Claim-specific ratings (replaces single score) -->
+    <div class="block">
+      <div class="label"><span class="n">02</span><h2>Evidence, claim by claim</h2></div>
+      <p>A single score for "BPC-157" would hide the whole story. What matters is the specific claim — because the evidence is completely different for each one. Here's how the biggest claims actually hold up.</p>
+      <div class="claims-grid">
+
+        <div class="claim-card">
+          <div class="cc-top">
+            <div><span class="cc-name">Tendon &amp; muscle healing</span><span class="cc-route">Injected / local · the headline claim</span></div>
+            <span class="cert c-none">No human evidence</span>
+          </div>
+          <div class="cc-detail">The claim that made BPC-157 famous. It rests almost entirely on animal models — a 2025 systematic review in the <em>American Journal of Sports Medicine</em> screened 544 articles and found <strong>only one human clinical study</strong>. The tendon-healing story is real in rats; in people it is essentially untested.</div>
+          <div class="cc-meta"><span><b>Human</b> None controlled</span><span><b>Animal</b> Strong, consistent</span><span><b>Confidence</b> Very low</span></div>
+        </div>
+
+        <div class="claim-card">
+          <div class="cc-top">
+            <div><span class="cc-name">Gut &amp; IBD support</span><span class="cc-route">Oral / systemic</span></div>
+            <span class="cert c-pre">Preclinical + early signals</span>
+          </div>
+          <div class="cc-detail">This is arguably BPC-157's strongest research area — its origin is a gut peptide, it's unusually stable in stomach acid, and preclinical IBD/ulcer models are consistent. But the human side is still small case reports and observational use, not controlled trials.</div>
+          <div class="cc-meta"><span><b>Human</b> Very limited</span><span><b>Animal</b> Strong</span><span><b>Confidence</b> Low</span></div>
+        </div>
+
+        <div class="claim-card">
+          <div class="cc-top">
+            <div><span class="cc-name">Knee &amp; joint pain</span><span class="cc-route">Intra-articular injection</span></div>
+            <span class="cert c-early">Small uncontrolled human reports</span>
+          </div>
+          <div class="cc-detail">A 2021 case series of ~16 patients reported subjective pain improvement after injection. Genuinely human data — but tiny, uncontrolled, and without a placebo group, so it can't separate real effect from natural recovery or expectation.</div>
+          <div class="cc-meta"><span><b>Human</b> ~16, no control</span><span><b>Animal</b> Supportive</span><span><b>Confidence</b> Low</span></div>
+        </div>
+
+        <div class="claim-card">
+          <div class="cc-top">
+            <div><span class="cc-name">"Heals everything" / systemic regeneration</span><span class="cc-route">Any route</span></div>
+            <span class="cert c-none">Not supported</span>
+          </div>
+          <div class="cc-detail">The blanket internet claim. No human evidence supports BPC-157 as a general-purpose healing agent, and framing it that way ignores that every tissue and route needs its own testing. This is where the hype most exceeds the science.</div>
+          <div class="cc-meta"><span><b>Human</b> None</span><span><b>Animal</b> Varies by tissue</span><span><b>Confidence</b> Very low</span></div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- 03 · Internet vs evidence -->
+    <div class="block">
+      <div class="label"><span class="n">03</span><h2>The internet vs. the evidence</h2></div>
+      <div class="rc-grid">
+        <div class="rc-col says"><div class="rc-tag">What you'll hear online</div><p>"BPC-157 heals tendons, joints, gut, and nerves. It's a proven recovery miracle — the body's own repair peptide. Everyone in the gym is on it."</p></div>
+        <div class="rc-col shows"><div class="rc-tag">What the evidence shows</div><p>Decades of animal research make it scientifically interesting, but fewer than 30 humans have ever been studied and no controlled trial has been completed. "Proven" is the wrong word — "promising but largely untested in people" is accurate.</p></div>
+      </div>
+    </div>
+
+    <!-- 04 · What was actually studied (doses — reported, not recommended) -->
+    <div class="block">
+      <div class="label"><span class="n">04</span><h2>What was actually studied</h2></div>
+      <div class="dose-note"><b>Why we show this:</b> understanding what researchers actually used — and how little has been tested in people — is part of being informed. <b>This is a record of what published studies did, not a protocol, recommendation, or instruction to use anything.</b> Aphrodite provides no dosing guidance.</div>
+      <div class="dose-table">
+        <div class="dose-row head"><span>Study &amp; population</span><span>Amount administered in study</span><span>Observed outcomes</span></div>
+        <div class="dose-row">
+          <div class="dstudy">IV safety pilot<small>Lee &amp; Burgess, 2025 · n=2 adults</small></div>
+          <div class="ddose">10 mg &amp; 20 mg IV, single infusions</div>
+          <div class="dfind">No adverse effects on cardiac, liver, kidney, thyroid or glucose markers; plasma cleared within 24h. Too small to judge efficacy.</div>
+        </div>
+        <div class="dose-row">
+          <div class="dstudy">Knee pain case series<small>Lee &amp; Padgett, 2021 · n≈16</small></div>
+          <div class="ddose">2–4 mcg intra-articular, single injection</div>
+          <div class="dfind">Majority reported subjective pain relief lasting 6+ months. No control group; can't rule out natural recovery.</div>
+        </div>
+        <div class="dose-row">
+          <div class="dstudy">Interstitial cystitis pilot<small>Lee et al., 2024 · n≈12</small></div>
+          <div class="ddose">Single intravesical (bladder) dose</div>
+          <div class="dfind">High reported symptom resolution in a small, uncontrolled sample. Preliminary only.</div>
+        </div>
+      </div>
+      <p style="margin-top:1rem;font-size:.9rem;color:var(--marble-dim);font-family:'Spectral',serif;font-style:italic">Note: all three published human studies share the same lead investigator, and none used a placebo control. Widely-shared "protocols" online are extrapolated from rodent studies and community practice — not from human dose-finding trials, which don't yet exist.</p>
+    </div>
+
+    <!-- 05 · Reported / anecdotal -->
+    <div class="block">
+      <div class="label"><span class="n">05</span><h2>What people report</h2></div>
+      <div class="anecdote-box">
+        <div class="ab-tag">◆ Reported experience — not evidence</div>
+        <p>In community discussion, people most often report using BPC-157 for soft-tissue and joint recovery, and describe injection-site redness or small bumps as the most common short-term complaint. Some report perceived faster recovery; others report nothing.</p>
+        <p class="ab-warn">These are self-reported anecdotes, not controlled data. They can't establish whether BPC-157 works, is safe, or is even what a given unregulated vial actually contains. We include them to inform, not to encourage — reported benefit is exactly the kind of thing controlled trials exist to confirm or overturn.</p>
+      </div>
+    </div>
+
+    <!-- 06 · Safety -->
+    <div class="block">
+      <div class="label"><span class="n">06</span><h2>Safety, honestly</h2></div>
+      <div class="safety-row"><div class="sr-k">Short-term</div><div class="sr-v">Across the ~30 humans ever studied, no serious adverse events were reported, and animal studies found no lethal or toxic dose. That's mildly reassuring — but the sample is far too small for real safety conclusions.</div></div>
+      <div class="safety-row"><div class="sr-k">The open question</div><div class="sr-v">The same blood-vessel-growth pathway (angiogenesis) that could aid healing can also, in theory, support tumor growth. Reviewers flag this as unresolved, especially for anyone with current or prior cancer. <span style="color:var(--rose)">No long-term human safety data exists.</span></div></div>
+      <div class="safety-row"><div class="sr-k">Product risk</div><div class="sr-v">Because it's sold through unregulated channels, what's in a vial labeled "BPC-157" isn't verified — purity, dose, and even identity vary. This is a real-world risk the research doesn't address.</div></div>
+      <div class="safety-row"><div class="sr-k">Reported for education</div><div class="sr-v">This is a summary of the published record, not medical advice or a suggestion to use anything. Decisions about investigational compounds belong with a qualified clinician.</div></div>
+    </div>
+
+    <!-- 07 · Sources -->
+    <div class="block">
+      <div class="label"><span class="n">07</span><h2>Sources</h2></div>
+      <ul class="cites">
+        <li><span class="idx">01</span><span class="ref"><em>Vasireddi N, et al.</em> Emerging Use of BPC-157 in Orthopaedic Sports Medicine: A Systematic Review. <em>American Journal of Sports Medicine / HSS J</em>, 2025. <a href="https://journals.sagepub.com/doi/abs/10.1177/15563316251355551" target="_blank" rel="noopener">Link</a></span></li>
+        <li><span class="idx">02</span><span class="ref"><em>Lee E, Burgess A.</em> Safety of Intravenous Infusion of BPC-157 in Humans: A Pilot Study. <em>Alternative Therapies in Health and Medicine</em>, 2025.</span></li>
+        <li><span class="idx">03</span><span class="ref"><em>Oral Peptide BPC-157 — GI systematic review (36 studies, 1993–2025).</em> <em>American Journal of Gastroenterology</em>, 2025. <a href="https://journals.lww.com/ajg/fulltext/2025/10002/s808_oral_peptide_bpc_157_an_emerging_adjunct_to.809.aspx" target="_blank" rel="noopener">Link</a></span></li>
+        <li><span class="idx">04</span><span class="ref"><em>Multifunctionality and Possible Medical Application of the BPC-157 Peptide — Literature and Patent Review.</em> NCBI/PMC, 2025. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11859134/" target="_blank" rel="noopener">Link</a></span></li>
+        <li><span class="idx">05</span><span class="ref">UK MHRA investigation into peptide-clinic marketing, April 2026 (BPC-157 named).</span></li>
+      </ul>
+      <div class="trust">
+        <div class="tr"><b>Written by</b>Aphrodite Research editorial</div>
+        <div class="tr"><b>Evidence reviewed</b>July 2026</div>
+        <div class="tr"><b>Databases searched</b>PubMed · NCBI · systematic reviews</div>
+        <div class="tr"><b>Conflicts of interest</b>None · no compounds sold</div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="foot-top">
+    <div class="foot-brand">Aphrodite<span>·</span>Research</div>
+    <div class="foot-links"><a href="legal-disclaimer.html">Disclaimer</a><a href="legal-terms.html">Terms</a><a href="legal-acceptable-use.html">Acceptable Use</a><a href="methodology.html">Methodology</a></div>
+  </div>
+  <div class="foot-legal">Aphrodite Research is an educational resource — built for curious readers, creators, and professionals alike. Not for human or veterinary use.<br>We don't sell, supply, or broker peptides or research compounds, and we don't provide dosing, protocols, or sourcing.</div>
+</footer>
+
+<script>
+const burger=document.getElementById('burger'),links=document.getElementById('navLinks');
+burger.addEventListener('click',()=>links.classList.toggle('open'));
+links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
+</script>
+</body>
+</html>

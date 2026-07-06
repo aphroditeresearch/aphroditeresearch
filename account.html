@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sign In — Aphrodite Research</title>
+<title>Join the List — Aphrodite Research</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Jost:wght@300;400;500&family=Spectral:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
@@ -50,19 +50,49 @@ footer{text-align:center;padding:2rem;font-size:.66rem;letter-spacing:.1em;color
 <nav><a href="home.html" class="brand">Aphrodite<span>·</span>Research</a></nav>
 <main>
   <div class="card">
-    <div class="ar-text-card">AR</div>
-    <h1>Enter the Archive</h1>
-    <p class="sub">Sign in to your membership</p>
-    <div class="field"><label>Email</label><input type="email" placeholder="you@example.com" autocomplete="email"></div>
-    <div class="field"><label>Password</label><input type="password" placeholder="••••••••" autocomplete="current-password"></div>
-    <button class="btn" type="button">Sign In</button>
-    <div class="divider">or</div>
-    <a href="#" class="oauth">Continue with Google</a>
-    <a href="#" class="oauth">Continue with Apple</a>
-    <div class="alt">New here? <a href="pricing.html">Start Deep Dive Access →</a></div>
-    <div class="notice"><b>Preview only.</b> This is the sign-in design. Real accounts, secure login, and payment require the membership backend (see <em>docs/MEMBERSHIP-SPEC.md</em>). No credentials are collected or stored on this page yet.</div>
+    <div class="ar-text-card">✦</div>
+    <h1>Join the list</h1>
+    <p class="sub">Free. Be the first to know when we publish new compound dossiers, and get the occasional evidence digest. No spam, no selling — ever.</p>
+    <form id="signupForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+      <div class="field"><label>Email</label><input type="email" name="email" placeholder="you@example.com" autocomplete="email" required></div>
+      <div class="field"><label>What brings you here? <span style="opacity:.6">(optional)</span></label>
+        <select name="interest" style="width:100%;background:var(--panel,#0d0b09);border:1px solid var(--line);color:var(--marble);font-family:'Jost',sans-serif;font-size:.95rem;padding:.75rem .9rem;outline:none">
+          <option value="">Select…</option>
+          <option>Just curious / saw something online</option>
+          <option>Researching before deciding</option>
+          <option>Medical / healthcare professional</option>
+          <option>Trainer / coach</option>
+          <option>Student / educator</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <button class="btn" type="submit">Join the list →</button>
+    </form>
+    <div id="signupOk" style="display:none;text-align:center;padding:1rem;color:var(--teal);font-family:'Spectral',serif">✓ You're on the list. Thank you — we'll be in touch when there's something worth reading.</div>
+    <div class="alt">Just here to read? <a href="archive.html">Explore the Archive →</a></div>
+    <div class="notice"><b>Setup note (for you):</b> this form is ready to work — create a free form at <em>formspree.io</em> and replace <em>YOUR_FORM_ID</em> in the form action with your endpoint. Until then, submissions won't be delivered. No account or password needed anywhere on the site.</div>
   </div>
 </main>
-<footer>Aphrodite Research is an educational resource. Not for human or veterinary use.<br>We do not sell compounds or provide dosing information.</footer>
+<footer>Aphrodite Research is an educational resource — free, and built for anyone who wants the evidence. Not for human or veterinary use.<br>We do not sell compounds or provide dosing information.</footer>
+<script>
+const form=document.getElementById('signupForm');
+form.addEventListener('submit',async(e)=>{
+  // If the form ID hasn't been set yet, prevent a broken submit and show a friendly note
+  if(form.action.includes('YOUR_FORM_ID')){
+    e.preventDefault();
+    document.getElementById('signupOk').style.display='block';
+    document.getElementById('signupOk').textContent='✓ Demo mode — connect a Formspree ID to start collecting emails.';
+    form.style.display='none';
+    return;
+  }
+  // Real submit via fetch so the page shows success without redirecting
+  e.preventDefault();
+  try{
+    const res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}});
+    if(res.ok){form.style.display='none';document.getElementById('signupOk').style.display='block';}
+    else{form.submit();}
+  }catch(err){form.submit();}
+});
+</script>
 </body>
 </html>

@@ -64,7 +64,20 @@ body{background:var(--obsidian);color:var(--marble);font-family:'Jost',sans-seri
 .gate::before{top:22px}.gate::after{bottom:22px}
 
 .welcome{font-family:'Jost';font-weight:400;font-size:.64rem;letter-spacing:.5em;text-transform:uppercase;color:var(--gold);margin-bottom:1.5rem;text-indent:.5em}
-.mark{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(2.5rem,7vw,3.5rem);letter-spacing:.16em;text-transform:uppercase;line-height:1;text-indent:.16em;color:#f3efe7;text-shadow:0 0 44px rgba(201,163,91,.28)}
+#boot{position:fixed;inset:0;z-index:200;background:var(--obsidian);display:flex;align-items:center;justify-content:center;transition:opacity .8s ease;padding:2rem}
+#boot.done{opacity:0;pointer-events:none}
+.boot-inner{width:min(90vw,540px)}
+.boot-top{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--marble-dim);margin-bottom:2.4rem;text-align:center}
+.boot-skip{color:var(--gold);cursor:pointer;transition:color .2s}
+.boot-skip:hover{color:var(--gold-bright)}
+.boot-mid{border:1px solid var(--line-soft);padding:1.6rem 1.8rem;background:linear-gradient(180deg,rgba(15,13,10,.6),rgba(8,7,6,.4))}
+.boot-line{font-size:.7rem;letter-spacing:.14em;color:var(--marble-dim);margin-bottom:.8rem}
+.boot-tip{font-family:'Playfair Display',serif;font-style:italic;font-size:.92rem;color:rgba(243,239,231,.55);margin-bottom:1.8rem;line-height:1.5}
+.boot-enter{font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold-bright);margin-bottom:.9rem}
+.boot-bar{height:2px;background:rgba(201,163,91,.12);overflow:hidden}
+.boot-fill{height:100%;width:0;background:linear-gradient(90deg,var(--gold-deep),var(--gold-bright));box-shadow:0 0 10px rgba(230,198,132,.5);transition:width .15s linear}
+@media(prefers-reduced-motion:reduce){#boot{display:none}}
+.mark{font-family:'Playfair Display',serif;position:relative;left:-.12em;font-weight:400;font-size:clamp(2.4rem,6.5vw,3.4rem);letter-spacing:.12em;text-transform:uppercase;line-height:1;color:#f6f1e7;text-shadow:0 0 16px rgba(230,198,132,.5),0 0 40px rgba(201,163,91,.38),0 0 78px rgba(201,163,91,.2)}
 .divider{margin:1.1rem auto 1.3rem;display:flex;align-items:center;justify-content:center;gap:.9rem;color:var(--gold)}
 .divider span{width:40px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
 .divider span:last-child{background:linear-gradient(90deg,var(--gold),transparent)}
@@ -91,6 +104,17 @@ body{background:var(--obsidian);color:var(--marble);font-family:'Jost',sans-seri
 </style>
 </head>
 <body>
+<div id="boot" aria-hidden="true">
+  <div class="boot-inner">
+    <div class="boot-top">▼ LOADING THE ARCHIVE · <span class="boot-skip" id="bootSkip">CLICK OR PRESS ANY KEY TO [SKIP]</span> ☆</div>
+    <div class="boot-mid">
+      <div class="boot-line">[SYS] <span id="bootElapsed">00.00</span> ELAPSED</div>
+      <div class="boot-tip">[TIP] The literature is public. Few take the time to uncover it.</div>
+      <div class="boot-enter">✧ ENTERING APHRODITE <span id="bootPct">0</span>%</div>
+      <div class="boot-bar"><div class="boot-fill" id="bootFill"></div></div>
+    </div>
+  </div>
+</div>
 <canvas id="rain"></canvas>
 <div class="sidemark" aria-hidden="true"><span>APHRODITE</span></div>
 <div class="wash"></div>
@@ -111,6 +135,33 @@ body{background:var(--obsidian);color:var(--marble);font-family:'Jost',sans-seri
 <div class="crossing" id="crossing" aria-hidden="true"><div class="seal">Aphrodite</div></div>
 
 <script>
+// ---- Boot sequence (Apostles-style) ----
+(function(){
+  const boot=document.getElementById('boot'),fill=document.getElementById('bootFill'),
+        pctEl=document.getElementById('bootPct'),elEl=document.getElementById('bootElapsed'),
+        skip=document.getElementById('bootSkip');
+  if(!boot) return;
+  let pct=0, t0=performance.now(), done=false;
+  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function finish(){ if(done) return; done=true; boot.classList.add('done'); setTimeout(()=>boot.remove(),850);
+    document.removeEventListener('keydown',finish); }
+  function tick(){
+    if(done) return;
+    const elapsed=(performance.now()-t0)/1000;
+    elEl.textContent=elapsed.toFixed(2).padStart(5,'0');
+    pct+=Math.random()*9+4;
+    if(pct>=100){pct=100; pctEl.textContent='100'; fill.style.width='100%'; setTimeout(finish,350); return;}
+    pctEl.textContent=Math.floor(pct); fill.style.width=pct+'%';
+    setTimeout(tick, 70+Math.random()*70);
+  }
+  if(reduce){ finish(); }
+  else { setTimeout(tick,300);
+    skip.addEventListener('click',finish);
+    boot.addEventListener('click',finish);
+    document.addEventListener('keydown',finish);
+  }
+})();
+
 const canvas=document.getElementById('rain'),ctx=canvas.getContext('2d');
 let W,H,cols,drops,fontSize;
 const glyphs="APHRODITE".split("");

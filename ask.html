@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ask Aphrodite — Peptide Questions, Answered from the Evidence</title>
+<meta name="description" content="Ask a question about peptides and get an answer grounded in the published research — what's shown in humans, what's only preclinical, and what's still unknown. Never dosing, sourcing, or personal-use advice.">
+<meta name="keywords" content="ask about peptides, peptide questions, BPC-157 questions, GHK-Cu, retatrutide, peptide evidence, is BPC-157 safe">
+<meta property="og:title" content="Ask Aphrodite — Peptide Questions, Answered from the Evidence">
+<meta property="og:description" content="Ask about peptides and get an answer grounded in the research — never dosing or sourcing.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Jost:wght@300;400;500&family=Spectral:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --obsidian:#080706;--midnight:#0f0d0a;--panel:#0d0b09;--panel-hi:#161310;
+  --marble:#efe9dc;--marble-dim:#8a8477;--gold:#c9a35b;--gold-bright:#e6c684;--gold-deep:#8f6f38;--rose:#c88a7d;--teal:#8fc4b8;
+  --line:rgba(201,163,91,.2);--line-soft:rgba(201,163,91,.1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:hidden;font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
+body{background:var(--obsidian);color:var(--marble);font-family:'Jost',sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+::selection{background:var(--gold);color:var(--obsidian)}
+a{color:inherit;text-decoration:none}
+.eyebrow{font-family:'Jost';font-weight:500;font-size:.66rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold)}
+main,nav,.ticker,footer{position:relative;z-index:2}
+.ticker{background:var(--midnight);border-bottom:1px solid var(--line-soft);overflow:hidden;padding:.5rem 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.ticker-track{display:inline-flex;white-space:nowrap;animation:scroll 46s linear infinite}
+.ticker-track span{font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--marble-dim);padding:0 1.5rem;display:inline-flex;align-items:center;gap:1.5rem}
+.ticker-track span::after{content:"◆";color:rgba(201,163,91,.4);font-size:.4rem}
+@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+nav{display:flex;align-items:center;justify-content:space-between;padding:1.3rem clamp(1.2rem,4vw,3rem);position:sticky;top:0;z-index:50;background:rgba(8,7,6,.82);backdrop-filter:blur(16px);border-bottom:1px solid var(--line-soft)}
+.brand{display:inline-flex;align-items:center;font-family:'Playfair Display',serif;font-weight:600;font-size:1.4rem;letter-spacing:.1em;text-transform:uppercase}
+.brand span{color:var(--gold);margin:0 .15em;font-size:.7em;vertical-align:middle}
+.nav-cta{border:1px solid var(--gold);color:var(--gold-bright);padding:.5rem 1.2rem;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;transition:all .3s}
+.nav-cta:hover{background:var(--gold);color:var(--obsidian)}
+.nav-links{display:flex;gap:2rem;align-items:center;list-style:none}
+.nav-links a:not(.nav-cta){padding:.2rem 0;color:var(--marble-dim);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;transition:color .3s}
+.nav-links a:not(.nav-cta):hover,.nav-links a.active{color:var(--gold-bright)}
+.burger{display:none;background:none;border:none;color:var(--marble);font-size:1.4rem;cursor:pointer}
+
+.ask-hero{text-align:center;padding:clamp(2.6rem,6vw,4rem) clamp(1.2rem,4vw,3rem) 1rem;position:relative;overflow:hidden}
+.ask-hero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 55% 70% at 50% 0%,rgba(201,163,91,.1),transparent 62%)}
+.ask-hero .in{position:relative;z-index:1;max-width:760px;margin:0 auto}
+.ask-hero h1{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(2.3rem,5vw,3.6rem);line-height:1.05;margin:.9rem 0;color:#fbf8f0;text-shadow:0 0 50px rgba(255,255,255,.15)}
+.ask-hero h1 em{font-style:italic;color:var(--gold-bright)}
+.ask-hero p.sub{font-family:'Spectral',serif;font-size:1.08rem;color:var(--marble-dim);max-width:58ch;margin:0 auto;line-height:1.7}
+
+/* chat window */
+.chat-wrap{max-width:780px;margin:1.8rem auto 0;padding:0 clamp(1.2rem,4vw,3rem)}
+.chat{border:1px solid var(--line);background:var(--panel);min-height:280px;display:flex;flex-direction:column}
+.chat-log{flex:1;padding:1.5rem;display:flex;flex-direction:column;gap:1.2rem;max-height:56vh;overflow-y:auto}
+.msg{max-width:88%;font-size:.98rem;line-height:1.65}
+.msg.user{align-self:flex-end;background:rgba(201,163,91,.1);border:1px solid var(--line-soft);padding:.8rem 1.1rem;border-radius:2px;font-family:'Jost';color:var(--marble)}
+.msg.ash{align-self:flex-start;font-family:'Spectral',serif;color:#d3cdbe}
+.msg.ash .who{font-family:'Jost';font-weight:500;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;display:flex;align-items:center;gap:.4rem}
+.msg.ash .who::before{content:"✦"}
+.msg.ash .body{border-left:2px solid var(--line-soft);padding-left:1rem}
+.msg.ash .body p{margin-bottom:.7rem}
+.msg.ash .body p:last-child{margin-bottom:0}
+.msg.ash .body strong{color:var(--gold-bright);font-weight:500}
+.msg.ash .body .tag{display:inline-block;font-family:'Jost';font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;padding:.25rem .55rem;border:1px solid;margin-bottom:.6rem}
+.tag.human{color:var(--teal);border-color:rgba(143,196,184,.4)}
+.tag.pre{color:var(--rose);border-color:rgba(200,138,125,.4)}
+.tag.refuse{color:var(--rose);border-color:rgba(200,138,125,.5);background:rgba(200,138,125,.06)}
+.tag.unknown{color:var(--marble-dim);border-color:var(--line-soft)}
+.msg.ash .body .srclink{font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-bright);border-bottom:1px solid var(--line-soft);padding-bottom:1px}
+.msg.ash .body .srclink:hover{border-color:var(--gold)}
+
+.chat-input{border-top:1px solid var(--line-soft);padding:.9rem;display:flex;gap:.7rem;align-items:flex-end}
+.chat-input textarea{flex:1;background:transparent;border:none;color:var(--marble);font-family:'Jost';font-size:1rem;line-height:1.5;padding:.6rem;outline:none;resize:none;min-height:44px;max-height:120px}
+.chat-input textarea::placeholder{color:var(--marble-dim)}
+.chat-send{flex-shrink:0;font-family:'Jost';font-weight:500;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;padding:.75rem 1.4rem;background:linear-gradient(180deg,var(--gold-bright),var(--gold));color:#1a1206;border:none;cursor:pointer;transition:box-shadow .3s}
+.chat-send:hover{box-shadow:0 6px 20px rgba(201,163,91,.3)}
+
+.suggests{margin-top:1.3rem;display:flex;flex-wrap:wrap;gap:.55rem;justify-content:center}
+.sug{font-family:'Spectral',serif;font-style:italic;font-size:.86rem;color:var(--marble-dim);border:1px solid var(--line-soft);padding:.5rem .9rem;cursor:pointer;transition:all .3s}
+.sug:hover{color:var(--gold-bright);border-color:var(--gold)}
+
+.ask-note{max-width:780px;margin:2rem auto 0;padding:0 clamp(1.2rem,4vw,3rem);font-family:'Spectral',serif;font-style:italic;font-size:.86rem;color:var(--marble-dim);line-height:1.7;text-align:center}
+
+.how{max-width:900px;margin:3.5rem auto 0;padding:0 clamp(1.2rem,4vw,3rem)}
+.how-head{text-align:center;margin-bottom:1.8rem}
+.how-head h2{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(1.7rem,3vw,2.3rem);margin-top:.6rem}
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem}
+@media(max-width:720px){.how-grid{grid-template-columns:1fr}}
+.how-card{border:1px solid var(--line-soft);padding:1.4rem}
+.how-card h3{font-family:'Jost';font-weight:500;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-bright);margin-bottom:.5rem}
+.how-card p{font-size:.85rem;color:var(--marble-dim);line-height:1.55}
+
+footer{background:var(--midnight);border-top:1px solid var(--line-soft);padding:3rem clamp(1.2rem,4vw,3rem) 2rem;margin-top:3.5rem}
+.foot-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;max-width:900px;margin:0 auto 2rem}
+.foot-brand{font-family:'Playfair Display';font-size:1.5rem;letter-spacing:.1em;text-transform:uppercase}
+.foot-brand span{color:var(--gold)}
+.foot-links{display:flex;gap:1.8rem;flex-wrap:wrap}
+.foot-links a{color:var(--marble-dim);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;transition:color .3s}
+.foot-links a:hover{color:var(--gold-bright)}
+.foot-legal{max-width:900px;margin:0 auto;padding-top:1.6rem;border-top:1px solid var(--line-soft);font-size:.66rem;letter-spacing:.1em;color:var(--marble-dim);text-align:center;line-height:1.9}
+@media(max-width:1140px){
+  nav{flex-wrap:wrap}
+  .burger{display:block;z-index:70;order:3}
+  .nav-links{display:none;order:4;flex-basis:100%;width:100%;flex-direction:column;gap:0;margin-top:1rem;padding-top:.6rem;border-top:1px solid var(--line-soft)}
+  .nav-links.open{display:flex}
+  .nav-links li{width:100%}
+  .nav-links li a:not(.nav-cta){display:block;width:100%;padding:1.05rem .2rem;font-size:.9rem;letter-spacing:.14em;border-bottom:1px solid var(--line-soft)}
+  .nav-links li:last-child{margin-top:.9rem}
+  .nav-links a.nav-cta{display:block;text-align:center;padding:1rem;font-size:.82rem}
+}
+@media(prefers-reduced-motion:reduce){.ticker-track{animation:none;transform:translateX(0)}}
+</style>
+</head>
+<body>
+<div class="ticker" aria-label="Educational resource. Not for human or veterinary use. No compounds sold. No dosing information.">
+  <div class="ticker-track">
+    <span>Answers from the evidence</span><span>Never dosing · never sourcing</span><span>Human data kept separate from animal</span><span>Not for human or veterinary use</span><span>For anyone who wants the evidence</span>
+    <span aria-hidden="true">Answers from the evidence</span><span aria-hidden="true">Never dosing · never sourcing</span><span aria-hidden="true">Human data kept separate from animal</span><span aria-hidden="true">Not for human or veterinary use</span><span aria-hidden="true">For anyone who wants the evidence</span>
+  </div>
+</div>
+<nav>
+  <a href="home.html" class="brand">Aphrodite<span>·</span>Research</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="lens.html">The Lens</a></li>
+    <li><a href="ask.html">Ask</a></li>
+    <li><a href="archive.html">The Archive</a></li>
+    <li><a href="hype-gap.html">Hype Gap</a></li>
+    <li><a href="compare.html">Compare</a></li>
+    <li><a href="pricing.html">Support</a></li>
+    <li><a href="account.html" class="nav-cta">Access</a></li>
+  </ul>
+  <button class="burger" id="burger" aria-label="Menu">☰</button>
+</nav>
+
+<main>
+  <header class="ask-hero">
+    <div class="in">
+      <span class="eyebrow">Ask Aphrodite</span>
+      <h1>Ask about a peptide.<br><em>Get the evidence, not a sales pitch.</em></h1>
+      <p class="sub">Ask what the research shows, what's still unproven, or whether an online claim holds up. Aphrodite answers from a reviewed library — and won't give dosing, sourcing, or personal-use advice.</p>
+    </div>
+  </header>
+
+  <div class="chat-wrap">
+    <div class="chat">
+      <div class="chat-log" id="log">
+        <div class="msg ash">
+          <div class="who">Aphrodite</div>
+          <div class="body"><p>Ask me anything about the peptides in the archive — what the human evidence shows, what's only been tested in animals, or whether something you saw online is real. I'll always point you to the source, and I'll tell you honestly when something isn't in my reviewed knowledge yet.</p></div>
+        </div>
+      </div>
+      <div class="chat-input">
+        <textarea id="input" placeholder="e.g. Does BPC-157 have human evidence for tendon healing?" rows="1"></textarea>
+        <button class="chat-send" id="send">Ask</button>
+      </div>
+    </div>
+    <div class="suggests" id="suggests"></div>
+  </div>
+
+  <p class="ask-note">Aphrodite explains what the published research has and hasn't shown. It is not medical advice, and it does not provide dosing, administration, or sourcing guidance. This preview answers from a limited reviewed library — the full version is in development.</p>
+
+  <section class="how">
+    <div class="how-head"><span class="eyebrow">How it works</span><h2>Grounded, not guessing</h2></div>
+    <div class="how-grid">
+      <div class="how-card"><h3>Reviewed knowledge only</h3><p>Answers come from hand-checked records about compounds we've actually reviewed — never invented from thin air.</p></div>
+      <div class="how-card"><h3>Human vs. animal, always split</h3><p>Every answer keeps what's shown in people separate from what's only been tested in animals.</p></div>
+      <div class="how-card"><h3>No dosing, by design</h3><p>Ask how to use something and it won't tell you — it'll explain why, and point you to what was actually studied instead.</p></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="foot-top">
+    <div class="foot-brand">Aphrodite<span>·</span>Research</div>
+    <div class="foot-links"><a href="legal-disclaimer.html">Disclaimer</a><a href="legal-terms.html">Terms</a><a href="legal-acceptable-use.html">Acceptable Use</a><a href="methodology.html">Methodology</a></div>
+  </div>
+  <div class="foot-legal">Aphrodite Research is an educational resource — built for anyone who wants the evidence. Not for human or veterinary use.<br>We don't sell, supply, or broker peptides, and we don't provide dosing, protocols, or sourcing.</div>
+</footer>
+
+<script>
+// ================= REVIEWED KNOWLEDGE BASE =================
+// Retrieval only. Never answers from general memory. Refuses dosing/personal-use.
+const KB=[
+  { id:"bpc157", match:["bpc","bpc-157","bpc 157","body protection"],
+    name:"BPC-157",
+    human:"pre", tag:"Mostly preclinical",
+    body:`<p><strong>BPC-157</strong> is one of the most-studied peptides in animals and one of the least-studied in humans. There are 100+ animal studies, but fewer than 30 people have ever appeared in a published BPC-157 study — and none were controlled trials.</p><p>A 2025 systematic review screened 544 articles and found only one human clinical study. So the tendon- and tissue-healing story is genuinely interesting in rats, but essentially <strong>unproven in people</strong>. It's also not FDA-approved and is banned in pro sport.</p>`,
+    src:"bpc-157.html", srcName:"BPC-157 dossier" },
+  { id:"ghk", match:["ghk","ghk-cu","copper peptide","copper"],
+    name:"GHK-Cu",
+    human:"human", tag:"Mixed by outcome",
+    body:`<p><strong>GHK-Cu</strong> is a copper-binding peptide with real, if modest, research support for <strong>topical skin</strong> appearance and collagen-related pathways. The evidence thins out for hair, and all but disappears for the injectable "full-body anti-aging" claims you see online.</p><p>The key thing it teaches: <strong>route matters</strong>. Topical evidence doesn't transfer to injection — those are effectively different questions, and the bold claims usually involve the barely-studied one.</p>`,
+    src:"ghk-cu.html", srcName:"GHK-Cu dossier" },
+  { id:"reta", match:["reta","retatrutide","triple agonist"],
+    name:"Retatrutide",
+    human:"human", tag:"Strong human evidence",
+    body:`<p><strong>Retatrutide</strong> is one of the better-evidenced compounds in the archive. Phase 3 trials in hundreds of people show large, consistent weight-loss effects — among the strongest in its drug class.</p><p>The honest caveats: it's still <strong>investigational</strong> (not yet approved), the long-term cardiovascular-safety study isn't finished, and GI side effects and a dose-related heart-rate rise show up in trials.</p>`,
+    src:"retatrutide.html", srcName:"Retatrutide dossier" },
+  { id:"sema", match:["sema","semaglutide","ozempic","wegovy"],
+    name:"Semaglutide",
+    human:"human", tag:"Strong human evidence",
+    body:`<p><strong>Semaglutide</strong> has large randomized trials and real-world use showing clinically meaningful weight loss, and it's approved for weight management — one of the best-evidenced compounds people ask about.</p><p>It isn't free of trade-offs: GI side effects are common, weight is often regained after stopping, and it's a <strong>prescription medicine</strong>, not a casual supplement.</p>`,
+    src:"compare.html", srcName:"comparison" },
+  { id:"tb500", match:["tb-500","tb500","tb 500","thymosin"],
+    name:"TB-500 / Thymosin Beta-4",
+    human:"pre", tag:"Mostly preclinical",
+    body:`<p><strong>TB-500</strong> is a synthetic fragment related to the natural protein Thymosin Beta-4. They're closely connected but <strong>not identical</strong> — TB-500 is usually a specific fragment, so research on the full protein doesn't automatically describe what's in a vial labeled "TB-500."</p><p>Human clinical evidence for the marketed recovery claims is limited, and product identity/purity is a real-world unknown.</p>`,
+    src:"hype-gap.html", srcName:"Hype Gap Index" },
+  { id:"motsc", match:["mots","mots-c","mitochondrial"],
+    name:"MOTS-c",
+    human:"pre", tag:"Primarily preclinical",
+    body:`<p><strong>MOTS-c</strong> is an interesting mitochondrial-derived peptide, and animal work has explored metabolic and exercise-related effects. But the "proven exercise mimetic" framing runs ahead of the data — robust <strong>human evidence is very limited</strong>, and there's no approved human use.</p>`,
+    src:"hype-gap.html", srcName:"Hype Gap Index" },
+];
+
+// dosing / personal-use detection → refuse & explain
+const DOSE_TERMS=["how much","dose","dosing","dosage","mg","mcg","protocol","cycle","stack","reconstitut","inject","how do i take","how to take","how to use","titrat","units","iu ","per week","microgram","milligram","where do i","where to buy","where can i buy","source","vendor","legit source","how often","frequency of"];
+
+function isDosing(q){ q=q.toLowerCase(); return DOSE_TERMS.some(t=>q.includes(t)); }
+
+function findCompound(q){
+  q=q.toLowerCase(); let best=null,hits=0;
+  for(const rec of KB){ let h=0; for(const m of rec.match){ if(q.includes(m)) h++; } if(h>hits){hits=h;best=rec;} }
+  return hits>=1?best:null;
+}
+
+const log=document.getElementById('log');
+function addUser(t){ const d=document.createElement('div'); d.className='msg user'; d.textContent=t; log.appendChild(d); scroll(); }
+function addAsh(html){ const d=document.createElement('div'); d.className='msg ash'; d.innerHTML='<div class="who">Aphrodite</div><div class="body">'+html+'</div>'; log.appendChild(d); scroll(); }
+function scroll(){ log.scrollTop=log.scrollHeight; }
+
+function respond(q){
+  // 1. dosing / personal-use → refuse & explain (teachable)
+  if(isDosing(q)){
+    const c=findCompound(q);
+    let studied = c ? ` If you want, I can point you to the <a class="srclink" href="${c.src}">${c.srcName}</a>, which reports the doses that were actually used <em>in published studies</em> — as a record of the research, not a recommendation.` : ` I can, though, show you what doses were used <em>in the published studies</em> for any compound in the <a class="srclink" href="archive.html">Archive</a> — reported as a record, never as a protocol.`;
+    addAsh(`<span class="tag refuse">Why I won't answer that</span><p>I don't give dosing, protocols, or personal-use guidance — for anyone, on any compound. Here's the honest reason: the moment a peptide site starts telling people how much to take, it stops being an information source and becomes the thing it's supposed to protect you from. Most of these compounds have almost no human safety data, so a "recommended dose" would be guessing with your health.</p><p>What I <strong>can</strong> do is keep you informed.${studied}</p>`);
+    return;
+  }
+  // 2. known compound → answer from KB
+  const c=findCompound(q);
+  if(c){
+    addAsh(`<span class="tag ${c.human}">${c.tag}</span>${c.body}<p style="margin-top:.7rem"><a class="srclink" href="${c.src}">Read the full ${c.srcName} →</a></p>`);
+    return;
+  }
+  // 3. unknown → honest, no hallucination
+  addAsh(`<span class="tag unknown">Not in my reviewed knowledge yet</span><p>I only answer from compounds we've actually reviewed, so I won't guess on this one. Right now I can speak to <strong>BPC-157, GHK-Cu, Retatrutide, Semaglutide, TB-500 / Thymosin Beta-4, and MOTS-c</strong>.</p><p>Try one of those, or explore the <a class="srclink" href="archive.html">Archive</a> to see what's covered.</p>`);
+}
+
+const input=document.getElementById('input'), send=document.getElementById('send');
+function submit(){
+  const q=input.value.trim(); if(!q) return;
+  addUser(q); input.value=''; input.style.height='auto';
+  setTimeout(()=>respond(q), 260);
+}
+send.addEventListener('click',submit);
+input.addEventListener('keydown',e=>{ if(e.key==='Enter'&&!e.shiftKey){ e.preventDefault(); submit(); } });
+input.addEventListener('input',()=>{ input.style.height='auto'; input.style.height=Math.min(input.scrollHeight,120)+'px'; });
+
+const suggests=["Does BPC-157 have human evidence?","Is GHK-Cu proven for skin?","How does retatrutide compare to semaglutide?","Is TB-500 the same as Thymosin Beta-4?","How much BPC-157 should I take?"];
+const sw=document.getElementById('suggests');
+suggests.forEach(s=>{ const el=document.createElement('span'); el.className='sug'; el.textContent='"'+s+'"'; el.onclick=()=>{ input.value=s; submit(); }; sw.appendChild(el); });
+
+const burger=document.getElementById('burger'),links=document.getElementById('navLinks');
+burger.addEventListener('click',()=>links.classList.toggle('open'));
+links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
+</script>
+</body>
+</html>

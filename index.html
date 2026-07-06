@@ -116,33 +116,38 @@ let W,H,cols,drops,fontSize;
 const glyphs="APHRODITE".split("");
 function resize(){
   W=canvas.width=innerWidth;H=canvas.height=innerHeight;
-  fontSize=Math.max(16,Math.min(30,W/48));
-  cols=Math.floor(W/(fontSize*1.35));               // denser columns
-  drops=Array.from({length:cols},()=>mk(true));
+  fontSize=Math.max(15,Math.min(28,W/52));
+  cols=Math.floor(W/(fontSize*1.05));               // tight columns
+  drops=[];
+  for(let i=0;i<cols;i++){
+    const perCol=2+Math.floor(Math.random()*2);     // 2 or 3 per column
+    for(let k=0;k<perCol;k++) drops.push(mk(true,i));
+  }
 }
-function mk(spread){
+function mk(spread,col){
   return{
-    y: spread? Math.random()*-H : Math.random()*-140,
-    speed:.35+Math.random()*1.25,
+    col: col,
+    y: spread? Math.random()*-H*1.4 : -40-Math.random()*160,
+    speed:.3+Math.random()*1.15,
     char:glyphs[Math.floor(Math.random()*glyphs.length)],
-    alpha:.22+Math.random()*.55,
-    bright:Math.random()>.8,
-    size:.7+Math.random()*.7                          // varied sizes for depth
+    alpha:.28+Math.random()*.6,
+    bright:Math.random()>.82,
+    size:.6+Math.random()*.85
   };
 }
 resize();addEventListener('resize',resize);
 let reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 function draw(){
   ctx.clearRect(0,0,W,H);
-  for(let i=0;i<cols;i++){
-    const d=drops[i];const x=i*fontSize*1.35+fontSize*0.4;
+  for(let i=0;i<drops.length;i++){
+    const d=drops[i];const x=d.col*fontSize*1.05+fontSize*0.35;
     const fs=fontSize*d.size;
     ctx.font=`500 ${fs}px 'Playfair Display', serif`;
-    if(d.bright){ctx.shadowColor='rgba(230,198,132,.9)';ctx.shadowBlur=14;ctx.fillStyle=`rgba(230,198,132,${Math.min(1,d.alpha+.35)})`;}
+    if(d.bright){ctx.shadowColor='rgba(230,198,132,.9)';ctx.shadowBlur=12;ctx.fillStyle=`rgba(230,198,132,${Math.min(1,d.alpha+.3)})`;}
     else{ctx.shadowBlur=0;ctx.fillStyle=`rgba(201,163,91,${d.alpha})`;}
     ctx.fillText(d.char,x,d.y);
     d.y+=d.speed;
-    if(d.y>H+40){Object.assign(d,mk(false));}
+    if(d.y>H+40){const c=d.col;Object.assign(d,mk(false,c));}
   }
   ctx.shadowBlur=0;requestAnimationFrame(draw);
 }

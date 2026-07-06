@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Library — Aphrodite Research</title>
+<meta name="robots" content="noindex,follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Jost:wght@300;400;500&family=Spectral:ital,wght@0,300;0,400;1,300;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--obsidian:#080706;--midnight:#0f0d0a;--panel:#0d0b09;--marble:#efe9dc;--marble-dim:#8a8477;--gold:#c9a35b;--gold-bright:#e6c684;--rose:#c88a7d;--teal:#8fc4b8;--line:rgba(201,163,91,.2);--line-soft:rgba(201,163,91,.1);--mono:'JetBrains Mono',ui-monospace,monospace}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:hidden;font-synthesis:none;-webkit-font-smoothing:antialiased}
+body{background:var(--obsidian);color:var(--marble);font-family:'Jost',sans-serif;font-weight:300;line-height:1.6;overflow-x:hidden;min-height:100vh}
+body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+::selection{background:var(--gold);color:var(--obsidian)}
+a{color:inherit;text-decoration:none}
+.eyebrow{font-family:var(--mono);font-weight:500;font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--gold)}
+nav,main,footer{position:relative;z-index:2}
+nav{display:flex;align-items:center;justify-content:space-between;padding:1.3rem clamp(1.2rem,4vw,3rem);position:sticky;top:0;z-index:50;background:rgba(8,7,6,.82);backdrop-filter:blur(16px);border-bottom:1px solid var(--line-soft)}
+.brand{display:inline-flex;align-items:center;font-family:'Playfair Display',serif;font-weight:600;font-size:1.4rem;letter-spacing:.1em;text-transform:uppercase}
+.brand span{color:var(--gold);margin:0 .15em;font-size:.7em;vertical-align:middle}
+.nav-cta{border:1px solid var(--gold);color:var(--gold-bright);padding:.5rem 1.2rem;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;transition:all .3s}
+.nav-cta:hover{background:var(--gold);color:var(--obsidian)}
+.nav-links{display:flex;gap:2rem;align-items:center;list-style:none}
+.nav-links a:not(.nav-cta){padding:.2rem 0;color:var(--marble-dim);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;transition:color .3s}
+.nav-links a:not(.nav-cta):hover,.nav-links a.active{color:var(--gold-bright)}
+.burger{display:none;background:none;border:none;color:var(--marble);font-size:1.4rem;cursor:pointer}
+main{max-width:920px;margin:0 auto;padding:clamp(2rem,5vw,3.4rem) clamp(1.2rem,4vw,3rem)}
+.head{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1.8rem}
+.head h1{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(2rem,4vw,2.8rem);color:#fbf8f0;margin-top:.4rem}
+.head .userpill{font-family:var(--mono);font-size:.66rem;color:var(--marble-dim)}
+.head .userpill b{color:var(--gold-bright);font-weight:500}
+.signout{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--marble-dim);border:1px solid var(--line-soft);padding:.4rem .7rem;cursor:pointer;background:transparent;transition:all .3s}
+.signout:hover{color:var(--gold-bright);border-color:var(--gold)}
+.seg{margin:2rem 0 .9rem;font-family:var(--mono);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.7rem}
+.seg::after{content:"";flex:1;height:1px;background:var(--line-soft)}
+.seg .n{color:var(--marble-dim)}
+.items{display:flex;flex-direction:column;gap:.7rem}
+.item{border:1px solid var(--line-soft);background:var(--panel);padding:.9rem 1rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+.item .txt{flex:1;min-width:200px}
+.item .ct{font-family:'Spectral',serif;font-size:1rem;color:var(--marble);line-height:1.5}
+.item .meta{font-family:var(--mono);font-size:.62rem;letter-spacing:.05em;color:var(--marble-dim);margin-top:.3rem;text-transform:uppercase}
+.item .meta .v{color:var(--gold-bright)}
+.item .meta .pend{color:var(--rose)}
+.item .acts{display:flex;gap:.5rem}
+.iact{font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;padding:.45rem .7rem;border:1px solid var(--line-soft);color:var(--marble-dim);cursor:pointer;background:transparent;transition:all .3s}
+.iact:hover{color:var(--gold-bright);border-color:var(--gold)}
+.iact.rm:hover{color:var(--rose);border-color:rgba(200,138,125,.5)}
+.empty{font-family:var(--mono);font-size:.72rem;color:var(--marble-dim);border:1px dashed var(--line-soft);padding:1rem}
+.state{border:1px dashed var(--line-soft);padding:1.6rem;font-family:var(--mono);font-size:.8rem;color:var(--marble-dim);line-height:1.7;text-align:center}
+.state b{color:var(--gold-bright);font-weight:500}
+.state .btn{display:inline-block;margin-top:1rem;font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;padding:.7rem 1.3rem;border:1px solid var(--gold);color:var(--gold-bright);transition:all .3s}
+.state .btn:hover{background:var(--gold);color:var(--obsidian)}
+footer{background:var(--midnight);border-top:1px solid var(--line-soft);padding:2.4rem clamp(1.2rem,4vw,3rem);margin-top:3rem;text-align:center;font-size:.66rem;letter-spacing:.1em;color:var(--marble-dim);line-height:1.9}
+@media(max-width:1140px){nav{flex-wrap:wrap}.burger{display:block;order:3}.nav-links{display:none;order:4;width:100%;flex-direction:column;gap:0;margin-top:1rem;padding-top:.6rem;border-top:1px solid var(--line-soft)}.nav-links.open{display:flex}.nav-links li{width:100%}.nav-links li a:not(.nav-cta){display:block;padding:1rem .2rem;border-bottom:1px solid var(--line-soft)}}
+</style>
+</head>
+<body>
+<nav>
+  <a href="home.html" class="brand">Aphrodite<span>·</span>Research</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="ask.html">Ask Aphrodite</a></li>
+    <li><a href="archive.html">The Archive</a></li>
+    <li><a href="library.html" class="active">Library</a></li>
+    <li><a href="account.html" class="nav-cta">Access</a></li>
+  </ul>
+  <button class="burger" id="burger" aria-label="Menu">☰</button>
+</nav>
+<main>
+  <div class="head">
+    <div><span class="eyebrow">Your Library</span><h1>Saved &amp; followed</h1></div>
+    <div style="display:flex;align-items:center;gap:1rem">
+      <span class="userpill" id="userpill"></span>
+      <button class="signout" id="signout" style="display:none">Sign out</button>
+    </div>
+  </div>
+  <div id="content"><div class="state">Loading…</div></div>
+</main>
+<footer>Aphrodite Research is an educational resource. Not for human or veterinary use. We provide no dosing, protocols, or sourcing.</footer>
+
+<script type="module">
+import * as Aph from './assets/aphrodite.js';
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+
+function stateSignedOut() {
+  $('content').innerHTML = `<div class="state"><b>Sign in to see your Library.</b><br>Follow a claim or save an Evidence Receipt, and it will show up here — so you can return when the research changes.<br><a class="btn" href="account.html">Sign in / Create account →</a></div>`;
+}
+function stateUnconfigured() {
+  $('content').innerHTML = `<div class="state"><b>The Library needs the backend.</b><br>Accounts and saved items become available once Supabase is configured. Everything else on the site is free to read now.<br><a class="btn" href="ask.html">Ask Aphrodite →</a></div>`;
+}
+
+function claimItem(c, action) {
+  const comp = c.compounds || {};
+  const pend = c.review_status !== 'reviewed' ? '<span class="pend"> · pending verification</span>' : '';
+  return `<div class="item">
+    <div class="txt">
+      <div class="ct">${esc(c.claim_text)}</div>
+      <div class="meta"><span class="v">${esc(c.verdict||'—')}</span> · ${esc(comp.name||'')}${pend}</div>
+    </div>
+    <div class="acts">
+      <a class="iact" href="ask.html?q=${encodeURIComponent(c.claim_text)}">Open receipt →</a>
+      <button class="iact rm" data-action="${action}" data-kind="claim" data-id="${c.id}">Remove</button>
+    </div>
+  </div>`;
+}
+function compoundItem(k, action) {
+  return `<div class="item">
+    <div class="txt">
+      <div class="ct">${esc(k.name)}</div>
+      <div class="meta">${esc(k.class||'')}</div>
+    </div>
+    <div class="acts">
+      ${k.dossier_url?`<a class="iact" href="${esc(k.dossier_url)}">Open dossier →</a>`:''}
+      <a class="iact" href="ask.html?q=${encodeURIComponent('Is '+k.name+' proven?')}">Ask →</a>
+      <button class="iact rm" data-action="${action}" data-kind="compound" data-id="${k.id}">Remove</button>
+    </div>
+  </div>`;
+}
+function section(title, items, html) {
+  return `<div class="seg">${title} <span class="n">· ${items.length}</span></div>` +
+    (items.length ? `<div class="items">${items.map(html).join('')}</div>` : `<div class="empty">Nothing here yet.</div>`);
+}
+
+async function render() {
+  const lib = await Aph.listLibrary();
+  $('content').innerHTML =
+    section('Followed claims', lib.followedClaims, (c) => claimItem(c, 'follow')) +
+    section('Saved claims', lib.savedClaims, (c) => claimItem(c, 'save')) +
+    section('Followed compounds', lib.followedCompounds, (k) => compoundItem(k, 'follow')) +
+    section('Saved compounds', lib.savedCompounds, (k) => compoundItem(k, 'save'));
+  $('content').querySelectorAll('.rm').forEach((btn) => {
+    btn.onclick = async () => {
+      btn.disabled = true;
+      try { await Aph.toggleMark(btn.dataset.action, btn.dataset.kind, btn.dataset.id); btn.closest('.item').remove(); }
+      catch (_) { btn.disabled = false; }
+    };
+  });
+}
+
+(async () => {
+  const cfg = await Aph.getConfig();
+  if (!cfg.authEnabled) return stateUnconfigured();
+  let user = null;
+  try { user = await Aph.currentUser(); } catch (_) {}
+  if (!user) return stateSignedOut();
+  $('userpill').innerHTML = 'Signed in · <b>' + esc(user.email || user.id) + '</b>';
+  $('signout').style.display = 'inline-block';
+  $('signout').onclick = async () => { await Aph.signOut(); location.href = 'home.html'; };
+  try { await render(); }
+  catch (e) { $('content').innerHTML = `<div class="state"><b>Couldn’t load your Library.</b><br>Please refresh in a moment.</div>`; }
+})();
+
+const burger=$('burger'),links=$('navLinks');
+burger.addEventListener('click',()=>links.classList.toggle('open'));
+links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
+</script>
+</body>
+</html>

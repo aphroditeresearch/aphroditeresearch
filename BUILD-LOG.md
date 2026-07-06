@@ -74,6 +74,52 @@ plus Semaglutide/Tirzepatide/Cagrilintide for breadth.
 7. **Discord community** — big retention/growth, but biggest compliance risk: needs heavy
    moderation + acceptable-use enforcement FIRST (sourcing/dosing talk would undo compliance)
 
+## PHASE 1 — THE EVIDENCE RECEIPT LOOP (built)
+Turned the client-side prototype into a real, server-backed loop:
+**paste a claim → cited Evidence Receipt → save/follow → return when it changes.**
+
+- **Merged surface.** `lens.html` (paste-claim → receipt) + `ask.html` (chat) were merged
+  into ONE surface at `ask.html` — "Ask Aphrodite", a terminal/console-styled Evidence
+  Receipt. `lens.html` now redirects there. Public name is "Ask Aphrodite"; "Terminal" is
+  internal only.
+- **`/api/ask`** (Vercel serverless): validate → **safety gate** (dosing/sourcing refuse,
+  intent-based) → **retrieve** DB records → **insufficient-evidence gate** → **grounded
+  Anthropic** call (server key) → **citation validation** (strip invented cites, reject
+  dose leakage, else fall back to the record's own text) → structured JSON → log.
+- **Supabase**: 14-table schema (`supabase/migrations/*`), RLS on all user tables
+  (own-rows-only), reference tables world-read/service-role-write, profile-on-signup trigger.
+- **Seed**: 12 compounds + ~49 claims, **every record `unverified`** (SEED HONESTY) —
+  receipts flag "pending verification". Real external trial/label sources attached where
+  genuine (retatrutide, semaglutide, tirzepatide, PT-141, tesamorelin).
+- **Home**: three hero CTAs → one **"Paste a peptide claim"**; search box + suggestion
+  chips now route into the receipt loop; nav collapsed to one "Ask Aphrodite" + "Library".
+- **Accounts**: `account.html` → real Supabase Auth (email). Save/Follow claims+compounds
+  via `assets/aphrodite.js` (RLS-guarded). New `library.html` lists saved/followed.
+- **Analytics**: `query_logs` + aggregate `GET /api/stats` (asks/saves/follows).
+- **States**: real loading / empty / error / refusal / insufficient, plus a **local
+  fallback library** so the site works before Supabase is provisioned (labelled "offline
+  preview"). Docs: `docs/API.md`, `docs/SETUP.md`, `.env.example`.
+- **Phase-2 stub**: `research_updates` table + `scripts/fetch-research-updates.mjs`
+  (ClinicalTrials.gov / openFDA) — documented, NO live ingestion yet.
+
+**To go live:** provision Supabase, set env vars, deploy (see `docs/SETUP.md`). The
+Anthropic + service-role keys are server-only; the browser gets the anon key from
+`/api/public-config`.
+
+## PHASE 1.1 — SINGLE-TOOL FUNNEL + COMPARE (built)
+Sharpened toward one instrument for the "saw a peptide on TikTok, want the real story"
+user — without deleting the depth (dossiers/Compare/Hype Gap/Archive stay as drill-downs).
+- **Gate enters the tool.** `index.html` "Access the Archive" now opens `ask.html` directly.
+- **Nav trimmed site-wide** to essentials: Ask Aphrodite · The Archive · Library · Access.
+  Hype Gap / Compare / Support demoted out of the top nav (pages + footer links kept).
+- **Compare mode (X vs Y).** Type "reta vs sema", "compare X and Y", etc. → a side-by-side
+  dual receipt (verdict · human · preclinical · hype gap · status + a plain-language
+  difference). Reuses `/api/ask` (one receipt per side); partial + honest when one side
+  isn't in the reviewed library. Never recommends one over another.
+- **Discovery strip in the tool.** Trending compounds, browse-by-goal, and quick-compare
+  chips shown before the first query — folds home's browse/trending so a user who doesn't
+  know what to type has entry points. Home stays as a fuller landing but is no longer the funnel.
+
 ## HONEST STANDING NOTES
 - Paywall is a VISUAL DEMO — no login/payment/gating yet. Don't collect money until backend exists.
 - Evidence figures + paper counts are reasoned but need human verification vs. sources.

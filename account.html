@@ -3,22 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Join the List — Aphrodite Research</title>
+<title>Access — Aphrodite Research</title>
+<meta name="robots" content="noindex,follow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Jost:wght@300;400;500&family=Spectral:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Jost:wght@300;400;500&family=Spectral:ital,wght@0,300;0,400;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--obsidian:#08080b;--midnight:#0f0f16;--panel:#0d0d12;--marble:#efe9dc;--marble-dim:#8a8477;--gold:#c9a35b;--gold-bright:#e6c684;--rose:#c88a7d;--line:rgba(201,163,91,.2);--line-soft:rgba(201,163,91,.1)}
+:root{--obsidian:#08080b;--midnight:#0f0f16;--panel:#0d0d12;--marble:#efe9dc;--marble-dim:#8a8477;--gold:#c9a35b;--gold-bright:#e6c684;--rose:#c88a7d;--teal:#8fc4b8;--line:rgba(201,163,91,.2);--line-soft:rgba(201,163,91,.1);--mono:'JetBrains Mono',ui-monospace,monospace}
 *{margin:0;padding:0;box-sizing:border-box}
-html{font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
-html{overflow-x:hidden}
+html{font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 body{background:var(--obsidian);color:var(--marble);font-family:'Jost',sans-serif;font-weight:300;line-height:1.6;min-height:100vh;display:flex;flex-direction:column;overflow-x:hidden}
 body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 ::selection{background:var(--gold);color:var(--obsidian)}
 a{color:inherit;text-decoration:none}
-.eyebrow{font-family:'Jost';font-weight:500;font-size:.66rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold)}
 nav,main,footer{position:relative;z-index:2}
-
 nav{display:flex;align-items:center;justify-content:center;padding:1.4rem;border-bottom:1px solid var(--line-soft)}
 .brand{display:inline-flex;align-items:center;font-family:'Playfair Display',serif;font-weight:600;font-size:1.4rem;letter-spacing:.1em;text-transform:uppercase}
 .brand span{color:var(--gold);margin:0 .15em;font-size:.7em}
@@ -26,73 +24,148 @@ main{flex:1;display:flex;align-items:center;justify-content:center;padding:2rem 
 .card{width:min(94vw,420px);border:1px solid var(--line);background:linear-gradient(180deg,rgba(13,13,18,.9),rgba(8,8,11,.9));padding:clamp(2.2rem,5vw,3rem);position:relative}
 .card::before,.card::after{content:"";position:absolute;left:50%;transform:translateX(-50%);width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
 .card::before{top:-1px}.card::after{bottom:-1px}
-
-.card h1{font-family:'Playfair Display',serif;font-weight:500;font-size:1.9rem;text-align:center;letter-spacing:.02em;margin-bottom:.4rem}
-.card .sub{text-align:center;font-family:'Spectral',serif;font-style:italic;color:var(--marble-dim);font-size:.95rem;margin-bottom:1.8rem}
-.field{margin-bottom:1.1rem}
-.field label{display:block;font-size:.64rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem}
-.field input{width:100%;background:var(--panel);border:1px solid var(--line);color:var(--marble);font-family:'Jost';font-weight:300;font-size:.95rem;padding:.9rem 1rem;outline:none;transition:border-color .3s}
+.mark{font-family:'Playfair Display',serif;font-weight:600;font-size:2.2rem;letter-spacing:.14em;color:var(--gold-bright);text-align:center;margin:0 auto 1rem;text-shadow:0 0 24px rgba(230,198,132,.35);padding-left:.14em}
+.card h1{font-family:'Playfair Display',serif;font-weight:500;font-size:1.8rem;text-align:center;letter-spacing:.02em;margin-bottom:.3rem}
+.card .sub{text-align:center;font-family:'Spectral',serif;font-style:italic;color:var(--marble-dim);font-size:.92rem;margin-bottom:1.6rem}
+.tabs{display:flex;gap:.5rem;margin-bottom:1.4rem}
+.tab{flex:1;text-align:center;font-family:var(--mono);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;padding:.7rem;border:1px solid var(--line-soft);color:var(--marble-dim);cursor:pointer;transition:all .3s;background:transparent}
+.tab.active{border-color:var(--gold);color:var(--gold-bright)}
+.field{margin-bottom:1rem}
+.field label{display:block;font-family:var(--mono);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:.45rem}
+.field input{width:100%;background:var(--panel);border:1px solid var(--line);color:var(--marble);font-family:'Jost';font-weight:300;font-size:.95rem;padding:.85rem 1rem;outline:none;transition:border-color .3s}
 .field input:focus{border-color:var(--gold)}
-.btn{display:block;width:100%;text-align:center;font-family:'Jost';font-weight:500;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;padding:1.05rem;margin-top:1.4rem;background:linear-gradient(180deg,var(--gold-bright),var(--gold));color:#1a1206;border:none;cursor:pointer;box-shadow:0 8px 30px rgba(201,163,91,.22);transition:box-shadow .3s}
+.btn{display:block;width:100%;text-align:center;font-family:'Jost';font-weight:500;font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;padding:1rem;margin-top:1.2rem;background:linear-gradient(180deg,var(--gold-bright),var(--gold));color:#1a1206;border:none;cursor:pointer;box-shadow:0 8px 30px rgba(201,163,91,.22);transition:box-shadow .3s}
 .btn:hover{box-shadow:0 10px 40px rgba(230,198,132,.4)}
-.alt{text-align:center;margin-top:1.4rem;font-size:.82rem;color:var(--marble-dim)}
+.btn:disabled{opacity:.5;cursor:default;box-shadow:none}
+.alt{text-align:center;margin-top:1.3rem;font-size:.82rem;color:var(--marble-dim)}
 .alt a{color:var(--gold-bright)}
-.divider{display:flex;align-items:center;gap:1rem;margin:1.4rem 0;color:var(--marble-dim);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase}
-.divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--line-soft)}
-.oauth{display:block;width:100%;text-align:center;font-family:'Jost';font-size:.76rem;letter-spacing:.1em;padding:.9rem;border:1px solid var(--line);color:var(--marble);transition:all .3s;margin-bottom:.7rem}
-.oauth:hover{border-color:var(--gold);color:var(--gold-bright)}
-.notice{margin-top:1.8rem;padding:1rem;border:1px solid rgba(200,138,125,.3);border-left:2px solid var(--rose);background:linear-gradient(90deg,rgba(200,138,125,.06),transparent);font-size:.76rem;color:var(--marble-dim);line-height:1.6;font-family:'Spectral',serif}
-.notice b{color:var(--rose);font-weight:400}
+.msg{margin-top:1.2rem;padding:.85rem 1rem;font-family:var(--mono);font-size:.72rem;line-height:1.6;border:1px solid var(--line-soft);display:none}
+.msg.show{display:block}
+.msg.err{border-color:rgba(200,138,125,.4);color:var(--rose)}
+.msg.ok{border-color:rgba(143,196,184,.4);color:var(--teal)}
+.msg.info{border-color:var(--line-soft);color:var(--marble-dim)}
+.signed{display:none;text-align:center}
+.signed.show{display:block}
+.signed .who{font-family:var(--mono);font-size:.8rem;color:var(--gold-bright);margin:.4rem 0 1.4rem;word-break:break-all}
+.linkbtn{display:block;width:100%;text-align:center;font-family:var(--mono);font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;padding:.9rem;border:1px solid var(--line);color:var(--marble);margin-bottom:.7rem;transition:all .3s;cursor:pointer;background:transparent}
+.linkbtn:hover{border-color:var(--gold);color:var(--gold-bright)}
 footer{text-align:center;padding:2rem;font-size:.66rem;letter-spacing:.1em;color:var(--marble-dim);border-top:1px solid var(--line-soft);line-height:1.9}
-.ar-text-card{font-family:'Playfair Display',serif;font-weight:600;font-size:2.2rem;letter-spacing:.14em;color:var(--gold-bright);text-align:center;margin:0 auto 1.2rem;text-shadow:0 0 24px rgba(230,198,132,.35);padding-left:.14em}</style>
+</style>
 </head>
 <body>
 <nav><a href="home.html" class="brand">Aphrodite<span>·</span>Research</a></nav>
 <main>
   <div class="card">
-    <div class="ar-text-card">✦</div>
-    <h1>Join the list</h1>
-    <p class="sub">Free. Be the first to know when we publish new compound dossiers, and get the occasional evidence digest. No spam, no selling — ever.</p>
-    <form id="signupForm" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-      <div class="field"><label>Email</label><input type="email" name="email" placeholder="you@example.com" autocomplete="email" required></div>
-      <div class="field"><label>What brings you here? <span style="opacity:.6">(optional)</span></label>
-        <select name="interest" style="width:100%;background:var(--panel,#0d0b09);border:1px solid var(--line);color:var(--marble);font-family:'Jost',sans-serif;font-size:.95rem;padding:.75rem .9rem;outline:none">
-          <option value="">Select…</option>
-          <option>Just curious / saw something online</option>
-          <option>Researching before deciding</option>
-          <option>Medical / healthcare professional</option>
-          <option>Trainer / coach</option>
-          <option>Student / educator</option>
-          <option>Other</option>
-        </select>
+    <div class="mark">✦</div>
+
+    <!-- signed-out -->
+    <div id="authView">
+      <h1>Access your Library</h1>
+      <p class="sub">Free. Create an account to follow claims and save Evidence Receipts — and return when the research changes.</p>
+      <div class="tabs">
+        <button class="tab active" id="tabSignin">Sign in</button>
+        <button class="tab" id="tabSignup">Create account</button>
       </div>
-      <button class="btn" type="submit">Join the list →</button>
-    </form>
-    <div id="signupOk" style="display:none;text-align:center;padding:1rem;color:var(--teal);font-family:'Spectral',serif">✓ You're on the list. Thank you — we'll be in touch when there's something worth reading.</div>
-    <div class="alt">Just here to read? <a href="archive.html">Explore the Archive →</a></div>
-    <div class="notice"><b>Setup note (for you):</b> this form is ready to work — create a free form at <em>formspree.io</em> and replace <em>YOUR_FORM_ID</em> in the form action with your endpoint. Until then, submissions won't be delivered. No account or password needed anywhere on the site.</div>
+      <form id="authForm">
+        <div class="field" id="nameField" style="display:none"><label>Display name</label><input type="text" id="displayName" autocomplete="nickname" placeholder="What should we call you?"></div>
+        <div class="field"><label>Email</label><input type="email" id="email" autocomplete="email" placeholder="you@example.com" required></div>
+        <div class="field"><label>Password</label><input type="password" id="password" autocomplete="current-password" placeholder="••••••••" minlength="6" required></div>
+        <button class="btn" type="submit" id="submitBtn">Sign in →</button>
+      </form>
+      <div class="alt" id="altLine">Just here to read? <a href="archive.html">Explore the Archive →</a></div>
+      <div class="msg" id="msg"></div>
+    </div>
+
+    <!-- signed-in -->
+    <div class="signed" id="signedView">
+      <h1>You're signed in</h1>
+      <div class="who" id="whoami">—</div>
+      <a class="linkbtn" href="library.html">Open your Library →</a>
+      <a class="linkbtn" href="ask.html">Ask Aphrodite →</a>
+      <button class="linkbtn" id="signOutBtn">Sign out</button>
+    </div>
   </div>
 </main>
 <footer>Aphrodite Research is an educational resource — free, and built for anyone who wants the evidence. Not for human or veterinary use.<br>We do not sell compounds or provide dosing information.</footer>
-<script>
-const form=document.getElementById('signupForm');
-form.addEventListener('submit',async(e)=>{
-  // If the form ID hasn't been set yet, prevent a broken submit and show a friendly note
-  if(form.action.includes('YOUR_FORM_ID')){
-    e.preventDefault();
-    document.getElementById('signupOk').style.display='block';
-    document.getElementById('signupOk').textContent='✓ Demo mode — connect a Formspree ID to start collecting emails.';
-    form.style.display='none';
+
+<script type="module">
+import * as Aph from './assets/aphrodite.js';
+
+const el = (id) => document.getElementById(id);
+let mode = 'signin';
+
+function setMsg(text, cls) {
+  const m = el('msg');
+  m.className = 'msg show ' + (cls || 'info');
+  m.textContent = text;
+}
+function clearMsg() { el('msg').className = 'msg'; }
+
+function setMode(m) {
+  mode = m;
+  el('tabSignin').classList.toggle('active', m === 'signin');
+  el('tabSignup').classList.toggle('active', m === 'signup');
+  el('nameField').style.display = m === 'signup' ? 'block' : 'none';
+  el('password').setAttribute('autocomplete', m === 'signup' ? 'new-password' : 'current-password');
+  el('submitBtn').textContent = m === 'signup' ? 'Create account →' : 'Sign in →';
+  el('altLine').innerHTML = m === 'signup'
+    ? 'Already have an account? <a href="#" id="toSignin">Sign in →</a>'
+    : 'Just here to read? <a href="archive.html">Explore the Archive →</a>';
+  const t = el('toSignin'); if (t) t.onclick = (e) => { e.preventDefault(); setMode('signin'); };
+  clearMsg();
+}
+el('tabSignin').onclick = () => setMode('signin');
+el('tabSignup').onclick = () => setMode('signup');
+
+function showSignedIn(user) {
+  el('authView').style.display = 'none';
+  el('signedView').classList.add('show');
+  el('whoami').textContent = user.email || user.id;
+}
+
+el('authForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = el('email').value.trim();
+  const password = el('password').value;
+  const name = el('displayName').value.trim();
+  el('submitBtn').disabled = true;
+  clearMsg();
+  try {
+    if (mode === 'signup') {
+      const { data, error } = await Aph.signUp(email, password, name);
+      if (error) throw error;
+      if (data.session) showSignedIn(data.user);
+      else setMsg('Account created. Check your email to confirm, then sign in.', 'ok');
+    } else {
+      const { data, error } = await Aph.signIn(email, password);
+      if (error) throw error;
+      showSignedIn(data.user);
+    }
+  } catch (err) {
+    if (err && err.message === 'backend_unconfigured') {
+      setMsg('Accounts aren’t live yet — the backend (Supabase) isn’t configured. You can still read everything freely.', 'info');
+    } else {
+      setMsg((err && err.message) || 'Something went wrong. Please try again.', 'err');
+    }
+  } finally {
+    el('submitBtn').disabled = false;
+  }
+});
+
+el('signOutBtn').addEventListener('click', async () => {
+  await Aph.signOut();
+  location.reload();
+});
+
+// If already signed in, jump straight to the signed-in view.
+(async () => {
+  const cfg = await Aph.getConfig();
+  if (!cfg.authEnabled) {
+    setMsg('Accounts aren’t live yet — the backend (Supabase) isn’t configured. Reading the Archive needs no account.', 'info');
     return;
   }
-  // Real submit via fetch so the page shows success without redirecting
-  e.preventDefault();
-  try{
-    const res=await fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}});
-    if(res.ok){form.style.display='none';document.getElementById('signupOk').style.display='block';}
-    else{form.submit();}
-  }catch(err){form.submit();}
-});
+  try { const u = await Aph.currentUser(); if (u) showSignedIn(u); } catch (_) {}
+})();
 </script>
 </body>
 </html>

@@ -1,0 +1,22 @@
+# dependencies
+node_modules/
+
+# env & secrets
+.env
+.env.local
+.env.*.local
+
+# vercel
+.vercel/
+
+# supabase local
+supabase/.branches/
+supabase/.temp/
+
+# os / editor
+.DS_Store
+*.log
+
+# claude code local config
+.claude/settings.local.json
+.claude/launch.json

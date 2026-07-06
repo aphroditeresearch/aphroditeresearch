@@ -3,20 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ask Aphrodite — Peptide Questions, Answered from the Evidence</title>
-<meta name="description" content="Ask a question about peptides and get an answer grounded in the published research — what's shown in humans, what's only preclinical, and what's still unknown. Never dosing, sourcing, or personal-use advice.">
-<meta name="keywords" content="ask about peptides, peptide questions, BPC-157 questions, GHK-Cu, retatrutide, peptide evidence, is BPC-157 safe">
-<meta property="og:title" content="Ask Aphrodite — Peptide Questions, Answered from the Evidence">
-<meta property="og:description" content="Ask about peptides and get an answer grounded in the research — never dosing or sourcing.">
+<title>Ask Aphrodite — Paste a Claim, Get a Cited Evidence Receipt</title>
+<meta name="description" content="Paste a peptide claim and receive a cited Evidence Receipt: verdict, human vs preclinical evidence, the hype gap, and the sources behind it. Never dosing, sourcing, or personal-use advice.">
+<meta name="keywords" content="peptide evidence, ask about peptides, BPC-157, GHK-Cu, retatrutide, evidence receipt, is BPC-157 proven">
+<meta property="og:title" content="Ask Aphrodite — Paste a Claim, Get a Cited Evidence Receipt">
+<meta property="og:description" content="Paste a peptide claim and get a cited Evidence Receipt — never dosing or sourcing.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Jost:wght@300;400;500&family=Spectral:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Jost:wght@300;400;500&family=Spectral:ital,wght@0,300;0,400;1,300;1,400&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
 :root{
   --obsidian:#080706;--midnight:#0f0d0a;--panel:#0d0b09;--panel-hi:#161310;
   --marble:#efe9dc;--marble-dim:#8a8477;--gold:#c9a35b;--gold-bright:#e6c684;--gold-deep:#8f6f38;--rose:#c88a7d;--teal:#8fc4b8;
   --line:rgba(201,163,91,.2);--line-soft:rgba(201,163,91,.1);
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,monospace;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;overflow-x:hidden;font-synthesis:none;text-rendering:optimizeLegibility;-webkit-font-smoothing:antialiased}
@@ -24,11 +25,14 @@ body{background:var(--obsidian);color:var(--marble);font-family:'Jost',sans-seri
 body::before{content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 ::selection{background:var(--gold);color:var(--obsidian)}
 a{color:inherit;text-decoration:none}
-.eyebrow{font-family:'Jost';font-weight:500;font-size:.66rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold)}
+.eyebrow{font-family:var(--mono);font-weight:500;font-size:.62rem;letter-spacing:.34em;text-transform:uppercase;color:var(--gold)}
 main,nav,.ticker,footer{position:relative;z-index:2}
+.mono{font-family:var(--mono)}
+
+/* ticker + nav (shared shell) */
 .ticker{background:var(--midnight);border-bottom:1px solid var(--line-soft);overflow:hidden;padding:.5rem 0;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
 .ticker-track{display:inline-flex;white-space:nowrap;animation:scroll 46s linear infinite}
-.ticker-track span{font-size:.6rem;letter-spacing:.32em;text-transform:uppercase;color:var(--marble-dim);padding:0 1.5rem;display:inline-flex;align-items:center;gap:1.5rem}
+.ticker-track span{font-family:var(--mono);font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;color:var(--marble-dim);padding:0 1.5rem;display:inline-flex;align-items:center;gap:1.5rem}
 .ticker-track span::after{content:"◆";color:rgba(201,163,91,.4);font-size:.4rem}
 @keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 nav{display:flex;align-items:center;justify-content:space-between;padding:1.3rem clamp(1.2rem,4vw,3rem);position:sticky;top:0;z-index:50;background:rgba(8,7,6,.82);backdrop-filter:blur(16px);border-bottom:1px solid var(--line-soft)}
@@ -41,54 +45,127 @@ nav{display:flex;align-items:center;justify-content:space-between;padding:1.3rem
 .nav-links a:not(.nav-cta):hover,.nav-links a.active{color:var(--gold-bright)}
 .burger{display:none;background:none;border:none;color:var(--marble);font-size:1.4rem;cursor:pointer}
 
-.ask-hero{text-align:center;padding:clamp(2.6rem,6vw,4rem) clamp(1.2rem,4vw,3rem) 1rem;position:relative;overflow:hidden}
+/* ── HERO (terse) ── */
+.ask-hero{text-align:center;padding:clamp(2.2rem,5vw,3.2rem) clamp(1.2rem,4vw,3rem) .6rem;position:relative;overflow:hidden}
 .ask-hero::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 55% 70% at 50% 0%,rgba(201,163,91,.1),transparent 62%)}
-.ask-hero .in{position:relative;z-index:1;max-width:760px;margin:0 auto}
-.ask-hero h1{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(2.3rem,5vw,3.6rem);line-height:1.05;margin:.9rem 0;color:#fbf8f0;text-shadow:0 0 50px rgba(255,255,255,.15)}
+.ask-hero .in{position:relative;z-index:1;max-width:820px;margin:0 auto}
+.ask-hero h1{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(2.1rem,4.6vw,3.2rem);line-height:1.04;margin:.6rem 0 .5rem;color:#fbf8f0}
 .ask-hero h1 em{font-style:italic;color:var(--gold-bright)}
-.ask-hero p.sub{font-family:'Spectral',serif;font-size:1.08rem;color:var(--marble-dim);max-width:58ch;margin:0 auto;line-height:1.7}
+.ask-hero .sub{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;color:var(--marble-dim)}
 
-/* chat window */
-.chat-wrap{max-width:780px;margin:1.8rem auto 0;padding:0 clamp(1.2rem,4vw,3rem)}
-.chat{border:1px solid var(--line);background:var(--panel);min-height:280px;display:flex;flex-direction:column}
-.chat-log{flex:1;padding:1.5rem;display:flex;flex-direction:column;gap:1.2rem;max-height:56vh;overflow-y:auto}
-.msg{max-width:88%;font-size:.98rem;line-height:1.65}
-.msg.user{align-self:flex-end;background:rgba(201,163,91,.1);border:1px solid var(--line-soft);padding:.8rem 1.1rem;border-radius:2px;font-family:'Jost';color:var(--marble)}
-.msg.ash{align-self:flex-start;font-family:'Spectral',serif;color:#d3cdbe}
-.msg.ash .who{font-family:'Jost';font-weight:500;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;display:flex;align-items:center;gap:.4rem}
-.msg.ash .who::before{content:"✦"}
-.msg.ash .body{border-left:2px solid var(--line-soft);padding-left:1rem}
-.msg.ash .body p{margin-bottom:.7rem}
-.msg.ash .body p:last-child{margin-bottom:0}
-.msg.ash .body strong{color:var(--gold-bright);font-weight:500}
-.msg.ash .body .tag{display:inline-block;font-family:'Jost';font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;padding:.25rem .55rem;border:1px solid;margin-bottom:.6rem}
-.tag.human{color:var(--teal);border-color:rgba(143,196,184,.4)}
-.tag.pre{color:var(--rose);border-color:rgba(200,138,125,.4)}
-.tag.refuse{color:var(--rose);border-color:rgba(200,138,125,.5);background:rgba(200,138,125,.06)}
-.tag.unknown{color:var(--marble-dim);border-color:var(--line-soft)}
-.msg.ash .body .srclink{font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-bright);border-bottom:1px solid var(--line-soft);padding-bottom:1px}
-.msg.ash .body .srclink:hover{border-color:var(--gold)}
+/* ── CONSOLE ── */
+.console-wrap{max-width:860px;margin:1.4rem auto 0;padding:0 clamp(1.2rem,4vw,3rem)}
+.console{border:1px solid var(--line);background:linear-gradient(180deg,var(--panel),#0a0908)}
+.con-head{display:flex;align-items:center;gap:.6rem;padding:.55rem .9rem;border-bottom:1px solid var(--line-soft);font-family:var(--mono);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--marble-dim)}
+.con-dot{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 8px var(--gold)}
+.con-head .path{color:var(--gold-bright)}
+.con-head .status{margin-left:auto;color:var(--marble-dim)}
+.con-head .status b{color:var(--teal);font-weight:500}
+.con-head .status.offline b{color:var(--rose)}
+.con-body{display:flex;align-items:flex-start;gap:.6rem;padding:1rem .9rem}
+.con-prompt{font-family:var(--mono);color:var(--gold);font-size:1rem;line-height:1.5;padding-top:.15rem}
+.con-input{flex:1;background:transparent;border:none;color:var(--marble);font-family:var(--mono);font-size:.98rem;line-height:1.55;outline:none;resize:none;min-height:26px;max-height:150px;caret-color:var(--gold-bright)}
+.con-input::placeholder{color:var(--marble-dim)}
+.con-foot{display:flex;align-items:center;gap:1rem;padding:.6rem .9rem;border-top:1px solid var(--line-soft);flex-wrap:wrap}
+.con-hint{font-family:var(--mono);font-size:.6rem;letter-spacing:.08em;color:var(--marble-dim)}
+.caret{display:inline-block;width:.5em;height:1em;background:var(--gold-bright);margin-left:1px;vertical-align:-2px;animation:blink 1.1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.run-btn{margin-left:auto;font-family:var(--mono);font-weight:700;font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;padding:.6rem 1.3rem;background:linear-gradient(180deg,var(--gold-bright),var(--gold));color:#1a1206;border:none;cursor:pointer;transition:box-shadow .3s}
+.run-btn:hover{box-shadow:0 6px 20px rgba(201,163,91,.3)}
+.run-btn:disabled{opacity:.5;cursor:default;box-shadow:none}
 
-.chat-input{border-top:1px solid var(--line-soft);padding:.9rem;display:flex;gap:.7rem;align-items:flex-end}
-.chat-input textarea{flex:1;background:transparent;border:none;color:var(--marble);font-family:'Jost';font-size:1rem;line-height:1.5;padding:.6rem;outline:none;resize:none;min-height:44px;max-height:120px}
-.chat-input textarea::placeholder{color:var(--marble-dim)}
-.chat-send{flex-shrink:0;font-family:'Jost';font-weight:500;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;padding:.75rem 1.4rem;background:linear-gradient(180deg,var(--gold-bright),var(--gold));color:#1a1206;border:none;cursor:pointer;transition:box-shadow .3s}
-.chat-send:hover{box-shadow:0 6px 20px rgba(201,163,91,.3)}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin:1rem 0 0}
+.chip{font-family:var(--mono);font-size:.66rem;letter-spacing:.02em;color:var(--marble-dim);border:1px solid var(--line-soft);padding:.42rem .7rem;cursor:pointer;transition:all .3s}
+.chip::before{content:"› ";color:var(--gold)}
+.chip:hover{color:var(--gold-bright);border-color:var(--gold)}
 
-.suggests{margin-top:1.3rem;display:flex;flex-wrap:wrap;gap:.55rem;justify-content:center}
-.sug{font-family:'Spectral',serif;font-style:italic;font-size:.86rem;color:var(--marble-dim);border:1px solid var(--line-soft);padding:.5rem .9rem;cursor:pointer;transition:all .3s}
-.sug:hover{color:var(--gold-bright);border-color:var(--gold)}
+/* ── OUTPUT STREAM ── */
+.stream{max-width:860px;margin:1.4rem auto 0;padding:0 clamp(1.2rem,4vw,3rem);display:flex;flex-direction:column;gap:1.4rem}
 
-.ask-note{max-width:780px;margin:2rem auto 0;padding:0 clamp(1.2rem,4vw,3rem);font-family:'Spectral',serif;font-style:italic;font-size:.86rem;color:var(--marble-dim);line-height:1.7;text-align:center}
+/* generic receipt block */
+.rcpt{border:1px solid var(--line);background:var(--panel)}
+.rcpt-bar{display:flex;align-items:center;gap:.6rem;padding:.5rem .9rem;border-bottom:1px solid var(--line-soft);font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--marble-dim)}
+.rcpt-bar .id{color:var(--gold-bright)}
+.rcpt-bar .ts{margin-left:auto}
+.rcpt-body{padding:1rem .95rem 1.1rem}
 
-.how{max-width:900px;margin:3.5rem auto 0;padding:0 clamp(1.2rem,4vw,3rem)}
-.how-head{text-align:center;margin-bottom:1.8rem}
-.how-head h2{font-family:'Playfair Display',serif;font-weight:500;font-size:clamp(1.7rem,3vw,2.3rem);margin-top:.6rem}
-.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.3rem}
-@media(max-width:720px){.how-grid{grid-template-columns:1fr}}
-.how-card{border:1px solid var(--line-soft);padding:1.4rem}
-.how-card h3{font-family:'Jost';font-weight:500;font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-bright);margin-bottom:.5rem}
-.how-card p{font-size:.85rem;color:var(--marble-dim);line-height:1.55}
+.claim-echo{font-family:'Spectral',serif;font-style:italic;font-size:1.1rem;line-height:1.55;color:var(--marble);border-left:2px solid var(--gold);padding:.15rem 0 .15rem 1rem;margin-bottom:1rem}
+
+/* key:value rows */
+.kv{display:grid;grid-template-columns:9.5rem 1fr;gap:.15rem .8rem;font-family:var(--mono);font-size:.74rem;line-height:1.5}
+.kv dt{color:var(--marble-dim);letter-spacing:.08em;text-transform:uppercase;font-size:.62rem;padding-top:.15rem}
+.kv dd{color:var(--marble)}
+.seg{margin:1rem 0 .4rem;font-family:var(--mono);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);display:flex;align-items:center;gap:.6rem}
+.seg::after{content:"";flex:1;height:1px;background:var(--line-soft)}
+
+.badge{display:inline-block;font-family:var(--mono);font-weight:500;font-size:.64rem;letter-spacing:.06em;padding:.24rem .55rem;border:1px solid}
+.b-supported{color:var(--teal);border-color:rgba(143,196,184,.5);background:rgba(143,196,184,.06)}
+.b-mixed{color:var(--gold-bright);border-color:var(--line)}
+.b-not{color:var(--rose);border-color:rgba(200,138,125,.5);background:rgba(200,138,125,.06)}
+.tok{font-family:var(--mono);font-size:.68rem}
+.tok.good{color:var(--teal)} .tok.mid{color:var(--gold-bright)} .tok.low{color:var(--rose)} .tok.dim{color:var(--marble-dim)}
+
+.pending{display:inline-block;font-family:var(--mono);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:var(--rose);border:1px solid rgba(200,138,125,.4);padding:.15rem .45rem;margin-left:.5rem}
+
+.readout{font-family:'Spectral',serif;font-size:1rem;line-height:1.7;color:#d3cdbe;margin:.5rem 0 0}
+.readout sup a{font-family:var(--mono);font-size:.62rem;color:var(--gold-bright);border-bottom:1px solid var(--line-soft);padding:0 .1em}
+.readout sup a:hover{border-color:var(--gold)}
+
+.flags{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.5rem}
+.flag{font-family:var(--mono);font-size:.6rem;letter-spacing:.04em;color:var(--rose);border:1px solid rgba(200,138,125,.35);padding:.28rem .5rem}
+.flag::before{content:"⚠ "}
+
+.srcs{list-style:none;margin-top:.5rem;display:flex;flex-direction:column;gap:.55rem}
+.srcs li{font-family:var(--mono);font-size:.7rem;line-height:1.45;color:var(--marble-dim);padding-left:1.6rem;position:relative}
+.srcs li .cite{position:absolute;left:0;top:0;color:var(--gold-bright)}
+.srcs li .stitle{color:var(--marble)}
+.srcs li a.slink{color:var(--gold-bright);border-bottom:1px solid var(--line-soft)}
+.srcs li .rel{color:var(--teal)} .srcs li .rel.ref{color:var(--rose)}
+.srcs li .qn{display:block;color:var(--gold-deep);font-style:normal}
+
+.actions{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.1rem;padding-top:.9rem;border-top:1px solid var(--line-soft)}
+.act{font-family:var(--mono);font-size:.64rem;letter-spacing:.1em;text-transform:uppercase;padding:.5rem .8rem;border:1px solid var(--line-soft);color:var(--marble-dim);cursor:pointer;background:transparent;transition:all .3s}
+.act:hover{color:var(--gold-bright);border-color:var(--gold)}
+.act.on{color:var(--obsidian);background:var(--gold);border-color:var(--gold)}
+.act.primary{border-color:var(--gold);color:var(--gold-bright)}
+
+.foot-line{font-family:var(--mono);font-size:.6rem;letter-spacing:.06em;color:var(--marble-dim);margin-top:.9rem}
+
+/* states */
+.state{border:1px dashed var(--line-soft);padding:1.2rem;font-family:var(--mono);font-size:.78rem;color:var(--marble-dim);line-height:1.6}
+.state b{color:var(--gold-bright);font-weight:500}
+.state.err{border-color:rgba(200,138,125,.4)}
+.state.err b{color:var(--rose)}
+.loading{display:flex;align-items:center;gap:.7rem;font-family:var(--mono);font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold)}
+.spin{width:12px;height:12px;border:2px solid var(--line);border-top-color:var(--gold-bright);border-radius:50%;animation:sp .7s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.covered{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.7rem}
+.covered .c{font-family:var(--mono);font-size:.64rem;color:var(--gold-bright);border:1px solid var(--line-soft);padding:.28rem .5rem;cursor:pointer}
+.covered .c:hover{border-color:var(--gold)}
+
+/* discovery strip (folds home browse/trending into the tool) */
+.discovery{max-width:860px;margin:1.5rem auto 0;padding:0 clamp(1.2rem,4vw,3rem)}
+.disc-row{display:flex;align-items:flex-start;gap:.7rem;flex-wrap:wrap;margin-bottom:.65rem}
+.disc-lbl{font-family:var(--mono);font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);padding-top:.5rem;min-width:5rem}
+.disc-items{display:flex;flex-wrap:wrap;gap:.45rem;flex:1}
+.disc-tok{font-family:var(--mono);font-size:.66rem;color:var(--marble-dim);border:1px solid var(--line-soft);padding:.4rem .7rem;cursor:pointer;transition:all .3s}
+.disc-tok:hover{color:var(--gold-bright);border-color:var(--gold)}
+.disc-tok.hot::after{content:" ◆";color:var(--gold);font-size:.5em;vertical-align:middle}
+
+/* compare block */
+.cmp-grid{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line-soft)}
+@media(max-width:560px){.cmp-grid{grid-template-columns:1fr}}
+.cmp-col{padding:.9rem 1rem}
+.cmp-col+.cmp-col{border-left:1px solid var(--line-soft)}
+@media(max-width:560px){.cmp-col+.cmp-col{border-left:none;border-top:1px solid var(--line-soft)}}
+.cmp-name{font-family:'Playfair Display',serif;font-size:1.3rem;color:#fbf8f0;margin-bottom:.55rem}
+.cmp-name a{border-bottom:1px solid var(--line-soft)}
+.cmp-row{display:flex;justify-content:space-between;gap:.6rem;align-items:baseline;font-family:var(--mono);padding:.35rem 0;border-bottom:1px solid rgba(201,163,91,.07)}
+.cmp-row .k{color:var(--marble-dim);text-transform:uppercase;letter-spacing:.06em;font-size:.56rem}
+.cmp-row .tok{font-size:.7rem}
+.cmp-diff{margin-top:.85rem;font-family:'Spectral',serif;font-size:.98rem;color:#d3cdbe;line-height:1.65;border-left:2px solid var(--gold);padding-left:1rem}
+
+.ask-note{max-width:860px;margin:2rem auto 0;padding:0 clamp(1.2rem,4vw,3rem);font-family:var(--mono);font-size:.64rem;letter-spacing:.03em;color:var(--marble-dim);line-height:1.8;text-align:center}
 
 footer{background:var(--midnight);border-top:1px solid var(--line-soft);padding:3rem clamp(1.2rem,4vw,3rem) 2rem;margin-top:3.5rem}
 .foot-top{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1.5rem;max-width:900px;margin:0 auto 2rem}
@@ -108,25 +185,23 @@ footer{background:var(--midnight);border-top:1px solid var(--line-soft);padding:
   .nav-links li:last-child{margin-top:.9rem}
   .nav-links a.nav-cta{display:block;text-align:center;padding:1rem;font-size:.82rem}
 }
-@media(prefers-reduced-motion:reduce){.ticker-track{animation:none;transform:translateX(0)}}
+@media(max-width:560px){.kv{grid-template-columns:1fr;gap:.05rem}.kv dt{padding-top:.5rem}}
+@media(prefers-reduced-motion:reduce){.ticker-track{animation:none;transform:translateX(0)}.caret{animation:none}.spin{animation:none}}
 </style>
 </head>
 <body>
 <div class="ticker" aria-label="Educational resource. Not for human or veterinary use. No compounds sold. No dosing information.">
   <div class="ticker-track">
-    <span>Answers from the evidence</span><span>Never dosing · never sourcing</span><span>Human data kept separate from animal</span><span>Not for human or veterinary use</span><span>For anyone who wants the evidence</span>
-    <span aria-hidden="true">Answers from the evidence</span><span aria-hidden="true">Never dosing · never sourcing</span><span aria-hidden="true">Human data kept separate from animal</span><span aria-hidden="true">Not for human or veterinary use</span><span aria-hidden="true">For anyone who wants the evidence</span>
+    <span>Paste a claim · receive a cited receipt</span><span>Never dosing · never sourcing</span><span>Human data kept separate from animal</span><span>The database is the source of truth</span><span>Not for human or veterinary use</span>
+    <span aria-hidden="true">Paste a claim · receive a cited receipt</span><span aria-hidden="true">Never dosing · never sourcing</span><span aria-hidden="true">Human data kept separate from animal</span><span aria-hidden="true">The database is the source of truth</span><span aria-hidden="true">Not for human or veterinary use</span>
   </div>
 </div>
 <nav>
   <a href="home.html" class="brand">Aphrodite<span>·</span>Research</a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="lens.html">The Lens</a></li>
-    <li><a href="ask.html">Ask</a></li>
+    <li><a href="ask.html" class="active">Ask Aphrodite</a></li>
     <li><a href="archive.html">The Archive</a></li>
-    <li><a href="hype-gap.html">Hype Gap</a></li>
-    <li><a href="compare.html">Compare</a></li>
-    <li><a href="pricing.html">Support</a></li>
+    <li><a href="library.html">Library</a></li>
     <li><a href="account.html" class="nav-cta">Access</a></li>
   </ul>
   <button class="burger" id="burger" aria-label="Menu">☰</button>
@@ -135,38 +210,36 @@ footer{background:var(--midnight);border-top:1px solid var(--line-soft);padding:
 <main>
   <header class="ask-hero">
     <div class="in">
-      <span class="eyebrow">Ask Aphrodite</span>
-      <h1>Ask about a peptide.<br><em>Get the evidence, not a sales pitch.</em></h1>
-      <p class="sub">Ask what the research shows, what's still unproven, or whether an online claim holds up. Aphrodite answers from a reviewed library — and won't give dosing, sourcing, or personal-use advice.</p>
+      <span class="eyebrow">Ask Aphrodite · Evidence Terminal</span>
+      <h1>Paste a claim.<br><em>Receive a cited receipt.</em></h1>
+      <p class="sub">verdict · human vs preclinical · hype gap · sources — never dosing or sourcing</p>
     </div>
   </header>
 
-  <div class="chat-wrap">
-    <div class="chat">
-      <div class="chat-log" id="log">
-        <div class="msg ash">
-          <div class="who">Aphrodite</div>
-          <div class="body"><p>Ask me anything about the peptides in the archive — what the human evidence shows, what's only been tested in animals, or whether something you saw online is real. I'll always point you to the source, and I'll tell you honestly when something isn't in my reviewed knowledge yet.</p></div>
-        </div>
+  <div class="console-wrap">
+    <div class="console">
+      <div class="con-head">
+        <span class="con-dot"></span>
+        <span class="path">aphrodite://ask</span>
+        <span class="status" id="conStatus">◇ checking backend…</span>
       </div>
-      <div class="chat-input">
-        <textarea id="input" placeholder="e.g. Does BPC-157 have human evidence for tendon healing?" rows="1"></textarea>
-        <button class="chat-send" id="send">Ask</button>
+      <div class="con-body">
+        <span class="con-prompt">&gt;</span>
+        <textarea class="con-input" id="input" rows="1" placeholder="e.g. BPC-157 has been clinically proven to heal tendon injuries in humans."></textarea>
+      </div>
+      <div class="con-foot">
+        <span class="con-hint">↵ run · ⇧↵ newline · try “reta vs sema” to compare<span class="caret"></span></span>
+        <button class="run-btn" id="run">Run ▸</button>
       </div>
     </div>
-    <div class="suggests" id="suggests"></div>
+    <div class="chips" id="chips"></div>
   </div>
 
-  <p class="ask-note">Aphrodite explains what the published research has and hasn't shown. It is not medical advice, and it does not provide dosing, administration, or sourcing guidance. This preview answers from a limited reviewed library — the full version is in development.</p>
+  <div class="discovery" id="discovery"></div>
 
-  <section class="how">
-    <div class="how-head"><span class="eyebrow">How it works</span><h2>Grounded, not guessing</h2></div>
-    <div class="how-grid">
-      <div class="how-card"><h3>Reviewed knowledge only</h3><p>Answers come from hand-checked records about compounds we've actually reviewed — never invented from thin air.</p></div>
-      <div class="how-card"><h3>Human vs. animal, always split</h3><p>Every answer keeps what's shown in people separate from what's only been tested in animals.</p></div>
-      <div class="how-card"><h3>No dosing, by design</h3><p>Ask how to use something and it won't tell you — it'll explain why, and point you to what was actually studied instead.</p></div>
-    </div>
-  </section>
+  <section class="stream" id="stream"></section>
+
+  <p class="ask-note">Aphrodite explains what the published research has and hasn't shown. It is not medical advice and gives no dosing, administration, or sourcing guidance. Records marked <b>pending verification</b> have not yet had their sources human-confirmed.</p>
 </main>
 
 <footer>
@@ -177,90 +250,344 @@ footer{background:var(--midnight);border-top:1px solid var(--line-soft);padding:
   <div class="foot-legal">Aphrodite Research is an educational resource — built for anyone who wants the evidence. Not for human or veterinary use.<br>We don't sell, supply, or broker peptides, and we don't provide dosing, protocols, or sourcing.</div>
 </footer>
 
-<script>
-// ================= REVIEWED KNOWLEDGE BASE =================
-// Retrieval only. Never answers from general memory. Refuses dosing/personal-use.
-const KB=[
-  { id:"bpc157", match:["bpc","bpc-157","bpc 157","body protection"],
-    name:"BPC-157",
-    human:"pre", tag:"Mostly preclinical",
-    body:`<p><strong>BPC-157</strong> is one of the most-studied peptides in animals and one of the least-studied in humans. There are 100+ animal studies, but fewer than 30 people have ever appeared in a published BPC-157 study — and none were controlled trials.</p><p>A 2025 systematic review screened 544 articles and found only one human clinical study. So the tendon- and tissue-healing story is genuinely interesting in rats, but essentially <strong>unproven in people</strong>. It's also not FDA-approved and is banned in pro sport.</p>`,
-    src:"bpc-157.html", srcName:"BPC-157 dossier" },
-  { id:"ghk", match:["ghk","ghk-cu","copper peptide","copper"],
-    name:"GHK-Cu",
-    human:"human", tag:"Mixed by outcome",
-    body:`<p><strong>GHK-Cu</strong> is a copper-binding peptide with real, if modest, research support for <strong>topical skin</strong> appearance and collagen-related pathways. The evidence thins out for hair, and all but disappears for the injectable "full-body anti-aging" claims you see online.</p><p>The key thing it teaches: <strong>route matters</strong>. Topical evidence doesn't transfer to injection — those are effectively different questions, and the bold claims usually involve the barely-studied one.</p>`,
-    src:"ghk-cu.html", srcName:"GHK-Cu dossier" },
-  { id:"reta", match:["reta","retatrutide","triple agonist"],
-    name:"Retatrutide",
-    human:"human", tag:"Strong human evidence",
-    body:`<p><strong>Retatrutide</strong> is one of the better-evidenced compounds in the archive. Phase 3 trials in hundreds of people show large, consistent weight-loss effects — among the strongest in its drug class.</p><p>The honest caveats: it's still <strong>investigational</strong> (not yet approved), the long-term cardiovascular-safety study isn't finished, and GI side effects and a dose-related heart-rate rise show up in trials.</p>`,
-    src:"retatrutide.html", srcName:"Retatrutide dossier" },
-  { id:"sema", match:["sema","semaglutide","ozempic","wegovy"],
-    name:"Semaglutide",
-    human:"human", tag:"Strong human evidence",
-    body:`<p><strong>Semaglutide</strong> has large randomized trials and real-world use showing clinically meaningful weight loss, and it's approved for weight management — one of the best-evidenced compounds people ask about.</p><p>It isn't free of trade-offs: GI side effects are common, weight is often regained after stopping, and it's a <strong>prescription medicine</strong>, not a casual supplement.</p>`,
-    src:"compare.html", srcName:"comparison" },
-  { id:"tb500", match:["tb-500","tb500","tb 500","thymosin"],
-    name:"TB-500 / Thymosin Beta-4",
-    human:"pre", tag:"Mostly preclinical",
-    body:`<p><strong>TB-500</strong> is a synthetic fragment related to the natural protein Thymosin Beta-4. They're closely connected but <strong>not identical</strong> — TB-500 is usually a specific fragment, so research on the full protein doesn't automatically describe what's in a vial labeled "TB-500."</p><p>Human clinical evidence for the marketed recovery claims is limited, and product identity/purity is a real-world unknown.</p>`,
-    src:"hype-gap.html", srcName:"Hype Gap Index" },
-  { id:"motsc", match:["mots","mots-c","mitochondrial"],
-    name:"MOTS-c",
-    human:"pre", tag:"Primarily preclinical",
-    body:`<p><strong>MOTS-c</strong> is an interesting mitochondrial-derived peptide, and animal work has explored metabolic and exercise-related effects. But the "proven exercise mimetic" framing runs ahead of the data — robust <strong>human evidence is very limited</strong>, and there's no approved human use.</p>`,
-    src:"hype-gap.html", srcName:"Hype Gap Index" },
+<script type="module">
+import * as Aph from './assets/aphrodite.js';
+
+// ── Local fallback library (used only when the backend is unconfigured) ──────
+// Structurally identical to an /api/ask receipt so ONE renderer handles both.
+// Every record is review_status 'unverified' — the same honesty as the seed.
+const OFFLINE = [
+  mkOffline('bpc-157','BPC-157','Body-protective peptide',['bpc','bpc-157','bpc 157','tendon','heal','injury','injuries','tissue'],
+    'BPC-157 rapidly heals tendon and soft-tissue injuries in humans.','Not established in humans','b-not',
+    'A large body of animal and cell research has explored BPC-157 in tissue repair, but robust controlled human trials showing it heals tendons are lacking.',
+    ['Very limited','low'],['Extensive','mid'],'Extreme','Low',
+    ['ANIMAL-TO-HUMAN LEAP','LACK OF CONTROLLED HUMAN TRIALS','SAFETY DATA INSUFFICIENT'],'bpc-157.html'),
+  mkOffline('ghk-cu','GHK-Cu','Copper peptide',['ghk','ghk-cu','copper','hair','regrow','balding'],
+    'GHK-Cu regrows hair as well as or better than minoxidil.','Early, limited human evidence','b-mixed',
+    'There is biological plausibility and a small amount of human research on copper-peptide effects on hair, but no strong head-to-head proof against established treatments.',
+    ['Early','mid'],['Moderate','mid'],'High','Low',
+    ['SMALL-SAMPLE SIGNAL','NO INDEPENDENT REPLICATION','ROUTE / OUTCOME LEAP'],'ghk-cu.html'),
+  mkOffline('ghk-cu','GHK-Cu','Copper peptide',['ghk','copper','aging','anti-aging','collagen','injectable','younger'],
+    'Injectable GHK-Cu reverses aging throughout the body.','Not established (route matters)','b-not',
+    'Topical GHK-Cu has modest support for skin appearance, but there is essentially no rigorous controlled human evidence that injectable GHK-Cu produces full-body anti-aging.',
+    ['Insufficient','low'],['Moderate','mid'],'Severe','Low',
+    ['ROUTE MISMATCH','ANIMAL-TO-HUMAN LEAP','SAFETY OVERSTATEMENT'],'ghk-cu.html'),
+  mkOffline('retatrutide','Retatrutide','Incretin — triple agonist',['reta','retatrutide','weight','loss','fat','triple','obesity'],
+    'Retatrutide produces the strongest weight loss of any peptide.','Supported by strong human trials','b-supported',
+    'Phase-2 trials in adults with obesity show large, consistent weight-loss effects — among the strongest reported for this drug class.',
+    ['Strong','good'],['Extensive','mid'],'Low–Moderate','High',
+    ['INVESTIGATIONAL — NOT APPROVED','LONG-TERM SAFETY PENDING'],'retatrutide.html'),
+  mkOffline('semaglutide','Semaglutide','GLP-1 receptor agonist',['sema','semaglutide','ozempic','wegovy','glp'],
+    'Semaglutide causes major weight loss.','Supported by strong human evidence','b-supported',
+    'Large randomized trials and real-world use show clinically meaningful weight loss, and semaglutide is approved for weight management.',
+    ['Strong','good'],['Extensive','mid'],'Moderate','High',
+    ['PRESCRIPTION MEDICINE — NOT A SUPPLEMENT','DURABILITY CAVEAT'],'compare.html'),
+  mkOffline('tb-500','TB-500','Thymosin Beta-4 fragment',['tb-500','tb500','tb 500','thymosin','beta-4','beta 4','same'],
+    'TB-500 and Thymosin Beta-4 are the same thing.','Partly true — an important distinction','b-mixed',
+    'TB-500 is a synthetic fragment related to the natural protein Thymosin Beta-4, but it is typically a specific fragment, not the full protein — so research on one does not automatically describe the other.',
+    ['Limited','low'],['Moderate','mid'],'High','Low',
+    ['IDENTITY MISMATCH (fragment vs. full protein)','LABEL / PURITY UNCERTAINTY'],'archive.html'),
+  mkOffline('mots-c','MOTS-c','Mitochondrial-derived peptide',['mots','mots-c','exercise','mimetic','mitochondrial','energy'],
+    'MOTS-c is a proven exercise mimetic that boosts human metabolism.','Primarily preclinical','b-not',
+    'MOTS-c is a genuinely interesting mitochondrial-derived peptide, but the compelling findings are largely from animal and lab studies; robust human evidence is very limited.',
+    ['Very limited','low'],['Moderate','mid'],'High','Low',
+    ['ANIMAL-TO-HUMAN LEAP','SURROGATE OUTCOME','LACK OF CONTROLLED HUMAN TRIALS'],'archive.html'),
 ];
+function mkOffline(slug,name,klass,match,claim,verdict,vklass,answer,human,pre,gap,conf,flags,dossier){
+  return {match,route:'answer',offline:true,
+    compound:{name,slug,class:klass,dossier_url:dossier},
+    claim:{id:null,text:claim},
+    verdict,verdict_class:vklass,direct_answer:answer,
+    human_evidence:human[0],human_class:human[1],
+    preclinical_evidence:pre[0],claim_gap:gap,confidence:conf,
+    integrity_flags:flags,review_status:'unverified',pending_verification:true,last_reviewed:null,
+    sources:[{cite:'S1',type:'review',title:'Aphrodite internal review — '+name,authors:'Aphrodite Research',year:2026,url:dossier,supports:true,sentence_ref:answer,quality_note:'Internal evidence review — pending primary-source verification.'}],
+  };
+}
+const DOSE_TERMS=['how much','dose','dosing','dosage',' mg',' mcg','protocol','cycle','stack','reconstitut','how do i inject','how to inject','titrat','how do i take','how to take','how to use','how often','per week'];
+const SOURCE_TERMS=['where to buy','where can i buy','where do i get','vendor','legit source','trusted source','order online','buy online'];
 
-// dosing / personal-use detection → refuse & explain
-const DOSE_TERMS=["how much","dose","dosing","dosage","mg","mcg","protocol","cycle","stack","reconstitut","inject","how do i take","how to take","how to use","titrat","units","iu ","per week","microgram","milligram","where do i","where to buy","where can i buy","source","vendor","legit source","how often","frequency of"];
-
-function isDosing(q){ q=q.toLowerCase(); return DOSE_TERMS.some(t=>q.includes(t)); }
-
-function findCompound(q){
-  q=q.toLowerCase(); let best=null,hits=0;
-  for(const rec of KB){ let h=0; for(const m of rec.match){ if(q.includes(m)) h++; } if(h>hits){hits=h;best=rec;} }
-  return hits>=1?best:null;
+function offlineReceipt(q){
+  const t=q.toLowerCase();
+  if(SOURCE_TERMS.some(s=>t.includes(s))) return {route:'refuse',category:'sourcing',offline:true,verdict:'Sourcing request declined',direct_answer:"We don't point to vendors or sources. A site that brokers access becomes the thing it's meant to protect you from.",actions:[{type:'browse_archive',url:'archive.html',label:'Explore the Archive'}]};
+  if(DOSE_TERMS.some(s=>t.includes(s))) return {route:'refuse',category:'dosing',offline:true,verdict:'Dosing request declined',direct_answer:"We don't give doses, protocols, or personal-use guidance — for anyone, on any compound. Most of these compounds have little human safety data, so a recommended dose is guessing with someone's health.",study_context_note:'We can summarise amounts administered in a specific published study — as a record of the research, never as a recommendation — on the compound record.',actions:[{type:'browse_archive',url:'archive.html',label:'Explore the Archive'}]};
+  let best=null,hits=0;
+  for(const r of OFFLINE){let h=0;for(const m of r.match)if(t.includes(m))h++;if(h>hits){hits=h;best=r;}}
+  if(hits<1) return {route:'insufficient',offline:true,verdict:'Not enough reviewed evidence yet',direct_answer:"This isn't in Aphrodite's reviewed library yet, so we won't guess.",covered:[...new Set(OFFLINE.map(o=>JSON.stringify({name:o.compound.name,slug:o.compound.slug})))].map(s=>JSON.parse(s)),actions:[{type:'browse_archive',url:'archive.html',label:'Explore the Archive'}]};
+  return best;
 }
 
-const log=document.getElementById('log');
-function addUser(t){ const d=document.createElement('div'); d.className='msg user'; d.textContent=t; log.appendChild(d); scroll(); }
-function addAsh(html){ const d=document.createElement('div'); d.className='msg ash'; d.innerHTML='<div class="who">Aphrodite</div><div class="body">'+html+'</div>'; log.appendChild(d); scroll(); }
-function scroll(){ log.scrollTop=log.scrollHeight; }
+// ── State ────────────────────────────────────────────────────────────────────
+let BACKEND_READY=false;
+let counter=0;
+const stream=document.getElementById('stream');
+const input=document.getElementById('input');
+const runBtn=document.getElementById('run');
 
-function respond(q){
-  // 1. dosing / personal-use → refuse & explain (teachable)
-  if(isDosing(q)){
-    const c=findCompound(q);
-    let studied = c ? ` If you want, I can point you to the <a class="srclink" href="${c.src}">${c.srcName}</a>, which reports the doses that were actually used <em>in published studies</em> — as a record of the research, not a recommendation.` : ` I can, though, show you what doses were used <em>in the published studies</em> for any compound in the <a class="srclink" href="archive.html">Archive</a> — reported as a record, never as a protocol.`;
-    addAsh(`<span class="tag refuse">Why I won't answer that</span><p>I don't give dosing, protocols, or personal-use guidance — for anyone, on any compound. Here's the honest reason: the moment a peptide site starts telling people how much to take, it stops being an information source and becomes the thing it's supposed to protect you from. Most of these compounds have almost no human safety data, so a "recommended dose" would be guessing with your health.</p><p>What I <strong>can</strong> do is keep you informed.${studied}</p>`);
-    return;
+// backend status pill
+(async()=>{
+  const cfg=await Aph.getConfig();
+  const st=document.getElementById('conStatus');
+  try{
+    const r=await fetch('/api/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({query:'__ping__'})});
+    BACKEND_READY = r.ok; // 404 (static) and 503 (no DB) both → offline
+  }catch(_){ BACKEND_READY=false; }
+  if(BACKEND_READY){ st.innerHTML='● <b>live</b> · database'; st.classList.remove('offline'); }
+  else{ st.innerHTML='● <b>offline preview</b> · local library'; st.classList.add('offline'); }
+})();
+
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function ts(){const d=new Date();return d.toISOString().replace('T',' ').slice(0,19)+'Z';}
+function tokClass(level){const l=(level||'').toLowerCase();if(/strong|high/.test(l))return'good';if(/moderate|early|extensive|low–mod/.test(l))return'mid';if(/limited|insufficient|none|very/.test(l))return'low';return'dim';}
+function verdictClass(v){const l=(v||'').toLowerCase();if(/support/.test(l))return'b-supported';if(/partly|early|mixed|modest/.test(l))return'b-mixed';return'b-not';}
+
+// convert [S#] markers in model text into superscript source links
+function linkCitations(text,receiptId){
+  return esc(text).replace(/\[(S\d+)\]/g,(m,c)=>`<sup><a href="#${receiptId}-${c}">${c}</a></sup>`);
+}
+
+function renderReceipt(data){
+  const id='r'+(++counter);
+  const block=document.createElement('div');
+  block.className='rcpt';
+  block.id=id;
+
+  if(data.route==='refuse'){
+    block.innerHTML=`
+      <div class="rcpt-bar"><span class="id">RECEIPT · ${id}</span><span>${data.category==='sourcing'?'SOURCING':'DOSING'} · declined</span><span class="ts mono">${ts()}</span></div>
+      <div class="rcpt-body">
+        <div><span class="badge b-not">${esc(data.verdict)}</span></div>
+        <p class="readout">${esc(data.direct_answer)}</p>
+        ${data.study_context_note?`<p class="foot-line">${esc(data.study_context_note)}</p>`:''}
+        ${actionsHTML(data,id)}
+      </div>`;
+    return block;
   }
-  // 2. known compound → answer from KB
-  const c=findCompound(q);
-  if(c){
-    addAsh(`<span class="tag ${c.human}">${c.tag}</span>${c.body}<p style="margin-top:.7rem"><a class="srclink" href="${c.src}">Read the full ${c.srcName} →</a></p>`);
-    return;
+  if(data.route==='insufficient'){
+    const cov=(data.covered||[]).map(c=>`<span class="c" data-q="${esc(c.name)}">${esc(c.name)}</span>`).join('');
+    block.innerHTML=`
+      <div class="rcpt-bar"><span class="id">RECEIPT · ${id}</span><span>no match</span><span class="ts mono">${ts()}</span></div>
+      <div class="rcpt-body">
+        <div><span class="badge b-mixed">${esc(data.verdict)}</span></div>
+        <p class="readout">${esc(data.direct_answer)}</p>
+        <div class="seg">Covered in the reviewed library</div>
+        <div class="covered">${cov}</div>
+      </div>`;
+    block.querySelectorAll('.covered .c').forEach(el=>el.onclick=()=>{input.value='Is '+el.dataset.q+' proven?';run();});
+    return block;
   }
-  // 3. unknown → honest, no hallucination
-  addAsh(`<span class="tag unknown">Not in my reviewed knowledge yet</span><p>I only answer from compounds we've actually reviewed, so I won't guess on this one. Right now I can speak to <strong>BPC-157, GHK-Cu, Retatrutide, Semaglutide, TB-500 / Thymosin Beta-4, and MOTS-c</strong>.</p><p>Try one of those, or explore the <a class="srclink" href="archive.html">Archive</a> to see what's covered.</p>`);
+
+  // full evidence receipt
+  const vClass=data.verdict_class||verdictClass(data.verdict);
+  const hClass=data.human_class||tokClass(data.human_evidence);
+  const pending=data.pending_verification?`<span class="pending">pending verification</span>`:'';
+  const flags=(data.integrity_flags||[]).map(f=>`<span class="flag">${esc(f)}</span>`).join('');
+  const srcs=(data.sources||[]).map(s=>`
+    <li id="${id}-${s.cite}"><span class="cite">[${esc(s.cite)}]</span>
+      <span class="stitle">${s.url?`<a class="slink" href="${esc(s.url)}" target="_blank" rel="noopener">${esc(s.title)}</a>`:esc(s.title)}</span>${s.authors?' · '+esc(s.authors):''}${s.year?' · '+esc(s.year):''}
+      <span class="rel${s.supports?'':' ref'}">(${s.supports?'supports':'refutes'})</span>
+      ${s.sentence_ref?`<span class="qn">↳ ${esc(s.sentence_ref)}</span>`:''}
+      ${s.quality_note?`<span class="qn">◇ ${esc(s.quality_note)}</span>`:''}
+    </li>`).join('');
+  const answer = data.answer_source==='model' ? linkCitations(data.direct_answer,id) : esc(data.direct_answer);
+
+  block.innerHTML=`
+    <div class="rcpt-bar"><span class="id">EVIDENCE RECEIPT · ${id}</span><span>${data.offline?'local':'database'}</span><span class="ts mono">${ts()}</span></div>
+    <div class="rcpt-body">
+      <div class="claim-echo">${esc(data.claim&&data.claim.text||'')}</div>
+      <dl class="kv">
+        <dt>Verdict</dt><dd><span class="badge ${vClass}">${esc(data.verdict)}</span>${pending}</dd>
+        <dt>Compound</dt><dd>${esc(data.compound.name)}${data.compound.class?` · <span class="tok dim">${esc(data.compound.class)}</span>`:''}</dd>
+      </dl>
+      <div class="seg">Evidence</div>
+      <dl class="kv">
+        <dt>Human</dt><dd class="tok ${hClass}">${esc(data.human_evidence)}</dd>
+        <dt>Preclinical</dt><dd class="tok ${tokClass(data.preclinical_evidence)}">${esc(data.preclinical_evidence)}</dd>
+        ${data.claim_gap?`<dt>Hype gap</dt><dd class="tok ${tokClass(data.claim_gap)}">${esc(data.claim_gap)}</dd>`:''}
+        <dt>Confidence</dt><dd class="tok ${tokClass(data.confidence)}">${esc(data.confidence||'—')}</dd>
+        <dt>Status</dt><dd class="tok dim">${esc(data.review_status||'unverified')}</dd>
+      </dl>
+      <div class="seg">Readout</div>
+      <p class="readout">${answer}</p>
+      ${data.route_warning||data.population_warning||data.safety_uncertainty?`<div class="seg">Critical distinction</div><dl class="kv">
+        ${data.route_warning?`<dt>Route</dt><dd class="tok low">${esc(data.route_warning)}</dd>`:''}
+        ${data.population_warning?`<dt>Population</dt><dd class="tok low">${esc(data.population_warning)}</dd>`:''}
+        ${data.safety_uncertainty?`<dt>Uncertainty</dt><dd>${esc(data.safety_uncertainty)}</dd>`:''}
+      </dl>`:''}
+      ${flags?`<div class="seg">Claim integrity</div><div class="flags">${flags}</div>`:''}
+      <div class="seg">Sources · sentence-level</div>
+      <ul class="srcs">${srcs||'<li><span class="qn">No source records attached.</span></li>'}</ul>
+      <p class="foot-line">Last reviewed: ${data.last_reviewed?esc(String(data.last_reviewed).slice(0,10)):'— (not yet human-verified)'} · answer from ${data.answer_source==='model'?'grounded model':'record'}${data.offline?' · offline preview':''}</p>
+      ${actionsHTML(data,id)}
+    </div>`;
+  wireActions(block,data);
+  return block;
 }
 
-const input=document.getElementById('input'), send=document.getElementById('send');
-function submit(){
-  const q=input.value.trim(); if(!q) return;
-  addUser(q); input.value=''; input.style.height='auto';
-  setTimeout(()=>respond(q), 260);
+function actionsHTML(data,id){
+  const acts=data.actions||[];
+  if(data.route==='answer'||!data.route){
+    return `<div class="actions">
+      <button class="act" data-act="follow_claim">◇ Follow claim</button>
+      <button class="act" data-act="save_claim">✦ Save to Library</button>
+      ${data.compound&&data.compound.dossier_url?`<a class="act primary" href="${esc(data.compound.dossier_url)}">Open ${esc(data.compound.name)} dossier →</a>`:''}
+      <button class="act" data-act="share">⇗ Share</button>
+    </div>`;
+  }
+  return `<div class="actions">${acts.map(a=>`<a class="act primary" href="${esc(a.url||'#')}">${esc(a.label)}</a>`).join('')}</div>`;
 }
-send.addEventListener('click',submit);
-input.addEventListener('keydown',e=>{ if(e.key==='Enter'&&!e.shiftKey){ e.preventDefault(); submit(); } });
-input.addEventListener('input',()=>{ input.style.height='auto'; input.style.height=Math.min(input.scrollHeight,120)+'px'; });
 
-const suggests=["Does BPC-157 have human evidence?","Is GHK-Cu proven for skin?","How does retatrutide compare to semaglutide?","Is TB-500 the same as Thymosin Beta-4?","How much BPC-157 should I take?"];
-const sw=document.getElementById('suggests');
-suggests.forEach(s=>{ const el=document.createElement('span'); el.className='sug'; el.textContent='"'+s+'"'; el.onclick=()=>{ input.value=s; submit(); }; sw.appendChild(el); });
+function wireActions(block,data){
+  const cid=data.claim&&data.claim.id;
+  block.querySelectorAll('[data-act]').forEach(btn=>{
+    btn.onclick=async()=>{
+      const act=btn.dataset.act;
+      if(act==='share'){ await share(data); return; }
+      if(!BACKEND_READY||!cid){ toast(btn,'Sign in with the live backend to save'); return; }
+      const kind='claim', action=act==='follow_claim'?'follow':'save';
+      try{
+        const now=await Aph.toggleMark(action,kind,cid);
+        btn.classList.toggle('on',now);
+        btn.textContent=(action==='follow'?(now?'◆ Following':'◇ Follow claim'):(now?'✦ Saved':'✦ Save to Library'));
+      }catch(e){ toast(btn, e.message==='not_signed_in'?'Sign in to save':'Save unavailable'); }
+    };
+  });
+}
+async function shareText(text){
+  const url=location.origin+'/ask.html';
+  try{ if(navigator.share){ await navigator.share({title:'Aphrodite Research',text,url}); return; } }catch(_){}
+  try{ await navigator.clipboard.writeText(text+' '+url); }catch(_){}
+}
+function share(data){ return shareText(`Aphrodite Evidence Receipt — “${data.claim&&data.claim.text||data.verdict}”: ${data.verdict}`); }
+function toast(btn,msg){const o=btn.textContent;btn.textContent=msg;setTimeout(()=>btn.textContent=o,1600);}
 
+// ── One receipt fetch, used by both the single query and compare flows ───────
+function goOffline(){ BACKEND_READY=false; const st=document.getElementById('conStatus'); st.innerHTML='● <b>offline preview</b> · local library'; st.classList.add('offline'); }
+async function getReceipt(q){
+  if(BACKEND_READY){
+    const res=await Aph.ask(q);
+    if(res.degraded){ goOffline(); return offlineReceipt(q); }
+    return res.receipt;
+  }
+  await new Promise(r=>setTimeout(r,150));
+  return offlineReceipt(q);
+}
+
+// ── Compare mode (X vs Y) ────────────────────────────────────────────────────
+function parseCompare(q){
+  let m=q.match(/^\s*compare\s+(.+?)\s+(?:and|vs\.?|versus|to|with)\s+(.+?)[\s?.!]*$/i);
+  if(!m) m=q.match(/^\s*(.+?)\s+(?:vs\.?|versus|compared to)\s+(.+?)[\s?.!]*$/i);
+  if(!m) return null;
+  const a=m[1].trim(), b=m[2].trim();
+  if(!a||!b||a.length>40||b.length>40) return null;
+  return {a,b};
+}
+function cmpFields(r,q){
+  if(r&&(r.route==='answer'||!r.route)&&r.compound){
+    return {ok:true,name:r.compound.name,dossier:r.compound.dossier_url,verdict:r.verdict,
+      human:r.human_evidence,pre:r.preclinical_evidence,gap:r.claim_gap,conf:r.confidence,status:r.review_status};
+  }
+  return {ok:false,name:q};
+}
+function cmpDiff(a,b){
+  if(!a.ok||!b.ok){ const miss=!a.ok?a.name:b.name; return `“${miss}” isn’t in the reviewed library yet, so this comparison is partial — we only contrast what we’ve actually reviewed.`; }
+  const parts=[];
+  if(a.human!==b.human) parts.push(`Human evidence differs — ${a.name}: ${a.human}; ${b.name}: ${b.human}.`);
+  if((a.gap||'')!==(b.gap||'')) parts.push(`Hype gap — ${a.name}: ${a.gap||'—'}; ${b.name}: ${b.gap||'—'}.`);
+  if(a.verdict!==b.verdict) parts.push(`Verdict — ${a.name}: ${a.verdict}. ${b.name}: ${b.verdict}.`);
+  return parts.join(' ') || 'Both sit at a similar evidence level in the reviewed library.';
+}
+function cmpTok(x,key){ return x.ok?`<span class="tok ${tokClass(x[key])}">${esc(x[key]||'—')}</span>`:''; }
+function renderCompare(ra,rb,aq,bq){
+  const id='c'+(++counter);
+  const a=cmpFields(ra,aq), b=cmpFields(rb,bq);
+  const col=(x)=>`<div class="cmp-col">
+    <div class="cmp-name">${x.dossier?`<a href="${esc(x.dossier)}">${esc(x.name)}</a>`:esc(x.name)}</div>
+    ${x.ok?`
+      <div class="cmp-row"><span class="k">Verdict</span><span class="tok ${verdictClass(x.verdict)==='b-supported'?'good':verdictClass(x.verdict)==='b-mixed'?'mid':'low'}">${esc(x.verdict)}</span></div>
+      <div class="cmp-row"><span class="k">Human</span>${cmpTok(x,'human')}</div>
+      <div class="cmp-row"><span class="k">Preclinical</span>${cmpTok(x,'pre')}</div>
+      <div class="cmp-row"><span class="k">Hype gap</span>${cmpTok(x,'gap')}</div>
+      <div class="cmp-row"><span class="k">Status</span><span class="tok dim">${esc(x.status||'unverified')}</span></div>
+    `:`<div class="cmp-row"><span class="k">Not in reviewed library yet</span></div>`}
+  </div>`;
+  const block=document.createElement('div'); block.className='rcpt'; block.id=id;
+  block.innerHTML=`<div class="rcpt-bar"><span class="id">COMPARE · ${id}</span><span>${esc(a.name)} ⇄ ${esc(b.name)}</span><span class="ts mono">${ts()}</span></div>
+    <div class="rcpt-body">
+      <div class="cmp-grid">${col(a)}${col(b)}</div>
+      <div class="cmp-diff">${esc(cmpDiff(a,b))}</div>
+      <p class="foot-line">Contrast is drawn only from reviewed records — never a recommendation of one over another.</p>
+      <div class="actions"><button class="act" data-share-cmp="1">⇗ Share comparison</button></div>
+    </div>`;
+  block.querySelector('[data-share-cmp]').onclick=()=>shareText(`Aphrodite compare — ${a.name} vs ${b.name}: ${cmpDiff(a,b)}`);
+  return block;
+}
+
+// ── Run ──────────────────────────────────────────────────────────────────────
+async function run(){
+  const q=input.value.trim();
+  if(!q){ flashState('<b>Empty query.</b> Paste a peptide claim above — e.g. “GHK-Cu regrows hair.”'); return; }
+  runBtn.disabled=true;
+  const cmp=parseCompare(q);
+  const loading=document.createElement('div');
+  loading.className='rcpt';
+  loading.innerHTML=`<div class="rcpt-body"><div class="loading"><span class="spin"></span>${cmp?`Comparing ${esc(cmp.a)} ⇄ ${esc(cmp.b)}`:`Retrieving evidence for “${esc(q.slice(0,60))}${q.length>60?'…':''}”`}</div></div>`;
+  stream.prepend(loading);
+
+  try{
+    if(cmp){
+      const [ra,rb]=await Promise.all([getReceipt(cmp.a),getReceipt(cmp.b)]);
+      loading.remove();
+      stream.prepend(renderCompare(ra,rb,cmp.a,cmp.b));
+    }else{
+      const data=await getReceipt(q);
+      loading.remove();
+      if(!data||data.error){ flashState('<b>Unavailable.</b> The evidence service returned an error.','err'); runBtn.disabled=false; return; }
+      stream.prepend(renderReceipt(data));
+    }
+    input.value=''; input.style.height='auto';
+  }catch(e){
+    loading.remove();
+    flashState('<b>Something went wrong.</b> The evidence service didn’t respond. Try again in a moment.','err');
+  }
+  runBtn.disabled=false;
+}
+function flashState(html,cls){
+  const d=document.createElement('div');
+  d.className='rcpt';
+  d.innerHTML=`<div class="rcpt-body"><div class="state ${cls||''}">${html}</div></div>`;
+  stream.prepend(d);
+  setTimeout(()=>{if(cls!=='err')d.remove();},6000);
+}
+
+runBtn.addEventListener('click',run);
+input.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();run();}});
+input.addEventListener('input',()=>{input.style.height='auto';input.style.height=Math.min(input.scrollHeight,150)+'px';});
+
+// example chips
+const examples=['BPC-157 heals tendon injuries in humans.','Retatrutide vs Semaglutide','Injectable GHK-Cu reverses aging.','Is TB-500 the same as Thymosin Beta-4?','How much BPC-157 should I take?'];
+const chips=document.getElementById('chips');
+examples.forEach(x=>{const c=document.createElement('span');c.className='chip';c.textContent=x;c.onclick=()=>{input.value=x;run();};chips.appendChild(c);});
+
+// discovery strip — trending compounds, browse-by-goal, quick compares (folds home)
+const TRENDING=[['Retatrutide',1],['Semaglutide',0],['Tirzepatide',1],['BPC-157',1],['GHK-Cu',1],['TB-500',0],['MOTS-c',0],['PT-141',0],['Melanotan II',0],['Tesamorelin',0],['Ipamorelin',0],['CJC-1295',0]];
+const GOALS=[['Weight loss','Retatrutide is the strongest weight-loss peptide.'],['Skin','Topical GHK-Cu improves skin appearance.'],['Recovery','Does BPC-157 heal injuries in humans?'],['Muscle / GH','Does ipamorelin build muscle in humans?'],['Energy','Is MOTS-c a proven exercise mimetic?'],['Sexual health','Does PT-141 improve sexual desire?']];
+const COMPARES=['Retatrutide vs Semaglutide','Semaglutide vs Tirzepatide','BPC-157 vs TB-500'];
+const disc=document.getElementById('discovery');
+disc.innerHTML=`<div class="disc-row"><span class="disc-lbl">Trending</span><div class="disc-items" id="discT"></div></div>
+  <div class="disc-row"><span class="disc-lbl">By goal</span><div class="disc-items" id="discG"></div></div>
+  <div class="disc-row"><span class="disc-lbl">Compare</span><div class="disc-items" id="discC"></div></div>`;
+function discTok(host,label,q,hot){const t=document.createElement('span');t.className='disc-tok'+(hot?' hot':'');t.textContent=label;t.onclick=()=>{input.value=q;run();};host.appendChild(t);}
+TRENDING.forEach(([n,h])=>discTok(disc.querySelector('#discT'),n,'Is '+n+' proven?',h));
+GOALS.forEach(([l,q])=>discTok(disc.querySelector('#discG'),l,q,0));
+COMPARES.forEach(q=>discTok(disc.querySelector('#discC'),q,q,0));
+
+// deep-link: ?q=...  (used by home search + suggestion chips)
+const params=new URLSearchParams(location.search);
+const pre=params.get('q');
+if(pre){ input.value=pre; setTimeout(run,350); }
+
+// mobile nav
 const burger=document.getElementById('burger'),links=document.getElementById('navLinks');
 burger.addEventListener('click',()=>links.classList.toggle('open'));
 links.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));

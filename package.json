@@ -1,0 +1,20 @@
+{
+  "name": "aphrodite-research",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Aphrodite Research — evidence receipt loop (static site + Vercel serverless /api/ask backed by Supabase + Anthropic).",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "vercel dev",
+    "db:reset": "supabase db reset",
+    "db:push": "supabase db push",
+    "seed": "supabase db reset"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.65.0",
+    "@supabase/supabase-js": "^2.58.0"
+  }
+}
